@@ -20,8 +20,10 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"aoi"},"dateModified":"2024-04-14T00:00:00+00:00","datePublished":"2024-04-14T00:00:00+00:00","description":"CMPT 726 MLE, MAP, NN, SVM, OLS MLE Use the property of i.i.d, \\(p(y_1,\\cdots,y_N | x_1,\\cdots,x_N, w) = \\prod_{i=1}^{N}p(y_i|x_i, w)\\) Use logarithm to scale the equation \\(\\begin{aligned} \\log p(Y|X, w) &amp;= \\log \\prod_{i=1}^{N}p(y_i|x_i, w) \\\\ &amp;= \\sum_{i=1}^{N} \\log p(y_i|x_i, w) \\end{aligned}\\) Then, simplify the equation by the property of $w^* = \\text{argmax}w \\sum{i=1}^{N} \\log p(y_i x_i, w) = \\text{argmax}_w f(w)$ Let $L(w) = f(w)$ and solve $\\frac{dL}{dw} = 0$ to get $w^*$.","headline":"ML Reviews","mainEntityOfPage":{"@type":"WebPage","@id":"http://yourdomain.com/blog/2024/04/14/SVM.html"},"url":"http://yourdomain.com/blog/2024/04/14/SVM.html"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://yourdomain.com/feed.xml" title="Your Site Title" /></head>
-<body><header class="site-header" role="banner">
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://yourdomain.com/feed.xml" title="Your Site Title" />
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body><header class="site-header">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Your Site Title</a><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
@@ -42,9 +44,11 @@
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">ML Reviews</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="2024-04-14T00:00:00+00:00" itemprop="datePublished">Apr 14, 2024
-      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">aoi</span></span></p>
+    <p class="post-meta"><time class="dt-published" datetime="2024-04-14T00:00:00+00:00" itemprop="datePublished">
+        Apr 14, 2024
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">aoi</span></span></p>
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
@@ -89,21 +93,23 @@
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">Your Site Title</h2>
-
     <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">Your Site Title</li><li><a class="u-email" href="mailto:your-email@example.com">your-email@example.com</a></li></ul>
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="http://yourdomain.com/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
       </div>
-
-      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul>
-</div>
-
-      <div class="footer-col footer-col-3">
+      <div class="footer-col">
         <p>This is an example site description. You can use Markdown here.</p>
       </div>
     </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
 
   </div>
 
