@@ -8,8 +8,8 @@
 <meta property="og:title" content="ML Reviews" />
 <meta name="author" content="aoi" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="CMPT 726 MLE Use the property of i.i.d, \(p(y_1,\cdots,y_N | x_1,\cdots,x_N, w) = \prod_{i=1}^{N}p(y_i|x_i, w)\) Use logarithm to scale the equation \(\begin{aligned} \log p(Y|X, w) &amp;= \log \prod_{i=1}^{N}p(y_i|x_i, w) \\ &amp;= \sum_{i=1}^{N} \log p(y_i|x_i, w) \end{aligned}\) Then, simplify the equation by the property of $w^* = \text{argmax}w \sum{i=1}^{N} \log p(y_i x_i, w) = \text{argmax}_w f(w)$ Let $L(w) = f(w)$ and solve $\frac{dL}{dw} = 0$ to get $w^*$." />
-<meta property="og:description" content="CMPT 726 MLE Use the property of i.i.d, \(p(y_1,\cdots,y_N | x_1,\cdots,x_N, w) = \prod_{i=1}^{N}p(y_i|x_i, w)\) Use logarithm to scale the equation \(\begin{aligned} \log p(Y|X, w) &amp;= \log \prod_{i=1}^{N}p(y_i|x_i, w) \\ &amp;= \sum_{i=1}^{N} \log p(y_i|x_i, w) \end{aligned}\) Then, simplify the equation by the property of $w^* = \text{argmax}w \sum{i=1}^{N} \log p(y_i x_i, w) = \text{argmax}_w f(w)$ Let $L(w) = f(w)$ and solve $\frac{dL}{dw} = 0$ to get $w^*$." />
+<meta name="description" content="CMPT 726 MLE, MAP, NN, SVM, OLS MLE Use the property of i.i.d, \(p(y_1,\cdots,y_N | x_1,\cdots,x_N, w) = \prod_{i=1}^{N}p(y_i|x_i, w)\) Use logarithm to scale the equation \(\begin{aligned} \log p(Y|X, w) &amp;= \log \prod_{i=1}^{N}p(y_i|x_i, w) \\ &amp;= \sum_{i=1}^{N} \log p(y_i|x_i, w) \end{aligned}\) Then, simplify the equation by the property of $w^* = \text{argmax}w \sum{i=1}^{N} \log p(y_i x_i, w) = \text{argmax}_w f(w)$ Let $L(w) = f(w)$ and solve $\frac{dL}{dw} = 0$ to get $w^*$." />
+<meta property="og:description" content="CMPT 726 MLE, MAP, NN, SVM, OLS MLE Use the property of i.i.d, \(p(y_1,\cdots,y_N | x_1,\cdots,x_N, w) = \prod_{i=1}^{N}p(y_i|x_i, w)\) Use logarithm to scale the equation \(\begin{aligned} \log p(Y|X, w) &amp;= \log \prod_{i=1}^{N}p(y_i|x_i, w) \\ &amp;= \sum_{i=1}^{N} \log p(y_i|x_i, w) \end{aligned}\) Then, simplify the equation by the property of $w^* = \text{argmax}w \sum{i=1}^{N} \log p(y_i x_i, w) = \text{argmax}_w f(w)$ Let $L(w) = f(w)$ and solve $\frac{dL}{dw} = 0$ to get $w^*$." />
 <link rel="canonical" href="http://yourdomain.com/blog/2024/04/14/SVM.html" />
 <meta property="og:url" content="http://yourdomain.com/blog/2024/04/14/SVM.html" />
 <meta property="og:site_name" content="Your Site Title" />
@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="ML Reviews" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"aoi"},"dateModified":"2024-04-14T00:00:00+00:00","datePublished":"2024-04-14T00:00:00+00:00","description":"CMPT 726 MLE Use the property of i.i.d, \\(p(y_1,\\cdots,y_N | x_1,\\cdots,x_N, w) = \\prod_{i=1}^{N}p(y_i|x_i, w)\\) Use logarithm to scale the equation \\(\\begin{aligned} \\log p(Y|X, w) &amp;= \\log \\prod_{i=1}^{N}p(y_i|x_i, w) \\\\ &amp;= \\sum_{i=1}^{N} \\log p(y_i|x_i, w) \\end{aligned}\\) Then, simplify the equation by the property of $w^* = \\text{argmax}w \\sum{i=1}^{N} \\log p(y_i x_i, w) = \\text{argmax}_w f(w)$ Let $L(w) = f(w)$ and solve $\\frac{dL}{dw} = 0$ to get $w^*$.","headline":"ML Reviews","mainEntityOfPage":{"@type":"WebPage","@id":"http://yourdomain.com/blog/2024/04/14/SVM.html"},"url":"http://yourdomain.com/blog/2024/04/14/SVM.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"aoi"},"dateModified":"2024-04-14T00:00:00+00:00","datePublished":"2024-04-14T00:00:00+00:00","description":"CMPT 726 MLE, MAP, NN, SVM, OLS MLE Use the property of i.i.d, \\(p(y_1,\\cdots,y_N | x_1,\\cdots,x_N, w) = \\prod_{i=1}^{N}p(y_i|x_i, w)\\) Use logarithm to scale the equation \\(\\begin{aligned} \\log p(Y|X, w) &amp;= \\log \\prod_{i=1}^{N}p(y_i|x_i, w) \\\\ &amp;= \\sum_{i=1}^{N} \\log p(y_i|x_i, w) \\end{aligned}\\) Then, simplify the equation by the property of $w^* = \\text{argmax}w \\sum{i=1}^{N} \\log p(y_i x_i, w) = \\text{argmax}_w f(w)$ Let $L(w) = f(w)$ and solve $\\frac{dL}{dw} = 0$ to get $w^*$.","headline":"ML Reviews","mainEntityOfPage":{"@type":"WebPage","@id":"http://yourdomain.com/blog/2024/04/14/SVM.html"},"url":"http://yourdomain.com/blog/2024/04/14/SVM.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://yourdomain.com/feed.xml" title="Your Site Title" /></head>
 <body><header class="site-header" role="banner">
@@ -49,6 +49,8 @@
 
   <div class="post-content e-content" itemprop="articleBody">
     <h1 id="cmpt-726">CMPT 726</h1>
+
+<p>MLE, MAP, NN, SVM, OLS</p>
 
 <h2 id="mle">MLE</h2>
 
