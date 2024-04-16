@@ -1,0 +1,29 @@
+<h1 id="cmpt-726">CMPT 726</h1>
+
+<h2 id="mle">MLE</h2>
+
+<ol>
+  <li>
+    <p>Use the property of i.i.d, 
+\(p(y_1,\cdots,y_N | x_1,\cdots,x_N, w) = \prod_{i=1}^{N}p(y_i|x_i, w)\)</p>
+  </li>
+  <li>
+    <p>Use logarithm to scale the equation
+\(\begin{aligned}
+\log p(Y|X, w) &amp;= \log \prod_{i=1}^{N}p(y_i|x_i, w) \\
+&amp;= \sum_{i=1}^{N} \log p(y_i|x_i, w)
+\end{aligned}\)</p>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Then, simplify the equation by the property of $w^* = \text{argmax}<em>w \sum</em>{i=1}^{N} \log p(y_i</td>
+          <td>x_i, w) = \text{argmax}_w f(w)$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Let $L(w) = f(w)$ and solve $\frac{dL}{dw} = 0$ to get $w^*$.</li>
+</ol>
+
