@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-04-16T09:06:26+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">ML Reviews</title><link href="http://yourdomain.com/blog/2024/04/14/SVM.html" rel="alternate" type="text/html" title="ML Reviews" /><published>2024-04-14T00:00:00+00:00</published><updated>2024-04-14T00:00:00+00:00</updated><id>http://yourdomain.com/blog/2024/04/14/SVM</id><content type="html" xml:base="http://yourdomain.com/blog/2024/04/14/SVM.html"><![CDATA[<h1 id="cmpt-726">CMPT 726</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-04-18T01:01:51+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">Weekly Notes for 04-01 to 04-15</title><link href="http://yourdomain.com/blog/2024/04/15/weekly.html" rel="alternate" type="text/html" title="Weekly Notes for 04-01 to 04-15" /><published>2024-04-15T00:00:00+00:00</published><updated>2024-04-15T00:00:00+00:00</updated><id>http://yourdomain.com/blog/2024/04/15/weekly</id><content type="html" xml:base="http://yourdomain.com/blog/2024/04/15/weekly.html"><![CDATA[<p>My last semester comes to an end and not many things happened within this one or two weeks.</p>
+
+<p>I got full marks in all three assignments of machine learning course and not to much to worry about in the finals. I will review SVM tonight and do the 22fall final tomorrow.</p>
+
+<p>New discovery - I’ve never been to the 7th floor of the library, and there is a research common room for grad students – with punch code lock. Dual monitors, iMacs and spacious desks there. Very quiet and I consider there is a good place for me to do job searches after my finals. (Thanks a friend of me, he discovered this place. And I found that place in the last few weeks of my master’s, LOL).</p>
+
+<p>Another thing to remind myself is that I need to use my dental benefit and eyeglasses benefit within this month, since I’ve never used them.</p>
+
+<p>I bought a ThinkPad P52s, for only $375 (after tax), and it looks good, with 4K display. However its performance is quite unpleasant when running Windows 11. Especially it takes a lot of time to boot a Ubuntu VM using VirtualBox, looking for solution for that.</p>
+
+<p>Do delivery for 3-4 days after this Wednesday before the final grades coming out.  Keep eyes out of phone while driving and make sure safety.</p>
+
+<p>Take the AZ-101 test and prepare for interviews. Since no TA works for me after graduated, a job offer is all I need.</p>
+
+<p>Songs I’ve been looping this two weeks:</p>
+<ul>
+  <li>Giant - Gentle Giant</li>
+  <li>Bonito Generation - Kero Kero Bonito</li>
+  <li>Azure d’Or</li>
+  <li>Someday - Teddy Robin</li>
+</ul>]]></content><author><name>aoi</name></author><category term="Blog" /><category term="Weekly" /><summary type="html"><![CDATA[My last semester comes to an end and not many things happened within this one or two weeks.]]></summary></entry><entry><title type="html">ML Reviews</title><link href="http://yourdomain.com/blog/2024/04/14/SVM.html" rel="alternate" type="text/html" title="ML Reviews" /><published>2024-04-14T00:00:00+00:00</published><updated>2024-04-14T00:00:00+00:00</updated><id>http://yourdomain.com/blog/2024/04/14/SVM</id><content type="html" xml:base="http://yourdomain.com/blog/2024/04/14/SVM.html"><![CDATA[<h1 id="cmpt-726">CMPT 726</h1>
 
 <p>MLE, MAP, NN, SVM, OLS</p>
 
