@@ -29,8 +29,8 @@ h6 {
 }
 
 .header-banner {
-    background-color: #0d0015;
-    color: white;
+    background-color: white;
+    color: #0d0015;
 }
 
 .line-overlay {
@@ -50,7 +50,7 @@ h6 {
     right: 0;
     height: 1pt;
     /* Line thickness */
-    background-color: white;
+    background-color: #0d0015;
     /* Line color */
 }
 
@@ -144,18 +144,18 @@ h6 {
 }
 
 .my-nav-link {
-    color: white;
+    color: #0d0015;
     padding: 0;
 }
 
 .my-nav-link:focus {
-    background-color: white;
-    color: #0d0015;
+    background-color: #0d0015;
+    color: white;
 }
 
 .my-nav-link:hover {
-    background-color: white;
-    color: #0d0015;
+    background-color: #0d0015;
+    color: white;
 }
 
 
