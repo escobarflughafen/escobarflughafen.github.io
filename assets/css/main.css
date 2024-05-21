@@ -1,0 +1,115 @@
+body {
+    font-family: "Segoe UI", "Helvetica Neue", "Toppan Bunkyu Gothic", Arial;
+    font-weight: 400;
+}
+
+/* Apply styles to all header tags directly */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 200;
+}
+
+.head-text {
+    font-weight: 700;
+    letter-spacing: -1pt;
+}
+
+.header-banner {
+    background-color: #0d0015;
+    color: white;
+}
+
+.line-overlay {
+    position: relative;
+    padding-top: 0.5rem;
+    /* Necessary for the pseudo-element positioning */
+    padding-bottom: 0.5rem;
+}
+
+/* Style for the pseudo-element to create the white line */
+.line-overlay::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    /* Adjust the vertical position */
+    left: 0;
+    right: 0;
+    height: 1pt;
+    /* Line thickness */
+    background-color: white;
+    /* Line color */
+}
+
+.inline-text-circle {
+    font-size: 3em;
+}
+
+.circle {
+    user-select: none;
+    display: inline-flex;
+    width: 4rem;
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d0015;
+    color: white;
+    font-size: 2em;
+    /* Adjust the font size as needed */
+    border-radius: 50%;
+    margin: 0;
+    /* Adjust spacing as needed */
+    text-align: center;
+    border-width: 0;
+}
+
+.bg-stop {
+    background-color: #d3381c;
+}
+
+.bg-primary {
+    background-color: #165e83;
+}
+
+.bg-secondary {
+    background-color: #028760;
+}
+
+.my-card {
+    border-radius: 0;
+    border-color: #0d0015;
+}
+
+.my-card>.list-group:first-child {
+    border-radius: 0;
+}
+
+.my-card>.list-group:last-child {
+    border-radius: 0;
+}
+
+
+.my-list-group-item {
+    border-style: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Smooth transition */
+}
+
+.my-list-group-item:hover {
+    color: white;
+    /* Text color on hover */
+    background-color: #0d0015;
+    /* Background color on hover */
+}
+
+.my-card-header {
+    background-color: #0d0015;
+    color: white;
+}
+
+.my-card-header:first-child {
+    border-radius: 0;
+}
