@@ -4,9 +4,13 @@ function displayGreeting() {
     const hours = now.getHours();
     let greeting;
 
-    if (hours < 18 && hours >= 6) {
+    if (hours < 12 && hours >= 6) {
         greeting = "Bonjour"; // Good morning
-    } else {
+    }
+    else if (hours < 18) {
+        greeting = "Bonjour"; // Good afternoon
+    }
+    else {
         greeting = "Bonsoir"; // Good evening
     }
 

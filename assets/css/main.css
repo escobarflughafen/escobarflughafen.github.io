@@ -13,9 +13,19 @@ h6 {
     font-weight: 200;
 }
 
+.display-text {
+    user-select:auto;
+}
+
 .head-text {
     font-weight: 700;
+    font-kerning: auto;
     letter-spacing: -1pt;
+}
+
+.head-nav-text {
+    font-weight: 700;
+    letter-spacing: -0.5pt;
 }
 
 .header-banner {
@@ -94,11 +104,18 @@ h6 {
 
 .my-list-group-item {
     border-style: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out;
     /* Smooth transition */
 }
 
 .my-list-group-item:hover {
+    color: white;
+    /* Text color on hover */
+    background-color: #0d0015;
+    /* Background color on hover */
+}
+
+.my-list-group-item:focus {
     color: white;
     /* Text color on hover */
     background-color: #0d0015;
@@ -113,3 +130,45 @@ h6 {
 .my-card-header:first-child {
     border-radius: 0;
 }
+
+.text-active {
+    font-weight: 200;
+}
+
+.text-inactive {
+    font-weight: 100;
+}
+
+.my-nav-item {
+    padding-right: 0.5rem;
+}
+
+.my-nav-link {
+    color: white;
+    padding: 0;
+}
+
+.my-nav-link:focus {
+    background-color: white;
+    color: #0d0015;
+}
+
+.my-nav-link:hover {
+    background-color: white;
+    color: #0d0015;
+}
+
+
+.link-no-effect {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the same color as the surrounding text */
+    cursor: pointer; /* Keep the pointer cursor to indicate it's clickable */
+  }
+  
+  /* Remove any visual effects on hover, focus, and active states */
+  .link-no-effect:hover,
+  .link-no-effect:focus,
+  .link-no-effect:active {
+    text-decoration: none;
+    color: inherit;
+  }
