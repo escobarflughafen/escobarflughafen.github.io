@@ -5,16 +5,16 @@ function displayGreeting() {
     let greeting;
 
     if (hours < 12 && hours >= 6) {
-        greeting = "Bonjour"; // Good morning
+        greeting = "bonjour"; // Good morning
     }
     else if (hours < 18) {
-        greeting = "Bonjour"; // Good afternoon
+        greeting = "bonjour"; // Good afternoon
     }
     else {
-        greeting = "Bonsoir"; // Good evening
+        greeting = "bonsoir"; // Good evening
     }
 
-    document.getElementById('greeting').textContent = greeting + ", I am Jianing";
+    document.getElementById('greeting').textContent = greeting + ", i am jianing";
 }
 
 // Call the function to display the greeting
