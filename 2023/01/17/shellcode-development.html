@@ -1,11 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-05-21T09:23:50+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">1. Shellcode Development</title><link href="http://yourdomain.com/2023/01/17/shellcode-development.html" rel="alternate" type="text/html" title="1. Shellcode Development" /><published>2023-01-17T12:00:00+00:00</published><updated>2023-01-17T12:00:00+00:00</updated><id>http://yourdomain.com/2023/01/17/shellcode-development</id><content type="html" xml:base="http://yourdomain.com/2023/01/17/shellcode-development.html"><![CDATA[<h1 id="shellcode-development"><strong>Shellcode Development</strong></h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1. Shellcode Development</title>
+  <meta name="description" content="This is an example site description. You can use Markdown here.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body class="mb-3">
 
-<hr />
+
+<header class="header-banner line-overlay">
+    <div class="container">
+        <a href="/" class="link-no-effect">
+        <h1 id="greeting" class="head-text display-text">
+            Bonjour
+        </h1>
+        </a>
+        <ul class="nav">
+            <li class="nav-item my-nav-item">
+                <a class="nav-link my-nav-link head-nav-text" aria-current="page" href="/posts">posts</a>
+            </li>
+            <li class="nav-item my-nav-item">
+                <a class="nav-link my-nav-link head-nav-text" aria-current="page" href="/projects">projects</a>
+            </li>
+            <li class="nav-item my-nav-item">
+                <a class="nav-link my-nav-link head-nav-text" aria-current="page" href="/photos">photos</a>
+            </li>
+            <li class="nav-item my-nav-item">
+                <a class="nav-link my-nav-link head-nav-text" aria-current="page" href="/contacts">contacts</a>
+            </li>
+        </ul>
+    </div>
+</header>
+<script src="/assets/js/header.js"></script>
+
+<main class="container mt-3">
+    <ul id="toc" class="toc-list">
+<li class="toc-item toc-h1"><a href="#shellcode-development">Shellcode Development</a>
+<ul class="toc-sublist">
+<li class="toc-item toc-h3"><a href="#1-printing-on-the-screen">1. Printing on the Screen</a></li>
+<li class="toc-item toc-h3"><a href="#2-spawning-a-shell">2. Spawning a Shell</a></li>
+</ul>
+</li>
+</ul><h1 id="shellcode-development">
+<a class="anchor" href="#shellcode-development" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Shellcode Development</strong>
+</h1>
+
+<hr>
 
 <ul id="toc" class="toc-list">
 </ul>
 
-<h3 id="1-printing-on-the-screen">1. Printing on the Screen</h3>
+<h3 id="1-printing-on-the-screen">
+<a class="anchor" href="#1-printing-on-the-screen" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Printing on the Screen</h3>
 
 <p>Program using Relative Addressing technique</p>
 
@@ -36,7 +85,7 @@ shellcode:
         msg db "Hello, world!", 0xA, 0xD
 </code></pre>
 
-<p><img src="/assets/screenshots/1-1-rel.png" alt="1-1-rel" /></p>
+<p><img src="/assets/screenshots/1-1-rel.png" alt="1-1-rel"></p>
 
 <p>Program using Stack methods</p>
 
@@ -63,7 +112,7 @@ _start:
         int 0x80				; system call interrupt
 </code></pre>
 
-<p><img src="/assets/screenshots/1-2-stk.png" alt="1-2-stk" /></p>
+<p><img src="/assets/screenshots/1-2-stk.png" alt="1-2-stk"></p>
 
 <blockquote>
   <p><em>(a) In <code class="language-plaintext highlighter-rouge">print_stk.asm</code>, explain how the line “<code class="language-plaintext highlighter-rouge">push 0x000a0d21</code>” works. Show a screenshot from gdb to support your explanation.</em></p>
@@ -71,17 +120,17 @@ _start:
 
 <p>From the gdb disassembler, the line <code class="language-plaintext highlighter-rouge">push 0x000a0d21</code> is located in memory at <code class="language-plaintext highlighter-rouge">0x08048066</code>.</p>
 
-<p><img src="/assets/screenshots/1-1-1-disassembler.png" alt="1-1-1-disassembler" /></p>
+<p><img src="/assets/screenshots/1-1-1-disassembler.png" alt="1-1-1-disassembler"></p>
 
 <p>I set a breakpoint at <code class="language-plaintext highlighter-rouge">_start</code> and used <code class="language-plaintext highlighter-rouge">si</code> command to execute one instruction each time. When the program is running before executing the instruction of <code class="language-plaintext highlighter-rouge">push 0x000a0d21</code>, from the status of all registers,</p>
 
-<p><img src="/assets/screenshots/1-1-2-registers-before.png" alt="1-1-2-registers-before" /></p>
+<p><img src="/assets/screenshots/1-1-2-registers-before.png" alt="1-1-2-registers-before"></p>
 
 <p>we can see that the current stack top address in memory is <code class="language-plaintext highlighter-rouge">0xbffff5fc</code>, and the value inside is <code class="language-plaintext highlighter-rouge">0x0</code>.</p>
 
 <p>Then, after running the <code class="language-plaintext highlighter-rouge">push 0x000a0d21</code> instruction. From the register info, we can see that the value <code class="language-plaintext highlighter-rouge">0x000a0d21</code> is pushed into stack and the value of register <code class="language-plaintext highlighter-rouge">esp</code> has changed to <code class="language-plaintext highlighter-rouge">0xbffff5f8</code> (deduced 4), pointing to address of the top of stack.</p>
 
-<p><img src="/assets/screenshots/1-1-3-registers-after.png" alt="1-1-3-registers-after" /></p>
+<p><img src="/assets/screenshots/1-1-3-registers-after.png" alt="1-1-3-registers-after"></p>
 
 <blockquote>
   <p><em>(b) Also, in the same file, explain how you got the string address. Show a screenshot from gdb to support your explanation.</em></p>
@@ -91,11 +140,12 @@ _start:
 
 <p>By executing instructions one by one, from gdb, we can see that after <code class="language-plaintext highlighter-rouge">mov ecx, esp</code> is executed, the <code class="language-plaintext highlighter-rouge">ecx</code> register holds the address points to the string. Then, the system call <code class="language-plaintext highlighter-rouge">write</code> can use the string address as second argument.</p>
 
-<p><img src="/assets/screenshots/1-2-1-register-after.png" alt="1-2-1-register-after" /></p>
+<p><img src="/assets/screenshots/1-2-1-register-after.png" alt="1-2-1-register-after"></p>
 
-<hr />
+<hr>
 
-<h3 id="2-spawning-a-shell">2. Spawning a Shell</h3>
+<h3 id="2-spawning-a-shell">
+<a class="anchor" href="#2-spawning-a-shell" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Spawning a Shell</h3>
 
 <h4 id="21-startup-code-labshasm">2.1 Startup Code (labsh.asm)</h4>
 
@@ -105,7 +155,7 @@ _start:
   </ol>
 </blockquote>
 
-<p><img src="/assets/screenshots/2-1-1.png" alt="2-1-1" /></p>
+<p><img src="/assets/screenshots/2-1-1.png" alt="2-1-1"></p>
 
 <blockquote>
   <ol>
@@ -113,9 +163,10 @@ _start:
   </ol>
 </blockquote>
 
-<p><img src="/assets/screenshots/2-1-2-usr-bin-env.png" alt="2-1-2-usr-bin-env" /></p>
+<p><img src="/assets/screenshots/2-1-2-usr-bin-env.png" alt="2-1-2-usr-bin-env"></p>
 
-<h4 id="22-providing-arguments-to-binsh">2.2 Providing Arguments to <code class="language-plaintext highlighter-rouge">/bin/sh</code></h4>
+<h4 id="22-providing-arguments-to-binsh">2.2 Providing Arguments to <code class="language-plaintext highlighter-rouge">/bin/sh</code>
+</h4>
 
 <p>I constructed the argument string “<code class="language-plaintext highlighter-rouge">-c</code>” and “<code class="language-plaintext highlighter-rouge">ls -la</code>” by pushing them into stack and use <code class="language-plaintext highlighter-rouge">esi</code> register to keep their address in memory. When constructing <code class="language-plaintext highlighter-rouge">argv</code>, I pushed the address of each argument string into the stack to form an array of strings.</p>
 
@@ -156,9 +207,10 @@ _start:
       int  0x80
 </code></pre>
 
-<p><img src="/assets/screenshots/2-2-1-result.png" alt="2-2-1-result" /></p>
+<p><img src="/assets/screenshots/2-2-1-result.png" alt="2-2-1-result"></p>
 
-<h4 id="23-providing-env-variable-to-binsh">2.3 Providing Env. Variable to <code class="language-plaintext highlighter-rouge">/bin/sh</code></h4>
+<h4 id="23-providing-env-variable-to-binsh">2.3 Providing Env. Variable to <code class="language-plaintext highlighter-rouge">/bin/sh</code>
+</h4>
 
 <p>I constructed environment variable strings by pushing them into stack and use <code class="language-plaintext highlighter-rouge">esi</code> register to keep their address in memory as in the 2.2. When constructing <code class="language-plaintext highlighter-rouge">envp</code>, I pushed the address of each envrionment variable string into the stack to form an array of strings.</p>
 
@@ -207,47 +259,47 @@ _start:
       int  	0x80
 </code></pre>
 
-<p><img src="/assets/screenshots/2-3-1-result.png" alt="2-3-1-result" /></p>
+<p><img src="/assets/screenshots/2-3-1-result.png" alt="2-3-1-result"></p>
 
 <h4 id="24-using-the-relative-addressing-technique">2.4 Using the Relative Addressing Technique</h4>
 
 <p>First, the program jumps to a <code class="language-plaintext highlighter-rouge">call</code> instruction at line 19, right before the the string.</p>
 
-<p><img src="/assets/screenshots/2-4-2-start.png" alt="2-4-2-start" /></p>
+<p><img src="/assets/screenshots/2-4-2-start.png" alt="2-4-2-start"></p>
 
 <p>Then, the program executes the <code class="language-plaintext highlighter-rouge">call</code> instruction and jumps back to the instruction after the previous <code class="language-plaintext highlighter-rouge">jmp</code> instruction, and push the address of the string <code class="language-plaintext highlighter-rouge">/bin/sh*AAAABBBB</code> into stack.</p>
 
-<p><img src="/assets/screenshots/2-4-3-one.png" alt="2-4-3-one" /></p>
+<p><img src="/assets/screenshots/2-4-3-one.png" alt="2-4-3-one"></p>
 
 <p>Now, The stack top contains the address of the string:</p>
 
-<p><img src="/assets/screenshots/2-4-4-stack-top.png" alt="2-4-4-stack-top" /></p>
+<p><img src="/assets/screenshots/2-4-4-stack-top.png" alt="2-4-4-stack-top"></p>
 
 <p>The program will pop the string address and save to <code class="language-plaintext highlighter-rouge">esi</code> register after the instruction <code class="language-plaintext highlighter-rouge">pop esi</code>. <code class="language-plaintext highlighter-rouge">esi</code> register now holds the address of the string.</p>
 
-<p><img src="/assets/screenshots/2-4-5-esi-holds-string-addr.png" alt="2-4-5-esi-holds-string-addr" /></p>
+<p><img src="/assets/screenshots/2-4-5-esi-holds-string-addr.png" alt="2-4-5-esi-holds-string-addr"></p>
 
 <p>Then, the program copys the string address to <code class="language-plaintext highlighter-rouge">ebx</code> register, ready to be used as first argument of <code class="language-plaintext highlighter-rouge">execve </code> system call.</p>
 
 <p>The first 7 characters in the string contains the filename of the shell program we want to run in the shellcode. To construct the filename string, the program rewrites the memory at <code class="language-plaintext highlighter-rouge">[ebx+7]</code> with <code class="language-plaintext highlighter-rouge">\0</code> to terminate the filename string.</p>
 
-<p><img src="/assets/screenshots/2-4-6-turncate-string.png" alt="2-4-6-turncate-string" /></p>
+<p><img src="/assets/screenshots/2-4-6-turncate-string.png" alt="2-4-6-turncate-string"></p>
 
 <p>Next, the program saves the address of string <code class="language-plaintext highlighter-rouge">/bin/sh</code> to the memory at <code class="language-plaintext highlighter-rouge">[ebx+8]</code>, ready to construct the <code class="language-plaintext highlighter-rouge">argv</code> array.</p>
 
-<p><img src="/assets/screenshots/2-4-7-argv.png" alt="2-4-7-argv" /></p>
+<p><img src="/assets/screenshots/2-4-7-argv.png" alt="2-4-7-argv"></p>
 
 <p>The program terminate the <code class="language-plaintext highlighter-rouge">argv</code> array with <code class="language-plaintext highlighter-rouge">0</code> at <code class="language-plaintext highlighter-rouge">[ebx+12]</code> and assigns the <code class="language-plaintext highlighter-rouge">ecx</code> register with the <code class="language-plaintext highlighter-rouge">argv</code> array.</p>
 
-<p><img src="/assets/screenshots/2-4-8-argv-array.png" alt="2-4-8-argv-array" /></p>
+<p><img src="/assets/screenshots/2-4-8-argv-array.png" alt="2-4-8-argv-array"></p>
 
 <p>The program save <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">edx</code> for no environment variable is passed to the shell program.</p>
 
-<p><img src="/assets/screenshots/2-4-9-no-envp.png" alt="2-4-9-no-envp" /></p>
+<p><img src="/assets/screenshots/2-4-9-no-envp.png" alt="2-4-9-no-envp"></p>
 
 <p>In the last, the program save <code class="language-plaintext highlighter-rouge">0x0b</code> to <code class="language-plaintext highlighter-rouge">eax</code> and invokes a system call interrupt to spawn a shell.</p>
 
-<p><img src="/assets/screenshots/2-4-10-sh.png" alt="2-4-10-sh" /></p>
+<p><img src="/assets/screenshots/2-4-10-sh.png" alt="2-4-10-sh"></p>
 
 <p><code class="language-plaintext highlighter-rouge">src/task2/labsh_rel.asm</code></p>
 
@@ -278,4 +330,34 @@ two:
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nasm <span class="nt">-f</span> elf32 ./src/task2/labsh.rel.asm
 ld <span class="nt">--omagic</span> ./src/task2/labsh_rel.o <span class="nt">-o</span> labsh_rel
 ./labsh_rel
-</code></pre></div></div>]]></content><author><name>Jianing</name></author><category term="binary" /><summary type="html"><![CDATA[Shellcode Development]]></summary></entry></feed>
+</code></pre></div></div>
+
+
+</main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+</script>
+
+
+</html>
