@@ -13,25 +13,53 @@
 
 <header class="header-banner line-overlay">
     <div class="container">
-        <a href="/" class="link-no-effect">
-        <h1 id="greeting" class="head-text display-text">
-            Bonjour
-        </h1>
-        </a>
-        <ul class="nav">
-            <li class="nav-item my-nav-item">
-                <a class="nav-link my-nav-link head-nav-text" aria-current="page" href="/posts">posts</a>
-            </li>
-            <li class="nav-item my-nav-item">
-                <a class="nav-link my-nav-link head-nav-text" aria-current="page" href="/projects">projects</a>
-            </li>
-            <li class="nav-item my-nav-item">
-                <a class="nav-link my-nav-link head-nav-text" aria-current="page" href="/photos">photos</a>
-            </li>
-            <li class="nav-item my-nav-item">
-                <a class="nav-link my-nav-link head-nav-text" aria-current="page" href="/contacts">contacts</a>
-            </li>
-        </ul>
+        <div class="row">
+
+            <div class="col-12 col-md-4">
+                <a href="/" class="link-no-effect">
+                    <h1 id="greeting" class="head-text display-text">
+                        bonjour,
+                        <br />
+                        i am jianing
+                    </h1>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-8">
+                <ul class="nav">
+                    <li class="nav-item my-nav-item">
+                        <a class="nav-link my-nav-link head-text display-text" aria-current="page" href="/posts">
+                            <h2>
+                                posts
+                            </h2>
+                        </a>
+                    </li>
+                    <li class="nav-item my-nav-item">
+                        <a class="nav-link my-nav-link head-text display-text" aria-current="page" href="/projects">
+                            <h2>
+                                projects
+                            </h2>
+                        </a>
+                    </li>
+                    <li class="nav-item my-nav-item">
+                        <a class="nav-link my-nav-link head-text display-text" aria-current="page" href="/photos">
+                            <h2>
+                                photos
+                            </h2>
+                        </a>
+                    </li>
+                    <li class="nav-item my-nav-item">
+                        <a class="nav-link my-nav-link head-text display-text" aria-current="page" href="/contacts">
+                            <h2>
+                                contacts
+                            </h2>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
     </div>
 </header>
 <script src="/assets/js/header.js"></script>
@@ -44,26 +72,46 @@
 </div>
 
 
-
-<div class="card mb-3 my-card">
-  <div class="card-header my-card-header">
-    <h2 class="mb-0 display-text">Recent posts</h2>
+<div class="row">
+  <div class="col-12 col-md-8 mb-3">
+    <div class="card my-card">
+      <div class="card-header my-card-header">
+        <h4 class="mb-0 display-text">Recent posts</h2>
+      </div>
+      <ul class="list-group list-group-flush">
+        
+        <a class="list-group-item my-list-group-item" href="/2023/01/17/shellcode-development.html">1. Shellcode Development - January
+          17,
+          2023</a>
+        
+      </ul>
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    
-    <a class="list-group-item my-list-group-item" href="/2023/01/17/shellcode-development.html">1. Shellcode Development - January 17,
-      2023</a>
-    
-  </ul>
+
+  <!-- example of a padding block only display in sm and less width
+  <div class="col-12 d-block d-md-none">
+    &nbsp;
+  </div>
+  -->
+
+
+  <div class="col-12 col-md-4">
+
+  </div>
 </div>
 
-<h2>
-  About me
-</h2>
+<div class="row mb-3">
+  <div class="col">
+    <h2>
+      About me
+    </h2>
 
-I share my thoughts, projects and tutorials in this site.
+    I share my thoughts, projects and tutorials in this site.
 
-Feel free to <a href="/contact">contact</a> with any questions or feedback.
+    Feel free to <a href="/contact">contact</a> with any questions or feedback.
+
+  </div>
+</div>
 </main>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

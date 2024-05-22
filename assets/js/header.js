@@ -14,7 +14,7 @@ function displayGreeting() {
         greeting = "bonsoir"; // Good evening
     }
 
-    document.getElementById('greeting').textContent = greeting + ", i am jianing";
+    document.getElementById('greeting').innerHTML = greeting + ', <br class="mb-0"> i am jianing';
 }
 
 // Call the function to display the greeting

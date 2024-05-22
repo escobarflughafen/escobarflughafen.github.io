@@ -21,23 +21,71 @@ h6 {
 }
 
 .display-text {
-    user-select:auto;
+    user-select: none;
+}
+
+.my-nav-item {
+    padding-right: 1em;
+}
+
+.my-nav-link {
+    color: white;
+    /*
+    color: #0d0015;
+    */
+    padding: 0;
+}
+
+.my-nav-link:focus {
+    /*
+    background-color: #0d0015;
+    color: white;
+    */
+    color: #0d0015;
+    background-color: white;
+}
+
+.my-nav-link:hover {
+    /*
+    background-color: #0d0015;
+    color: white;
+    */
+    color: #0d0015;
+    background-color: white;
 }
 
 .head-text {
     font-weight: 700;
     font-kerning: auto;
-    letter-spacing: -1pt;
+    letter-spacing: -0.05em;
+    line-height: 0.8;
 }
 
-.head-nav-text {
-    font-weight: 700;
-    letter-spacing: -0.5pt;
-}
 
 .header-banner {
+    /*
     background-color: white;
     color: #0d0015;
+    */
+    color: white;
+    background-color: #0d0015;
+}
+
+/* Style for the pseudo-element to create the white line */
+.line-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0.4rem;
+    /* Adjust the vertical position */
+    left: 0;
+    right: 0;
+    height: 1px;
+    /* Line thickness */
+    /*
+    background-color: #0d0015;
+    */
+    background-color: white;
+    /* Line color */
 }
 
 .line-overlay {
@@ -47,19 +95,6 @@ h6 {
     padding-bottom: 0.5rem;
 }
 
-/* Style for the pseudo-element to create the white line */
-.line-overlay::after {
-    content: '';
-    position: absolute;
-    top: 10%;
-    /* Adjust the vertical position */
-    left: 0;
-    right: 0;
-    height: 1pt;
-    /* Line thickness */
-    background-color: #0d0015;
-    /* Line color */
-}
 
 .inline-text-circle {
     font-size: 3em;
@@ -146,24 +181,6 @@ h6 {
     font-weight: 100;
 }
 
-.my-nav-item {
-    padding-right: 0.5rem;
-}
-
-.my-nav-link {
-    color: #0d0015;
-    padding: 0;
-}
-
-.my-nav-link:focus {
-    background-color: #0d0015;
-    color: white;
-}
-
-.my-nav-link:hover {
-    background-color: #0d0015;
-    color: white;
-}
 
 
 .link-no-effect {
