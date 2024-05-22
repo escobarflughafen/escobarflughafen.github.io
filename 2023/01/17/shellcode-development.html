@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row header-banner-row">
 
-            <div class="col-auto">
+            <div class="col-auto subway-red">
                 <a href="/" class="link-no-effect">
                     <h1 class="head-text display-text">
                         Exit
@@ -23,41 +23,38 @@
                 </a>
             </div>
 
-            <div class="col-10 col-md-5">
+            <div class="col-9 col-md-4 col-xl-6">
                 <h1 class="head-text">
-                1. Shellcode Development
-
+                    1. Shellcode Development
                 </h1>
             </div>
 
-            <div class="col-12 col-md-5">
-
-
+            <div class="col-12 col-md-6 col-xl-5">
                 <ul class="nav">
     <li class="nav-item my-nav-item">
         <a class="nav-link my-nav-link head-text display-text" aria-current="page" href="/posts">
-            <h2>
+            <h2 class="mb-0">
                 posts
             </h2>
         </a>
     </li>
     <li class="nav-item my-nav-item">
         <a class="nav-link my-nav-link head-text display-text" aria-current="page" href="/projects">
-            <h2>
+            <h2 class="mb-0">
                 projects
             </h2>
         </a>
     </li>
     <li class="nav-item my-nav-item">
         <a class="nav-link my-nav-link head-text display-text" aria-current="page" href="/photos">
-            <h2>
+            <h2 class="mb-0">
                 photos
             </h2>
         </a>
     </li>
     <li class="nav-item my-nav-item">
         <a class="nav-link my-nav-link head-text display-text" aria-current="page" href="/contacts">
-            <h2>
+            <h2 class="mb-0">
                 contacts
             </h2>
         </a>
@@ -70,25 +67,12 @@
     </div>
 </header>
 
-
 <main class="container mt-3">
+    <h2>Table of Content</h2>
     <ul id="toc" class="toc-list">
-<li class="toc-item toc-h1"><a href="#shellcode-development">Shellcode Development</a>
-<ul class="toc-sublist">
 <li class="toc-item toc-h3"><a href="#1-printing-on-the-screen">1. Printing on the Screen</a></li>
 <li class="toc-item toc-h3"><a href="#2-spawning-a-shell">2. Spawning a Shell</a></li>
-</ul>
-</li>
-</ul><h1 id="shellcode-development">
-<a class="anchor" href="#shellcode-development" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Shellcode Development</strong>
-</h1>
-
-<hr>
-
-<ul id="toc" class="toc-list">
-</ul>
-
-<h3 id="1-printing-on-the-screen">
+</ul><h3 id="1-printing-on-the-screen">
 <a class="anchor" href="#1-printing-on-the-screen" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Printing on the Screen</h3>
 
 <p>Program using Relative Addressing technique</p>
@@ -369,6 +353,7 @@ ld <span class="nt">--omagic</span> ./src/task2/labsh_rel.o <span class="nt">-o<
 
 
 </main>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -393,6 +378,5 @@ ld <span class="nt">--omagic</span> ./src/task2/labsh_rel.o <span class="nt">-o<
       }
     };
 </script>
-
 
 </html>

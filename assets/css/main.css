@@ -63,14 +63,10 @@ h6 {
 
 
 
-
 .header-banner-row {}
 
-.header-banner-row > [class^="col"]:first-child {
-    background-color: #F55028;
-}
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .my-nav-item {
         padding-right: 1rem;
     }
@@ -345,4 +341,14 @@ h6 {
 .text-subway-line-SIR {
     color: #0039A6;
     /* Navy Blue */
+}
+
+
+.subway-blue {
+    background-color: #1CA3C6;
+}
+
+.subway-red {
+    background-color: #F55028;
+
 }
