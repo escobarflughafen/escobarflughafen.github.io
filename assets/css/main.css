@@ -28,15 +28,18 @@ h6 {
 
 .col-nav-banner {
     display: flex;
-    height: 100%; /* Ensure the nav-col fills the height of the row */
+    height: 100%;
+    /* Ensure the nav-col fills the height of the row */
     align-items: stretch;
 }
 
 .nav-banner {
     display: flex;
-    flex-direction: row; /* Place items horizontally */
+    flex-direction: row;
+    /* Place items horizontally */
     width: 100%;
-    height: 100%; /* Ensure the nav fills the height of the nav-col */
+    height: 100%;
+    /* Ensure the nav fills the height of the nav-col */
     padding: 0;
     margin: 0;
     list-style: none;
@@ -94,11 +97,29 @@ h6 {
     line-height: 0.8;
 }
 
+.svg-icon {
+    width: 3em;
+    height: 3em;
+}
 
+.svg-fill {
+    display: inline-flex;
+    width: 2rem;
+    /* Scale width relative to font size */
+    height: 2rem;
+    /* Scale height relative to font size */
+    vertical-align: middle;
+    /* Align icon with text */
+}
+
+.svg-banner {
+    fill: white
+}
 
 .header-banner-row {}
 
-.header-banner-row > [class^="col"] {       /*> for direct child*/
+.header-banner-row>[class^="col"] {
+    /*> for direct child*/
     padding-left: 0;
 }
 
@@ -110,11 +131,12 @@ h6 {
 }
 
 @media (min-width: 768px) {
-    .header-banner-row > [class^="col"] {       /*> for direct child*/
+    .header-banner-row>[class^="col"] {
+        /*> for direct child*/
         border-left: 1px solid white;
     }
 
-    .header-banner-row > [class^="col"]:last-child {
+    .header-banner-row>[class^="col"]:last-child {
         border-right: 1px solid white;
         /* Apply the right border to the last child */
     }
@@ -388,4 +410,8 @@ h6 {
 .subway-red {
     background-color: #F55028;
 
+}
+
+.text-white {
+    color: white;
 }
