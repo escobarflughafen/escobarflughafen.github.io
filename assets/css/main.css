@@ -25,7 +25,7 @@ h6 {
 }
 
 .my-nav-item {
-    padding-right: 1em;
+    padding-right: 0;
 }
 
 .my-nav-link {
@@ -62,6 +62,32 @@ h6 {
 }
 
 
+
+
+.header-banner-row {}
+
+.header-banner-row > [class^="col"]:first-child {
+    background-color: #F55028;
+}
+
+@media (max-width: 768px) {
+    .my-nav-item {
+        padding-right: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .header-banner-row > [class^="col"] {       /*> for direct child*/
+        border-left: 1px solid white;
+    }
+
+    .header-banner-row > [class^="col"]:last-child {
+        border-right: 1px solid white;
+        /* Apply the right border to the last child */
+    }
+
+}
+
 .header-banner {
     /*
     background-color: white;
@@ -69,6 +95,7 @@ h6 {
     */
     color: white;
     background-color: #0d0015;
+    padding: 0;
 }
 
 /* Style for the pseudo-element to create the white line */
@@ -88,11 +115,18 @@ h6 {
     /* Line color */
 }
 
+
 .line-overlay {
     position: relative;
+    /* Necessary for the pseudo-element positioning --  delegate the padding to child elements*/
+    /*
     padding-top: 0.5rem;
-    /* Necessary for the pseudo-element positioning */
     padding-bottom: 0.5rem;
+    */
+}
+
+.line-overlay>*:first-child {
+    padding-top: 0.4rem;
 }
 
 
@@ -184,15 +218,131 @@ h6 {
 
 
 .link-no-effect {
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Use the same color as the surrounding text */
-    cursor: pointer; /* Keep the pointer cursor to indicate it's clickable */
-  }
-  
-  /* Remove any visual effects on hover, focus, and active states */
-  .link-no-effect:hover,
-  .link-no-effect:focus,
-  .link-no-effect:active {
+    text-decoration: none;
+    /* Remove underline */
+    color: inherit;
+    /* Use the same color as the surrounding text */
+    cursor: pointer;
+    /* Keep the pointer cursor to indicate it's clickable */
+}
+
+/* Remove any visual effects on hover, focus, and active states */
+.link-no-effect:hover,
+.link-no-effect:focus,
+.link-no-effect:active {
     text-decoration: none;
     color: inherit;
-  }
+}
+
+/* NYC MTA Subway Line Colors */
+.subway-line-1-2-3 {
+    background-color: #EE352E;
+    /* Red */
+}
+
+.subway-line-4-5-6 {
+    background-color: #00933C;
+    /* Green */
+}
+
+.subway-line-7 {
+    background-color: #B933AD;
+    /* Purple */
+}
+
+.subway-line-A-C-E {
+    background-color: #0039A6;
+    /* Blue */
+}
+
+.subway-line-B-D-F-M {
+    background-color: #FF6319;
+    /* Orange */
+}
+
+.subway-line-G {
+    background-color: #6CBE45;
+    /* Light Green */
+}
+
+.subway-line-J-Z {
+    background-color: #996633;
+    /* Brown */
+}
+
+.subway-line-L {
+    background-color: #A7A9AC;
+    /* Gray */
+}
+
+.subway-line-N-Q-R-W {
+    background-color: #FCCC0A;
+    /* Yellow */
+    color: #0d0015;
+}
+
+.subway-line-S {
+    background-color: #808183;
+    /* Dark Gray */
+}
+
+.subway-line-SIR {
+    background-color: #0039A6;
+    /* Navy Blue */
+}
+
+/* NYC MTA Subway Line Text Colors */
+.text-subway-line-1-2-3 {
+    color: #EE352E;
+    /* Red */
+}
+
+.text-subway-line-4-5-6 {
+    color: #00933C;
+    /* Green */
+}
+
+.text-subway-line-7 {
+    color: #B933AD;
+    /* Purple */
+}
+
+.text-subway-line-A-C-E {
+    color: #0039A6;
+    /* Blue */
+}
+
+.text-subway-line-B-D-F-M {
+    color: #FF6319;
+    /* Orange */
+}
+
+.text-subway-line-G {
+    color: #6CBE45;
+    /* Light Green */
+}
+
+.text-subway-line-J-Z {
+    color: #996633;
+    /* Brown */
+}
+
+.text-subway-line-L {
+    color: #A7A9AC;
+    /* Gray */
+}
+
+.text-subway-line-N-Q-R-W {
+    color: #FCCC0A;
+    /* Yellow */
+}
+
+.text-subway-line-S {
+    color: #808183;
+    /* Dark Gray */
+}
+
+.text-subway-line-SIR {
+    color: #0039A6;
+    /* Navy Blue */
+}
