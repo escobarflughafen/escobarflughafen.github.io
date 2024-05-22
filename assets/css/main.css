@@ -22,7 +22,40 @@ h6 {
 
 .display-text {
     user-select: none;
+    text-align: left;
 }
+
+
+.col-nav-banner {
+    display: flex;
+    height: 100%; /* Ensure the nav-col fills the height of the row */
+    align-items: stretch;
+}
+
+.nav-banner {
+    display: flex;
+    flex-direction: row; /* Place items horizontally */
+    width: 100%;
+    height: 100%; /* Ensure the nav fills the height of the nav-col */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.nav-item-banner {
+    display: flex;
+    align-items: start;
+}
+
+.nav-link-banner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
 
 .my-nav-item {
     padding-right: 0;
@@ -64,6 +97,10 @@ h6 {
 
 
 .header-banner-row {}
+
+.header-banner-row > [class^="col"] {       /*> for direct child*/
+    padding-left: 0;
+}
 
 
 @media (max-width: 767px) {
