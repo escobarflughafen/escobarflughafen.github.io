@@ -116,11 +116,12 @@ h6 {
     fill: white
 }
 
-.header-banner-row {}
+.header-banner-row {
+}
 
 .header-banner-row>[class^="col"] {
     /*> for direct child*/
-    padding-left: 0;
+   padding-left: 0;
 }
 
 
