@@ -18,4 +18,4 @@ function displayGreeting() {
 }
 
 // Call the function to display the greeting
-document.addEventListener('DOMContentLoaded', displayGreeting);
+// document.addEventListener('DOMContentLoaded', displayGreeting);

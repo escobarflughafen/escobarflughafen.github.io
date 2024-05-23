@@ -1,75 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-05-23T05:57:42+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">CSS: use flex layout</title><link href="http://yourdomain.com/2024/05/22/css-flex-layout.html" rel="alternate" type="text/html" title="CSS: use flex layout" /><published>2024-05-22T16:24:00+00:00</published><updated>2024-05-22T16:24:00+00:00</updated><id>http://yourdomain.com/2024/05/22/css-flex-layout</id><content type="html" xml:base="http://yourdomain.com/2024/05/22/css-flex-layout.html"><![CDATA[<p>The final result can refer to the header banner of this page. ⬆️</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-05-23T08:45:19+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">CSS: layout of the header</title><link href="http://yourdomain.com/2024/05/22/css-flex-layout.html" rel="alternate" type="text/html" title="CSS: layout of the header" /><published>2024-05-22T16:24:00+00:00</published><updated>2024-05-22T16:24:00+00:00</updated><id>http://yourdomain.com/2024/05/22/css-flex-layout</id><content type="html" xml:base="http://yourdomain.com/2024/05/22/css-flex-layout.html"><![CDATA[<p>The final result can refer to the header banner of this page. ⬆️</p>
 
-<h2 id="the-layouts">the Layouts</h2>
+<h2 id="the-originals">the Originals</h2>
 
-<h2 id="snippet-css">snippet: CSS</h2>
+<p><img src="/assets/img/nyc-guidelines.png" alt="NYC MTA design guideline" /></p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* background and line decoration */</span>
-<span class="c">/*.header-banner*/</span>
-<span class="c">/*.line-overlay*/</span>
+<h2 id="the-header">the Header</h2>
 
+<p><img src="/assets/img/header.png" alt="header banner" /></p>
 
-<span class="c">/* bootstrap layouts */</span>
+<h2 id="responsive-layout">Responsive layout</h2>
 
-<span class="c">/* row &amp; col */</span>
-<span class="c">/*.header-banner-row*/</span>
-<span class="c">/* width-dependent styles */</span>
-<span class="nc">.header-banner-row</span><span class="o">&gt;[</span><span class="nt">class</span><span class="o">^=</span><span class="s1">"col"</span><span class="o">]</span> <span class="p">{</span>
-    <span class="c">/*&gt; for direct child*/</span>
-   <span class="nl">padding-left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-<span class="p">}</span>
+<p>Using the grid system from Bootstrap, the header can adapt to different window/screen size by arranging its components  .</p>
 
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">xs</code> and <code class="language-plaintext highlighter-rouge">sm</code></li>
+</ul>
 
-<span class="k">@media</span> <span class="p">(</span><span class="n">max-width</span><span class="p">:</span> <span class="m">767px</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nc">.my-nav-item</span> <span class="p">{</span>
-        <span class="nl">padding-right</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="k">@media</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">768px</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nc">.header-banner-row</span><span class="o">&gt;[</span><span class="nt">class</span><span class="o">^=</span><span class="s1">"col"</span><span class="o">]</span> <span class="p">{</span>
-        <span class="c">/*&gt; for direct child*/</span>
-        <span class="nl">border-left</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="no">white</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nc">.header-banner-row</span><span class="o">&gt;[</span><span class="nt">class</span><span class="o">^=</span><span class="s1">"col"</span><span class="o">]</span><span class="nd">:last-child</span> <span class="p">{</span>
-        <span class="nl">border-right</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="no">white</span><span class="p">;</span>
-        <span class="c">/* Apply the right border to the last child */</span>
-    <span class="p">}</span>
-
-<span class="p">}</span>
-
-<span class="c">/*.col-nav-banner*/</span>
-<span class="nc">.col-nav-banner</span> <span class="p">{</span>
-    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-    <span class="c">/* Ensure the nav-col fills the height of the row */</span>
-    <span class="nl">align-items</span><span class="p">:</span> <span class="n">stretch</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c">/* nav */</span>
-<span class="c">/*.nav-banner*/</span>
-<span class="nc">.nav-banner</span> <span class="p">{</span>
-    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
-    <span class="nl">flex-direction</span><span class="p">:</span> <span class="n">row</span><span class="p">;</span>
-    <span class="c">/* Place items horizontally */</span>
-    <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
-    <span class="c">/* Ensure the nav fills the height of the nav-col */</span>
-    <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-    <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
-    <span class="nl">list-style</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c">/*.my-nav-banner*/</span>
-<span class="c">/*.my-nav-item*/</span>
-<span class="c">/*.my-nav-link*/</span>
-
-<span class="c">/* typesettings */</span>
-<span class="c">/*.display-text*/</span>
-<span class="c">/*.head-text*/</span>
-
-</code></pre></div></div>
+<p>Using media queries <code class="language-plaintext highlighter-rouge">@media</code> to manually add some style based on the width of the viewport.</p>
 
 <h2 id="display-flex"><code class="language-plaintext highlighter-rouge">display: flex</code></h2>]]></content><author><name>jianing</name></author><category term="web" /><category term="css" /><summary type="html"><![CDATA[The final result can refer to the header banner of this page. ⬆️]]></summary></entry><entry><title type="html">1. Shellcode Development</title><link href="http://yourdomain.com/2023/01/17/shellcode-development.html" rel="alternate" type="text/html" title="1. Shellcode Development" /><published>2023-01-17T12:00:00+00:00</published><updated>2023-01-17T12:00:00+00:00</updated><id>http://yourdomain.com/2023/01/17/shellcode-development</id><content type="html" xml:base="http://yourdomain.com/2023/01/17/shellcode-development.html"><![CDATA[<h3 id="1-printing-on-the-screen">1. Printing on the Screen</h3>
 

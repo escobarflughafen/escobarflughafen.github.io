@@ -15,7 +15,7 @@
 }
 
 /*
-    Typesettings
+    Typesetting
 */
 
 body {
@@ -86,12 +86,15 @@ h6 {
 .my-nav-item {
 }
 
+@media (max-width: 767px) {
+    .my-nav-item {
+        padding-right: 1rem;
+    }
+}
 
 .nav-link-banner {
     height: 100%;
 }
-
-
 
 .my-nav-link {
     color: var(--dark-text-color);
@@ -116,39 +119,17 @@ h6 {
     background-color: var(--light-bg-color);
 }
 
-
-.svg-icon {
-    width: 3em;
-    height: 3em;
-}
-
-.svg-fill {
-    display: inline-flex;
-    width: 2rem;
-    /* Scale width relative to font size */
-    height: 2rem;
-    /* Scale height relative to font size */
-    vertical-align: middle;
-    /* Align icon with text */
-}
-
-.svg-banner {
-    fill: white
-}
+/*
+    header-banner
+*/
 
 .header-banner-row {
+
 }
 
 .header-banner-row>[class^="col"] {
     /*> for direct child*/
    padding-left: 0;
-}
-
-
-@media (max-width: 767px) {
-    .my-nav-item {
-        padding-right: 1rem;
-    }
 }
 
 @media (min-width: 768px) {
@@ -161,7 +142,6 @@ h6 {
         border-right: 1px solid var(--dark-text-color);
         /* Apply the right border to the last child */
     }
-
 }
 
 .header-banner {
@@ -191,13 +171,12 @@ h6 {
     /* Line color */
 }
 
-
 .line-overlay {
     position: relative;
-    /* Necessary for the pseudo-element positioning --  delegate the padding to child elements*/
+    /* Necessary for the pseudo-element positioning --  delegate the padding to child elements */
     /*
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
     */
 }
 
@@ -205,94 +184,9 @@ h6 {
     padding-top: 0.4rem;
 }
 
-
-.inline-text-circle {
-    font-size: 3em;
-}
-
-.circle {
-    user-select: none;
-    display: inline-flex;
-    width: 4rem;
-    height: 4rem;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--dark-bg-color);
-    color: var(--dark-text-color);
-    font-size: 2em;
-    /* Adjust the font size as needed */
-    border-radius: 50%;
-    margin: 0;
-    /* Adjust spacing as needed */
-    text-align: center;
-    border-width: 0;
-}
-
-.bg-stop {
-    background-color: #d3381c;
-}
-
-.bg-primary {
-    background-color: #165e83;
-}
-
-.bg-secondary {
-    background-color: #028760;
-}
-
-.my-card {
-    border-radius: 0;
-    border-color: var(--dark-bg-color);
-}
-
-.my-card>.list-group:first-child {
-    border-radius: 0;
-}
-
-.my-card>.list-group:last-child {
-    border-radius: 0;
-}
-
-
-.my-list-group-item {
-    border-style: none;
-    transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out;
-    /* Smooth transition */
-}
-
-.my-list-group-item:hover {
-    color: var(--dark-text-color);
-    /* Text color on hover */
-    background-color: var(--dark-bg-color);
-    /* Background color on hover */
-}
-
-.my-list-group-item:focus {
-    color: var(--dark-text-color);
-    /* Text color on hover */
-    background-color: var(--dark-bg-color);
-    /* Background color on hover */
-}
-
-.my-card-header {
-    background-color: var(--dark-bg-color);
-    color: var(--dark-text-color);
-}
-
-.my-card-header:first-child {
-    border-radius: 0;
-}
-
-.text-active {
-    font-weight: 200;
-}
-
-.text-inactive {
-    font-weight: 100;
-}
-
-
-
+/*
+    Color palette
+*/
 
 /* NYC MTA Subway Line Colors */
 .subway-line-1-2-3 {
@@ -421,4 +315,107 @@ h6 {
 
 .text-white {
     color: white;
+}
+
+.bg-stop {
+    background-color: #d3381c;
+}
+
+.bg-primary {
+    background-color: #165e83;
+}
+
+.bg-secondary {
+    background-color: #028760;
+}
+
+/*
+    Visual components
+*/
+
+.svg-icon {
+    width: 3em;
+    height: 3em;
+}
+
+.svg-fill {
+    display: inline-flex;
+    width: 2rem;
+    /* Scale width relative to font size */
+    height: 2rem;
+    /* Scale height relative to font size */
+    vertical-align: middle;
+    /* Align icon with text */
+}
+
+.svg-banner {
+    fill: white
+}
+
+.inline-text-circle {
+    font-size: 3em;
+}
+
+.circle {
+    user-select: none;
+    display: inline-flex;
+    width: 4rem;
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark-bg-color);
+    color: var(--dark-text-color);
+    font-size: 2em;
+    /* Adjust the font size as needed */
+    border-radius: 50%;
+    margin: 0;
+    /* Adjust spacing as needed */
+    text-align: center;
+    border-width: 0;
+}
+
+/*
+    List card
+*/
+
+.my-card {
+    border-radius: 0;
+    border-color: var(--dark-bg-color);
+}
+
+.my-card>.list-group:first-child {
+    border-radius: 0;
+}
+
+.my-card>.list-group:last-child {
+    border-radius: 0;
+}
+
+.my-list-group-item {
+    border-style: none;
+    transition: color .3s ease-in-out, background-color .3s ease-in-out, border-color .3s ease-in-out;
+    /* Smooth transition */
+}
+
+.my-list-group-item:hover {
+    color: var(--dark-text-color);
+    /* Text color on hover */
+    background-color: var(--dark-bg-color);
+    /* Background color on hover */
+}
+
+.my-list-group-item:focus {
+    color: var(--dark-text-color);
+    /* Text color on hover */
+    background-color: var(--dark-bg-color);
+    /* Background color on hover */
+}
+
+.my-card-header {
+    background-color: var(--dark-bg-color);
+    color: var(--dark-text-color);
+}
+
+.my-card-header:first-child {
+    border-radius: 0;
 }
