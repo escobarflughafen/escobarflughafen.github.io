@@ -1,3 +1,23 @@
+:root {
+    /*
+    --dark-bg-color: white;
+    --dark-text-color: #0d0015;
+
+    --light-bg-color: #0d0015;
+    --light-text-color: white;
+    */
+
+    --dark-bg-color: #0d0015;
+    --dark-text-color: white;
+
+    --light-bg-color: white;
+    --light-text-color: #0d0015;
+}
+
+/*
+    Typesettings
+*/
+
 body {
     font-family: "Segoe UI", "Helvetica Neue", "Toppan Bunkyu Gothic", Arial, sans-serif;
     font-weight: 400;
@@ -25,50 +45,56 @@ h6 {
     text-align: left;
 }
 
-
-.col-nav-banner {
-    display: flex;
-    height: 100%;
-    /* Ensure the nav-col fills the height of the row */
-    align-items: stretch;
+.head-text {
+    font-weight: 700;
+    font-kerning: auto;
+    letter-spacing: -0.05em;
+    line-height: 0.8;
 }
+
+.link-no-effect {
+    text-decoration: none;
+    /* Remove underline */
+    color: inherit;
+    /* Use the same color as the surrounding text */
+    cursor: pointer;
+    /* Keep the pointer cursor to indicate it's clickable */
+}
+
+/* Remove any visual effects on hover, focus, and active states */
+.link-no-effect:hover,
+.link-no-effect:focus,
+.link-no-effect:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*
+    row and col style for header banner
+*/
+
+
+/*
+    nav and nav links for header banner
+*/
 
 .nav-banner {
-    display: flex;
-    flex-direction: row;
-    /* Place items horizontally */
-    width: 100%;
     height: 100%;
     /* Ensure the nav fills the height of the nav-col */
-    padding: 0;
-    margin: 0;
-    list-style: none;
 }
-
-.nav-item-banner {
-    display: flex;
-    align-items: start;
-}
-
-.nav-link-banner {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    height: 100%;
-    width: 100%;
-    text-decoration: none;
-}
-
 
 .my-nav-item {
-    padding-right: 0;
 }
 
+
+.nav-link-banner {
+    height: 100%;
+}
+
+
+
 .my-nav-link {
-    color: white;
-    /*
-    color: #0d0015;
-    */
+    color: var(--dark-text-color);
     padding: 0;
 }
 
@@ -77,8 +103,8 @@ h6 {
     background-color: #0d0015;
     color: white;
     */
-    color: #0d0015;
-    background-color: white;
+    color: var(--light-text-color);
+    background-color: var(--light-bg-color);
 }
 
 .my-nav-link:hover {
@@ -86,16 +112,10 @@ h6 {
     background-color: #0d0015;
     color: white;
     */
-    color: #0d0015;
-    background-color: white;
+    color: var(--light-text-color);
+    background-color: var(--light-bg-color);
 }
 
-.head-text {
-    font-weight: 700;
-    font-kerning: auto;
-    letter-spacing: -0.05em;
-    line-height: 0.8;
-}
 
 .svg-icon {
     width: 3em;
@@ -134,11 +154,11 @@ h6 {
 @media (min-width: 768px) {
     .header-banner-row>[class^="col"] {
         /*> for direct child*/
-        border-left: 1px solid white;
+        border-left: 1px solid var(--dark-text-color);
     }
 
     .header-banner-row>[class^="col"]:last-child {
-        border-right: 1px solid white;
+        border-right: 1px solid var(--dark-text-color);
         /* Apply the right border to the last child */
     }
 
@@ -149,8 +169,8 @@ h6 {
     background-color: white;
     color: #0d0015;
     */
-    color: white;
-    background-color: #0d0015;
+    color: var(--dark-text-color);
+    background-color: var(--dark-bg-color);
     padding: 0;
 }
 
@@ -167,7 +187,7 @@ h6 {
     /*
     background-color: #0d0015;
     */
-    background-color: white;
+    background-color: var(--dark-text-color);
     /* Line color */
 }
 
@@ -197,8 +217,8 @@ h6 {
     height: 4rem;
     align-items: center;
     justify-content: center;
-    background-color: #0d0015;
-    color: white;
+    background-color: var(--dark-bg-color);
+    color: var(--dark-text-color);
     font-size: 2em;
     /* Adjust the font size as needed */
     border-radius: 50%;
@@ -222,7 +242,7 @@ h6 {
 
 .my-card {
     border-radius: 0;
-    border-color: #0d0015;
+    border-color: var(--dark-bg-color);
 }
 
 .my-card>.list-group:first-child {
@@ -241,22 +261,22 @@ h6 {
 }
 
 .my-list-group-item:hover {
-    color: white;
+    color: var(--dark-text-color);
     /* Text color on hover */
-    background-color: #0d0015;
+    background-color: var(--dark-bg-color);
     /* Background color on hover */
 }
 
 .my-list-group-item:focus {
-    color: white;
+    color: var(--dark-text-color);
     /* Text color on hover */
-    background-color: #0d0015;
+    background-color: var(--dark-bg-color);
     /* Background color on hover */
 }
 
 .my-card-header {
-    background-color: #0d0015;
-    color: white;
+    background-color: var(--dark-bg-color);
+    color: var(--dark-text-color);
 }
 
 .my-card-header:first-child {
@@ -273,22 +293,6 @@ h6 {
 
 
 
-.link-no-effect {
-    text-decoration: none;
-    /* Remove underline */
-    color: inherit;
-    /* Use the same color as the surrounding text */
-    cursor: pointer;
-    /* Keep the pointer cursor to indicate it's clickable */
-}
-
-/* Remove any visual effects on hover, focus, and active states */
-.link-no-effect:hover,
-.link-no-effect:focus,
-.link-no-effect:active {
-    text-decoration: none;
-    color: inherit;
-}
 
 /* NYC MTA Subway Line Colors */
 .subway-line-1-2-3 {
@@ -406,10 +410,12 @@ h6 {
 
 .subway-blue {
     background-color: #1CA3C6;
+    color: white;
 }
 
 .subway-red {
     background-color: #F55028;
+    color: white;
 
 }
 
