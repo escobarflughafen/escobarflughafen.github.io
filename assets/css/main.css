@@ -87,8 +87,8 @@ h6 {
 }
 
 @media (max-width: 767px) {
+    /* nav-item in narrow window */
     .my-nav-item {
-        padding-right: 1rem;
     }
 }
 
@@ -98,7 +98,7 @@ h6 {
 
 .my-nav-link {
     color: var(--dark-text-color);
-    padding: 0;
+    padding: 0 1rem 0 0;
 }
 
 .my-nav-link:focus {
@@ -123,8 +123,18 @@ h6 {
     header-banner
 */
 
-.header-banner-row {
+.header-banner {
+    /*
+    background-color: white;
+    color: #0d0015;
+    */
+    color: var(--dark-text-color);
+    background-color: var(--dark-bg-color);
+    padding: 0;
+}
 
+.header-banner-row {
+    min-height: 4rem !important;
 }
 
 .header-banner-row>[class^="col"] {
@@ -142,16 +152,6 @@ h6 {
         border-right: 1px solid var(--dark-text-color);
         /* Apply the right border to the last child */
     }
-}
-
-.header-banner {
-    /*
-    background-color: white;
-    color: #0d0015;
-    */
-    color: var(--dark-text-color);
-    background-color: var(--dark-bg-color);
-    padding: 0;
 }
 
 /* Style for the pseudo-element to create the white line */

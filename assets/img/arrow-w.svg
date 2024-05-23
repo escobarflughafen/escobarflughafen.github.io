@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 285557.76 193862.26"
+   class="svg-icon"
+   version="1.1"
+   id="svg1"
+   width="285557.75"
+   height="193862.27"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <style
+       id="style1">.cls-1-idf817e16db { fill: white; /* Use currentColor to inherit the color from CSS */ stroke-width: 0; /* Remove stroke */ }</style>
+  </defs>
+  <title
+     id="title1">arrow-1</title>
+  <polygon
+     class="cls-1-idf817e16db"
+     points="326.02499,289.67001 242.7,372.995 328.005,458.29999 555.96503,230.345 555.65503,230.035 555.96503,229.72501 328.005,1.77 242.7,87.074997 324.64499,169.02499 1.25,169.02499 1.25,289.67001 "
+     id="polygon1"
+     transform="matrix(-0.46149822,0,0,-0.46149822,256.58994,211.51346)" />
+</svg>
