@@ -195,7 +195,8 @@ h6 {
 }
 
 .subway-line-4-5-6 {
-    background-color: #00933C;
+    background-color: #00933C !important;
+    color: white !important;
     /* Green */
 }
 
@@ -230,9 +231,9 @@ h6 {
 }
 
 .subway-line-N-Q-R-W {
-    background-color: #FCCC0A;
+    background-color: #FCCC0A !important;
     /* Yellow */
-    color: #0d0015;
+    color: #0d0015 !important;
 }
 
 .subway-line-S {
@@ -303,13 +304,13 @@ h6 {
 
 
 .subway-blue {
-    background-color: #1CA3C6;
-    color: white;
+    background-color: #1CA3C6 !important;
+    color: white !important;
 }
 
 .subway-red {
-    background-color: #F55028;
-    color: white;
+    background-color: #F55028 !important;
+    color: white !important;
 
 }
 
@@ -363,8 +364,6 @@ h6 {
     height: 4rem;
     align-items: center;
     justify-content: center;
-    background-color: var(--dark-bg-color);
-    color: var(--dark-text-color);
     font-size: 2em;
     /* Adjust the font size as needed */
     border-radius: 50%;
