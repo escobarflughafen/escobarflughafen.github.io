@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-05-24T23:33:59+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">CSS: layout of the header</title><link href="http://yourdomain.com/2024/05/22/css-flex-layout.html" rel="alternate" type="text/html" title="CSS: layout of the header" /><published>2024-05-22T16:24:00+00:00</published><updated>2024-05-22T16:24:00+00:00</updated><id>http://yourdomain.com/2024/05/22/css-flex-layout</id><content type="html" xml:base="http://yourdomain.com/2024/05/22/css-flex-layout.html"><![CDATA[<p>The final result can refer to the header banner of this page. ⬆️</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-05-25T03:39:25+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">CSS: layout of the header</title><link href="http://yourdomain.com/2024/05/22/css-flex-layout.html" rel="alternate" type="text/html" title="CSS: layout of the header" /><published>2024-05-22T16:24:00+00:00</published><updated>2024-05-22T16:24:00+00:00</updated><id>http://yourdomain.com/2024/05/22/css-flex-layout</id><content type="html" xml:base="http://yourdomain.com/2024/05/22/css-flex-layout.html"><![CDATA[<p>The final result can refer to the header banner of this page. ⬆️</p>
 
 <h2 id="the-originals">the Originals</h2>
 
@@ -26,7 +26,38 @@
 
 <p>Using media queries <code class="language-plaintext highlighter-rouge">@media</code> to manually add some style based on the width of the viewport.</p>
 
-<h2 id="display-flex"><code class="language-plaintext highlighter-rouge">display: flex</code></h2>]]></content><author><name>jianing</name></author><category term="web" /><category term="css" /><summary type="html"><![CDATA[The final result can refer to the header banner of this page. ⬆️]]></summary></entry><entry><title type="html">1. Shellcode Development</title><link href="http://yourdomain.com/2023/01/17/shellcode-development.html" rel="alternate" type="text/html" title="1. Shellcode Development" /><published>2023-01-17T12:00:00+00:00</published><updated>2023-01-17T12:00:00+00:00</updated><id>http://yourdomain.com/2023/01/17/shellcode-development</id><content type="html" xml:base="http://yourdomain.com/2023/01/17/shellcode-development.html"><![CDATA[<h3 id="1-printing-on-the-screen">1. Printing on the Screen</h3>
+<h2 id="display-flex"><code class="language-plaintext highlighter-rouge">display: flex</code></h2>]]></content><author><name>jianing</name></author><category term="web" /><category term="css" /><summary type="html"><![CDATA[The final result can refer to the header banner of this page. ⬆️]]></summary></entry><entry><title type="html">the dual problem of SVM</title><link href="http://yourdomain.com/2023/03/05/SVM-dual-problem.html" rel="alternate" type="text/html" title="the dual problem of SVM" /><published>2023-03-05T12:00:00+00:00</published><updated>2023-03-05T12:00:00+00:00</updated><id>http://yourdomain.com/2023/03/05/SVM-dual-problem</id><content type="html" xml:base="http://yourdomain.com/2023/03/05/SVM-dual-problem.html"><![CDATA[<p>Support Vector Machines (SVM) are supervised learning models used for classification and regression tasks. The dual problem formulation of SVM provides an alternative perspective that can be computationally advantageous, particularly for high-dimensional feature spaces.</p>
+
+<h3 id="primal-problem">Primal Problem</h3>
+
+<p>The primal form of the SVM optimization problem is given by:</p>
+
+\[\begin{align}
+\min_{\mathbf{w}, b, \xi} \quad &amp; \frac{1}{2} \|\mathbf{w}\|^2 + C \sum_{i=1}^{n} \xi_i \\
+\text{subject to} \quad &amp; y_i (\mathbf{w} \cdot \mathbf{x}_i + b) \geq 1 - \xi_i, \\
+&amp; \xi_i \geq 0, \quad i = 1, \ldots, n.
+\end{align}\]
+
+<h3 id="dual-problem">Dual Problem</h3>
+
+<p>By applying the Lagrangian method, we can transform the primal problem into its dual form. The dual problem is expressed as:</p>
+
+\[\begin{align}
+\max_{\boldsymbol{\alpha}} \quad &amp; \sum_{i=1}^{n} \alpha_i - \frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_i \alpha_j y_i y_j (\mathbf{x}_i \cdot \mathbf{x}_j) \\
+\text{subject to} \quad &amp; \sum_{i=1}^{n} \alpha_i y_i = 0, \\
+&amp; 0 \leq \alpha_i \leq C, \quad i = 1, \ldots, n.
+\end{align}\]
+
+<p>Here, \( \boldsymbol{\alpha} = (\alpha_1, \alpha_2, \ldots, \alpha_n) \) are the Lagrange multipliers. The dual formulation simplifies the optimization problem by transforming it into a quadratic programming problem that only depends on the inner products of the training data points.</p>
+
+<h3 id="advantages-of-the-dual-problem">Advantages of the Dual Problem</h3>
+
+<ol>
+  <li><strong>Kernel Trick</strong>: The dual problem allows the use of kernel functions to handle non-linear decision boundaries without explicitly mapping the data to a higher-dimensional space.</li>
+  <li><strong>Efficiency</strong>: For high-dimensional data, the dual problem can be more computationally efficient to solve than the primal problem.</li>
+</ol>
+
+<p>In conclusion, the dual formulation of SVMs provides critical computational and conceptual benefits, particularly in handling complex, high-dimensional data.</p>]]></content><author><name>Jianing</name></author><category term="machine learning" /><summary type="html"><![CDATA[Support Vector Machines (SVM) are supervised learning models used for classification and regression tasks. The dual problem formulation of SVM provides an alternative perspective that can be computationally advantageous, particularly for high-dimensional feature spaces.]]></summary></entry><entry><title type="html">shellcode development - lab02</title><link href="http://yourdomain.com/2023/01/17/shellcode-development.html" rel="alternate" type="text/html" title="shellcode development - lab02" /><published>2023-01-17T12:00:00+00:00</published><updated>2023-01-17T12:00:00+00:00</updated><id>http://yourdomain.com/2023/01/17/shellcode-development</id><content type="html" xml:base="http://yourdomain.com/2023/01/17/shellcode-development.html"><![CDATA[<h3 id="1-printing-on-the-screen">1. Printing on the Screen</h3>
 
 <p>Program using Relative Addressing technique</p>
 
@@ -299,4 +330,4 @@ two:
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nasm <span class="nt">-f</span> elf32 ./src/task2/labsh.rel.asm
 ld <span class="nt">--omagic</span> ./src/task2/labsh_rel.o <span class="nt">-o</span> labsh_rel
 ./labsh_rel
-</code></pre></div></div>]]></content><author><name>Jianing</name></author><category term="binary" /><summary type="html"><![CDATA[1. Printing on the Screen]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name>jianing</name></author><category term="buffer overflow" /><summary type="html"><![CDATA[1. Printing on the Screen]]></summary></entry></feed>

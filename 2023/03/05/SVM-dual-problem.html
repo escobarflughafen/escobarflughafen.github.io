@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS: layout of the header - escobarflughafen</title>
+  <title>the dual problem of SVM - escobarflughafen</title>
   <meta name="description" content="This is an example site description. You can use Markdown here.">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/css/main.css">
@@ -25,7 +25,7 @@
 
             <div class="col flex-grow-1 pe-3">
                 <h1 class="head-text">
-                    CSS: layout of the header
+                    the dual problem of SVM
                 </h1>
             </div>
 
@@ -96,52 +96,46 @@
         <div class="col-12 col-md-8 mb-3 mb-md-0">
             <h2>Table of Content</h2>
             <ul id="toc" class="toc-list">
-<li class="toc-item toc-h2"><a href="#the-originals">the Originals</a></li>
-<li class="toc-item toc-h2"><a href="#the-header">the Header</a>
-<ul class="toc-sublist">
-<li class="toc-item toc-h3"><a href="#components">Components</a></li>
-</ul>
-</li>
-<li class="toc-item toc-h2"><a href="#responsive-layout">Responsive layout</a></li>
-<li class="toc-item toc-h2"><a href="#display-flex">display: flex</a></li>
-</ul><p>The final result can refer to the header banner of this page. ⬆️</p>
+<li class="toc-item toc-h3"><a href="#primal-problem">Primal Problem</a></li>
+<li class="toc-item toc-h3"><a href="#dual-problem">Dual Problem</a></li>
+<li class="toc-item toc-h3"><a href="#advantages-of-the-dual-problem">Advantages of the Dual Problem</a></li>
+</ul><p>Support Vector Machines (SVM) are supervised learning models used for classification and regression tasks. The dual problem formulation of SVM provides an alternative perspective that can be computationally advantageous, particularly for high-dimensional feature spaces.</p>
 
-<h2 id="the-originals">
-<a class="anchor" href="#the-originals" aria-hidden="true"><span class="octicon octicon-link"></span></a>the Originals</h2>
+<h3 id="primal-problem">
+<a class="anchor" href="#primal-problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Primal Problem</h3>
 
-<p><img src="/assets/img/nyc-guidelines.jpg" alt="NYC MTA design guideline"></p>
+<p>The primal form of the SVM optimization problem is given by:</p>
 
-<h2 id="the-header">
-<a class="anchor" href="#the-header" aria-hidden="true"><span class="octicon octicon-link"></span></a>the Header</h2>
+\[\begin{align}
+\min_{\mathbf{w}, b, \xi} \quad &amp; \frac{1}{2} \|\mathbf{w}\|^2 + C \sum_{i=1}^{n} \xi_i \\
+\text{subject to} \quad &amp; y_i (\mathbf{w} \cdot \mathbf{x}_i + b) \geq 1 - \xi_i, \\
+&amp; \xi_i \geq 0, \quad i = 1, \ldots, n.
+\end{align}\]
 
-<p><img src="/assets/img/header.png" alt="header banner"></p>
+<h3 id="dual-problem">
+<a class="anchor" href="#dual-problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dual Problem</h3>
 
-<h3 id="components">
-<a class="anchor" href="#components" aria-hidden="true"><span class="octicon octicon-link"></span></a>Components</h3>
+<p>By applying the Lagrangian method, we can transform the primal problem into its dual form. The dual problem is expressed as:</p>
 
-<h4 id="brand">Brand</h4>
+\[\begin{align}
+\max_{\boldsymbol{\alpha}} \quad &amp; \sum_{i=1}^{n} \alpha_i - \frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_i \alpha_j y_i y_j (\mathbf{x}_i \cdot \mathbf{x}_j) \\
+\text{subject to} \quad &amp; \sum_{i=1}^{n} \alpha_i y_i = 0, \\
+&amp; 0 \leq \alpha_i \leq C, \quad i = 1, \ldots, n.
+\end{align}\]
 
-<h4 id="post-title">Post title</h4>
+<p>Here, \( \boldsymbol{\alpha} = (\alpha_1, \alpha_2, \ldots, \alpha_n) \) are the Lagrange multipliers. The dual formulation simplifies the optimization problem by transforming it into a quadratic programming problem that only depends on the inner products of the training data points.</p>
 
-<h4 id="navigations">Navigations</h4>
+<h3 id="advantages-of-the-dual-problem">
+<a class="anchor" href="#advantages-of-the-dual-problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advantages of the Dual Problem</h3>
 
-<h2 id="responsive-layout">
-<a class="anchor" href="#responsive-layout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Responsive layout</h2>
-
-<p>Using the grid system from Bootstrap, the header can adapt to different window/screen size by arranging its components  .</p>
-
-<ul>
+<ol>
   <li>
-<code class="language-plaintext highlighter-rouge">xs</code> and <code class="language-plaintext highlighter-rouge">sm</code>
-</li>
-</ul>
+<strong>Kernel Trick</strong>: The dual problem allows the use of kernel functions to handle non-linear decision boundaries without explicitly mapping the data to a higher-dimensional space.</li>
+  <li>
+<strong>Efficiency</strong>: For high-dimensional data, the dual problem can be more computationally efficient to solve than the primal problem.</li>
+</ol>
 
-<p>Using media queries <code class="language-plaintext highlighter-rouge">@media</code> to manually add some style based on the width of the viewport.</p>
-
-<h2 id="display-flex">
-<a class="anchor" href="#display-flex" aria-hidden="true"><span class="octicon octicon-link"></span></a><code class="language-plaintext highlighter-rouge">display: flex</code>
-</h2>
-
+<p>In conclusion, the dual formulation of SVMs provides critical computational and conceptual benefits, particularly in handling complex, high-dimensional data.</p>
 
         </div>
         
