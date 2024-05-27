@@ -19,7 +19,7 @@
 */
 
 body {
-    font-family: "Segoe UI", "Helvetica Neue", "Toppan Bunkyu Gothic", Arial, sans-serif;
+    font-family:  "Univers", "Helvetica Neue", "Segoe UI", "YuGothic", Arial, sans-serif;
     font-weight: 400;
 }
 
@@ -128,6 +128,7 @@ h6 {
     background-color: white;
     color: #0d0015;
     */
+    font-family:  "Helvetica Neue", "Univers", "Segoe UI", "YuGothic", Arial, sans-serif;
     color: var(--dark-text-color);
     background-color: var(--dark-bg-color);
     padding: 0;
