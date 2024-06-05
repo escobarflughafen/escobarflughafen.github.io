@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azure Storage - escobarflughafen</title>
+  <meta name="description" content="This is an example site description. You can use Markdown here.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/assets/img/home.png" type="image/x-icon">
+</head>
+<body class="mb-3">
+
+
+<header class="header-banner line-overlay">
+    <div class="container">
+        <div class="row header-banner-row px-3">
+            <a href="/" class="col-auto subway-red link-no-effect pe-3">
+                <h1 class="head-text display-text">
+                    Exit
+                </h1>
+            </a>
+            <!--prev post-->
+
+
+            <div class="col flex-grow-1 pe-3">
+                <h1 class="head-text">
+                    Azure Storage
+                </h1>
+            </div>
+
+
+            <div class="col-12 col-md px-0">
+                <ul class="nav nav-banner">
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/posts">
+            <h2 class="
+            mb-0">
+                posts
+            </h2>
+        </a>
+
+    </li>
+
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/projects">
+            <h2 class="
+            mb-0">
+                projects
+            </h2>
+        </a>
+    </li>
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/photos">
+            <h2 class="
+            mb-0">
+                photos
+            </h2>
+        </a>
+    </li>
+    <li class="nav-item my-nav-items">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/contacts">
+            <h2 class="
+            mb-0">
+                contacts
+            </h2>
+        </a>
+    </li>
+</ul>
+            </div>
+
+        </div>
+
+
+    </div>
+</header>
+
+<main class="container my-3 px-3">
+    <div class="row">
+        <div class="col-12 col-md-8 mb-3 mb-md-0">
+            <h2 id="install-azure-cli">Install Azure CLI</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install azure-cli
+</code></pre></div></div>
+
+<h2 id="login-to-azure-in-azure-cli">Login to Azure in Azure CLI</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az login
+</code></pre></div></div>
+
+<p>A browser will start and perform the authentication process.</p>
+
+<h2 id="auth-modes">Auth modes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Authentication Mode</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Pros</strong></th>
+      <th><strong>Cons</strong></th>
+      <th><strong>Use Cases</strong></th>
+      <th><strong>Command Example</strong></th>
+      <th><strong>Parameters</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Shared Key Authorization</strong></td>
+      <td>Uses the storage account name and account key.</td>
+      <td>Easy to use, straightforward for development.</td>
+      <td>Security risks if account keys are shared.</td>
+      <td>Development, some production scenarios.</td>
+      <td><code class="language-plaintext highlighter-rouge">az storage blob upload --account-name myaccount --account-key myaccountkey --container-name mycontainer --name myblob --file myfile</code></td>
+      <td><code class="language-plaintext highlighter-rouge">--account-name</code>, <code class="language-plaintext highlighter-rouge">--account-key</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code></td>
+    </tr>
+    <tr>
+      <td><strong>Shared Access Signature (SAS)</strong></td>
+      <td>Provides delegated access with specific permissions and expiration.</td>
+      <td>Fine-grained control over permissions and expiration.</td>
+      <td>Needs careful management to avoid security risks.</td>
+      <td>Temporary access, limited permissions.</td>
+      <td><code class="language-plaintext highlighter-rouge">az storage blob upload --sas-token mySASToken --container-name mycontainer --name myblob --file myfile</code></td>
+      <td><code class="language-plaintext highlighter-rouge">--sas-token</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code></td>
+    </tr>
+    <tr>
+      <td><strong>Azure Active Directory (Azure AD)</strong></td>
+      <td>Provides role-based access control (RBAC) using Azure AD identities.</td>
+      <td>Provides RBAC, integrates with Azure AD.</td>
+      <td>More complex setup compared to shared key or SAS.</td>
+      <td>Production, enterprise environments.</td>
+      <td><code class="language-plaintext highlighter-rouge">az login \n az storage blob upload --account-name myaccount --container-name mycontainer --name myblob --file myfile --auth-mode login</code></td>
+      <td><code class="language-plaintext highlighter-rouge">--account-name</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code>, <code class="language-plaintext highlighter-rouge">--auth-mode</code></td>
+    </tr>
+    <tr>
+      <td><strong>Managed Identities</strong></td>
+      <td>Uses automatically managed identity for Azure resources to authenticate.</td>
+      <td>Simplifies identity management, no credentials needed.</td>
+      <td>Requires services to support managed identities.</td>
+      <td>Production, simplifying identity management.</td>
+      <td><code class="language-plaintext highlighter-rouge">az login --identity \n az storage blob upload --account-name myaccount --container-name mycontainer --name myblob --file myfile --auth-mode login</code></td>
+      <td><code class="language-plaintext highlighter-rouge">--account-name</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code>, <code class="language-plaintext highlighter-rouge">--auth-mode</code></td>
+    </tr>
+    <tr>
+      <td><strong>OAuth Bearer Token</strong></td>
+      <td>Uses OAuth tokens obtained from Azure AD to authenticate.</td>
+      <td>Supports OAuth 2.0, flexible token-based authentication.</td>
+      <td>Requires handling OAuth token lifecycle.</td>
+      <td>Token-based scenarios, custom authentication flows.</td>
+      <td><code class="language-plaintext highlighter-rouge">TOKEN=$(az account get-access-token --resource https://storage.azure.com/ --query accessToken --output tsv) \n curl -X PUT -H "Authorization: Bearer $TOKEN" -T myfile "https://myaccount.blob.core.windows.net/mycontainer/myblob"</code></td>
+      <td><code class="language-plaintext highlighter-rouge">--resource</code>, <code class="language-plaintext highlighter-rouge">--query</code>, <code class="language-plaintext highlighter-rouge">--output</code> (for <code class="language-plaintext highlighter-rouge">az account get-access-token</code>), <code class="language-plaintext highlighter-rouge">-X PUT</code>, <code class="language-plaintext highlighter-rouge">-H "Authorization: Bearer $TOKEN"</code>, <code class="language-plaintext highlighter-rouge">-T myfile</code> (for <code class="language-plaintext highlighter-rouge">curl</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>Account Key</strong>:
+    <ul>
+      <li>Suitable for full administrative control and development purposes.</li>
+      <li>Provides access to all resources within the storage account.</li>
+      <li>Higher security risk due to the breadth of access granted.</li>
+    </ul>
+  </li>
+  <li><strong>Shared Access Signature (SAS)</strong>:
+    <ul>
+      <li>Suitable for scenarios requiring delegated, limited access.</li>
+      <li>Provides granular control over permissions, resources, and duration.</li>
+      <li>Enhances security by restricting access based on permissions, IP, and protocol.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="azure-blobs">Azure blobs</h2>
+
+<blockquote>
+  <p>Using account-key authentication methods</p>
+
+  <p>Account keys can be found here:</p>
+
+  <p><img src="/Users/aoi/Desktop/Screenshot 2024-05-30 at 5.09.24 PM.png" alt="Screenshot 2024-05-30 at 5.09.24 PM" /></p>
+</blockquote>
+
+<h3 id="create-a-container">Create a container</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az storage container create \
+--name $container-name \
+--account-name $storage-account \
+--account-key $storage-access-key \
+</code></pre></div></div>
+
+<p><img src="/Users/aoi/Desktop/Screenshot 2024-05-30 at 5.12.13 PM.png" alt="Screenshot 2024-05-30 at 5.12.13 PM" /></p>
+
+<h3 id="upload-a-file-to-the-container">Upload a file to the container</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az storage blob upload \
+--file $file \
+--container-name $container-name \
+--account-name $storage-account \
+--account-key $storage-access-key
+</code></pre></div></div>
+
+<p><img src="/Users/aoi/Desktop/Screenshot 2024-05-30 at 5.34.14 PM.png" alt="Screenshot 2024-05-30 at 5.34.14 PM" /></p>
+
+<h3 id="upload-multiple-files-recursively">Upload multiple files recursively</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az storage blob upload-batch \
+--destination $container-name \
+--source $path \
+--pattern *.png \
+--account-name $storage-account \
+--account-key $storage-access-key
+</code></pre></div></div>
+
+
+        </div>
+        
+        <div class="col-12 col-md-4">
+            
+            
+            <div class="card my-card">
+  <div class="card-header my-card-header">
+    <h4 class="mb-0 display-text">Recent posts</h2>
+  </div>
+  <ul class="list-group list-group-flush">
+    
+    <a class="list-group-item my-list-group-item" href="/2024/06/02/azure-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          June 02, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/30/azure-storage.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Storage</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 30, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/27/Azure-SAS.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Sas</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 27, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/22/css-flex-layout.html">
+      <div class="row">
+        <div class="col">
+          <strong>CSS: layout of the header</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 22, 2024
+        </div>
+        <div class="col-auto">
+          
+          <div class="badge badge-info">web</div>
+          
+          <div class="badge badge-info">css</div>
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2023/03/05/SVM-dual-problem.html">
+      <div class="row">
+        <div class="col">
+          <strong>the dual problem of SVM</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          March 05, 2023
+        </div>
+        <div class="col-auto">
+          
+          <div class="badge badge-info">machine learning</div>
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2023/01/17/shellcode-development.html">
+      <div class="row">
+        <div class="col">
+          <strong>shellcode development - lab02</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          January 17, 2023
+        </div>
+        <div class="col-auto">
+          
+          <div class="badge badge-info">buffer overflow</div>
+          
+        </div>
+      </div>
+    </a>
+    
+  </ul>
+</div> 
+        </div>
+    </div>
+</main>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+</script>
+
+</html>

@@ -94,12 +94,7 @@
 <main class="container my-3 px-3">
     <div class="row">
         <div class="col-12 col-md-8 mb-3 mb-md-0">
-            <h2>Table of Content</h2>
-            <ul id="toc" class="toc-list">
-<li class="toc-item toc-h3"><a href="#1-printing-on-the-screen">1. Printing on the Screen</a></li>
-<li class="toc-item toc-h3"><a href="#2-spawning-a-shell">2. Spawning a Shell</a></li>
-</ul><h3 id="1-printing-on-the-screen">
-<a class="anchor" href="#1-printing-on-the-screen" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Printing on the Screen</h3>
+            <h3 id="1-printing-on-the-screen">1. Printing on the Screen</h3>
 
 <p>Program using Relative Addressing technique</p>
 
@@ -130,7 +125,7 @@ shellcode:
         msg db "Hello, world!", 0xA, 0xD
 </code></pre>
 
-<p><img src="/assets/screenshots/1-1-rel.png" alt="1-1-rel"></p>
+<p><img src="/assets/screenshots/1-1-rel.png" alt="1-1-rel" /></p>
 
 <p>Program using Stack methods</p>
 
@@ -157,7 +152,7 @@ _start:
         int 0x80				; system call interrupt
 </code></pre>
 
-<p><img src="/assets/screenshots/1-2-stk.png" alt="1-2-stk"></p>
+<p><img src="/assets/screenshots/1-2-stk.png" alt="1-2-stk" /></p>
 
 <blockquote>
   <p><em>(a) In <code class="language-plaintext highlighter-rouge">print_stk.asm</code>, explain how the line “<code class="language-plaintext highlighter-rouge">push 0x000a0d21</code>” works. Show a screenshot from gdb to support your explanation.</em></p>
@@ -165,17 +160,17 @@ _start:
 
 <p>From the gdb disassembler, the line <code class="language-plaintext highlighter-rouge">push 0x000a0d21</code> is located in memory at <code class="language-plaintext highlighter-rouge">0x08048066</code>.</p>
 
-<p><img src="/assets/screenshots/1-1-1-disassembler.png" alt="1-1-1-disassembler"></p>
+<p><img src="/assets/screenshots/1-1-1-disassembler.png" alt="1-1-1-disassembler" /></p>
 
 <p>I set a breakpoint at <code class="language-plaintext highlighter-rouge">_start</code> and used <code class="language-plaintext highlighter-rouge">si</code> command to execute one instruction each time. When the program is running before executing the instruction of <code class="language-plaintext highlighter-rouge">push 0x000a0d21</code>, from the status of all registers,</p>
 
-<p><img src="/assets/screenshots/1-1-2-registers-before.png" alt="1-1-2-registers-before"></p>
+<p><img src="/assets/screenshots/1-1-2-registers-before.png" alt="1-1-2-registers-before" /></p>
 
 <p>we can see that the current stack top address in memory is <code class="language-plaintext highlighter-rouge">0xbffff5fc</code>, and the value inside is <code class="language-plaintext highlighter-rouge">0x0</code>.</p>
 
 <p>Then, after running the <code class="language-plaintext highlighter-rouge">push 0x000a0d21</code> instruction. From the register info, we can see that the value <code class="language-plaintext highlighter-rouge">0x000a0d21</code> is pushed into stack and the value of register <code class="language-plaintext highlighter-rouge">esp</code> has changed to <code class="language-plaintext highlighter-rouge">0xbffff5f8</code> (deduced 4), pointing to address of the top of stack.</p>
 
-<p><img src="/assets/screenshots/1-1-3-registers-after.png" alt="1-1-3-registers-after"></p>
+<p><img src="/assets/screenshots/1-1-3-registers-after.png" alt="1-1-3-registers-after" /></p>
 
 <blockquote>
   <p><em>(b) Also, in the same file, explain how you got the string address. Show a screenshot from gdb to support your explanation.</em></p>
@@ -185,12 +180,11 @@ _start:
 
 <p>By executing instructions one by one, from gdb, we can see that after <code class="language-plaintext highlighter-rouge">mov ecx, esp</code> is executed, the <code class="language-plaintext highlighter-rouge">ecx</code> register holds the address points to the string. Then, the system call <code class="language-plaintext highlighter-rouge">write</code> can use the string address as second argument.</p>
 
-<p><img src="/assets/screenshots/1-2-1-register-after.png" alt="1-2-1-register-after"></p>
+<p><img src="/assets/screenshots/1-2-1-register-after.png" alt="1-2-1-register-after" /></p>
 
-<hr>
+<hr />
 
-<h3 id="2-spawning-a-shell">
-<a class="anchor" href="#2-spawning-a-shell" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Spawning a Shell</h3>
+<h3 id="2-spawning-a-shell">2. Spawning a Shell</h3>
 
 <h4 id="21-startup-code-labshasm">2.1 Startup Code (labsh.asm)</h4>
 
@@ -200,7 +194,7 @@ _start:
   </ol>
 </blockquote>
 
-<p><img src="/assets/screenshots/2-1-1.png" alt="2-1-1"></p>
+<p><img src="/assets/screenshots/2-1-1.png" alt="2-1-1" /></p>
 
 <blockquote>
   <ol>
@@ -208,10 +202,9 @@ _start:
   </ol>
 </blockquote>
 
-<p><img src="/assets/screenshots/2-1-2-usr-bin-env.png" alt="2-1-2-usr-bin-env"></p>
+<p><img src="/assets/screenshots/2-1-2-usr-bin-env.png" alt="2-1-2-usr-bin-env" /></p>
 
-<h4 id="22-providing-arguments-to-binsh">2.2 Providing Arguments to <code class="language-plaintext highlighter-rouge">/bin/sh</code>
-</h4>
+<h4 id="22-providing-arguments-to-binsh">2.2 Providing Arguments to <code class="language-plaintext highlighter-rouge">/bin/sh</code></h4>
 
 <p>I constructed the argument string “<code class="language-plaintext highlighter-rouge">-c</code>” and “<code class="language-plaintext highlighter-rouge">ls -la</code>” by pushing them into stack and use <code class="language-plaintext highlighter-rouge">esi</code> register to keep their address in memory. When constructing <code class="language-plaintext highlighter-rouge">argv</code>, I pushed the address of each argument string into the stack to form an array of strings.</p>
 
@@ -252,10 +245,9 @@ _start:
       int  0x80
 </code></pre>
 
-<p><img src="/assets/screenshots/2-2-1-result.png" alt="2-2-1-result"></p>
+<p><img src="/assets/screenshots/2-2-1-result.png" alt="2-2-1-result" /></p>
 
-<h4 id="23-providing-env-variable-to-binsh">2.3 Providing Env. Variable to <code class="language-plaintext highlighter-rouge">/bin/sh</code>
-</h4>
+<h4 id="23-providing-env-variable-to-binsh">2.3 Providing Env. Variable to <code class="language-plaintext highlighter-rouge">/bin/sh</code></h4>
 
 <p>I constructed environment variable strings by pushing them into stack and use <code class="language-plaintext highlighter-rouge">esi</code> register to keep their address in memory as in the 2.2. When constructing <code class="language-plaintext highlighter-rouge">envp</code>, I pushed the address of each envrionment variable string into the stack to form an array of strings.</p>
 
@@ -304,47 +296,47 @@ _start:
       int  	0x80
 </code></pre>
 
-<p><img src="/assets/screenshots/2-3-1-result.png" alt="2-3-1-result"></p>
+<p><img src="/assets/screenshots/2-3-1-result.png" alt="2-3-1-result" /></p>
 
 <h4 id="24-using-the-relative-addressing-technique">2.4 Using the Relative Addressing Technique</h4>
 
 <p>First, the program jumps to a <code class="language-plaintext highlighter-rouge">call</code> instruction at line 19, right before the the string.</p>
 
-<p><img src="/assets/screenshots/2-4-2-start.png" alt="2-4-2-start"></p>
+<p><img src="/assets/screenshots/2-4-2-start.png" alt="2-4-2-start" /></p>
 
 <p>Then, the program executes the <code class="language-plaintext highlighter-rouge">call</code> instruction and jumps back to the instruction after the previous <code class="language-plaintext highlighter-rouge">jmp</code> instruction, and push the address of the string <code class="language-plaintext highlighter-rouge">/bin/sh*AAAABBBB</code> into stack.</p>
 
-<p><img src="/assets/screenshots/2-4-3-one.png" alt="2-4-3-one"></p>
+<p><img src="/assets/screenshots/2-4-3-one.png" alt="2-4-3-one" /></p>
 
 <p>Now, The stack top contains the address of the string:</p>
 
-<p><img src="/assets/screenshots/2-4-4-stack-top.png" alt="2-4-4-stack-top"></p>
+<p><img src="/assets/screenshots/2-4-4-stack-top.png" alt="2-4-4-stack-top" /></p>
 
 <p>The program will pop the string address and save to <code class="language-plaintext highlighter-rouge">esi</code> register after the instruction <code class="language-plaintext highlighter-rouge">pop esi</code>. <code class="language-plaintext highlighter-rouge">esi</code> register now holds the address of the string.</p>
 
-<p><img src="/assets/screenshots/2-4-5-esi-holds-string-addr.png" alt="2-4-5-esi-holds-string-addr"></p>
+<p><img src="/assets/screenshots/2-4-5-esi-holds-string-addr.png" alt="2-4-5-esi-holds-string-addr" /></p>
 
 <p>Then, the program copys the string address to <code class="language-plaintext highlighter-rouge">ebx</code> register, ready to be used as first argument of <code class="language-plaintext highlighter-rouge">execve </code> system call.</p>
 
 <p>The first 7 characters in the string contains the filename of the shell program we want to run in the shellcode. To construct the filename string, the program rewrites the memory at <code class="language-plaintext highlighter-rouge">[ebx+7]</code> with <code class="language-plaintext highlighter-rouge">\0</code> to terminate the filename string.</p>
 
-<p><img src="/assets/screenshots/2-4-6-turncate-string.png" alt="2-4-6-turncate-string"></p>
+<p><img src="/assets/screenshots/2-4-6-turncate-string.png" alt="2-4-6-turncate-string" /></p>
 
 <p>Next, the program saves the address of string <code class="language-plaintext highlighter-rouge">/bin/sh</code> to the memory at <code class="language-plaintext highlighter-rouge">[ebx+8]</code>, ready to construct the <code class="language-plaintext highlighter-rouge">argv</code> array.</p>
 
-<p><img src="/assets/screenshots/2-4-7-argv.png" alt="2-4-7-argv"></p>
+<p><img src="/assets/screenshots/2-4-7-argv.png" alt="2-4-7-argv" /></p>
 
 <p>The program terminate the <code class="language-plaintext highlighter-rouge">argv</code> array with <code class="language-plaintext highlighter-rouge">0</code> at <code class="language-plaintext highlighter-rouge">[ebx+12]</code> and assigns the <code class="language-plaintext highlighter-rouge">ecx</code> register with the <code class="language-plaintext highlighter-rouge">argv</code> array.</p>
 
-<p><img src="/assets/screenshots/2-4-8-argv-array.png" alt="2-4-8-argv-array"></p>
+<p><img src="/assets/screenshots/2-4-8-argv-array.png" alt="2-4-8-argv-array" /></p>
 
 <p>The program save <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">edx</code> for no environment variable is passed to the shell program.</p>
 
-<p><img src="/assets/screenshots/2-4-9-no-envp.png" alt="2-4-9-no-envp"></p>
+<p><img src="/assets/screenshots/2-4-9-no-envp.png" alt="2-4-9-no-envp" /></p>
 
 <p>In the last, the program save <code class="language-plaintext highlighter-rouge">0x0b</code> to <code class="language-plaintext highlighter-rouge">eax</code> and invokes a system call interrupt to spawn a shell.</p>
 
-<p><img src="/assets/screenshots/2-4-10-sh.png" alt="2-4-10-sh"></p>
+<p><img src="/assets/screenshots/2-4-10-sh.png" alt="2-4-10-sh" /></p>
 
 <p><code class="language-plaintext highlighter-rouge">src/task2/labsh_rel.asm</code></p>
 
@@ -381,11 +373,66 @@ ld <span class="nt">--omagic</span> ./src/task2/labsh_rel.o <span class="nt">-o<
         </div>
         
         <div class="col-12 col-md-4">
+            
+            <h2>Table of Content</h2>
+            
+            <ul id="toc" class="toc-list">
+<li class="toc-item toc-h3"><a href="#1-printing-on-the-screen">1. Printing on the Screen</a></li>
+<li class="toc-item toc-h3"><a href="#2-spawning-a-shell">2. Spawning a Shell</a></li>
+</ul>
             <div class="card my-card">
   <div class="card-header my-card-header">
     <h4 class="mb-0 display-text">Recent posts</h2>
   </div>
   <ul class="list-group list-group-flush">
+    
+    <a class="list-group-item my-list-group-item" href="/2024/06/02/azure-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          June 02, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/30/azure-storage.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Storage</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 30, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/27/Azure-SAS.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Sas</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 27, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
     
     <a class="list-group-item my-list-group-item" href="/2024/05/22/css-flex-layout.html">
       <div class="row">

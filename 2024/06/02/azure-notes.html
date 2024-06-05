@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azure Notes - escobarflughafen</title>
+  <meta name="description" content="This is an example site description. You can use Markdown here.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/assets/img/home.png" type="image/x-icon">
+</head>
+<body class="mb-3">
+
+
+<header class="header-banner line-overlay">
+    <div class="container">
+        <div class="row header-banner-row px-3">
+            <a href="/" class="col-auto subway-red link-no-effect pe-3">
+                <h1 class="head-text display-text">
+                    Exit
+                </h1>
+            </a>
+            <!--prev post-->
+
+
+            <div class="col flex-grow-1 pe-3">
+                <h1 class="head-text">
+                    Azure Notes
+                </h1>
+            </div>
+
+
+            <div class="col-12 col-md px-0">
+                <ul class="nav nav-banner">
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/posts">
+            <h2 class="
+            mb-0">
+                posts
+            </h2>
+        </a>
+
+    </li>
+
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/projects">
+            <h2 class="
+            mb-0">
+                projects
+            </h2>
+        </a>
+    </li>
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/photos">
+            <h2 class="
+            mb-0">
+                photos
+            </h2>
+        </a>
+    </li>
+    <li class="nav-item my-nav-items">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/contacts">
+            <h2 class="
+            mb-0">
+                contacts
+            </h2>
+        </a>
+    </li>
+</ul>
+            </div>
+
+        </div>
+
+
+    </div>
+</header>
+
+<main class="container my-3 px-3">
+    <div class="row">
+        <div class="col-12 col-md-8 mb-3 mb-md-0">
+            <h2 id="availability-set">Availability set</h2>
+
+<h3 id="fault-domain">Fault Domain</h3>
+
+<ul>
+  <li><strong>Definition</strong>: A fault domain is essentially a group of VMs that share a common power source and network switch. By default, Azure distributes VMs in an availability set across up to three fault domains.</li>
+  <li><strong>Purpose</strong>: Fault domains are designed to protect against hardware failures, such as issues with the physical server, rack, or data center. If one fault domain fails, the VMs in the other fault domains remain unaffected.</li>
+  <li><strong>Example</strong>: If you have three VMs in an availability set, they might be placed in three different fault domains, ensuring that a failure in one domain (e.g., a network switch failure) does not affect the VMs in the other domains.</li>
+</ul>
+
+<h3 id="update-domain">Update Domain</h3>
+
+<ul>
+  <li><strong>Definition</strong>: An update domain is a group of VMs that can be updated or rebooted at the same time. By default, Azure distributes VMs in an availability set across up to five update domains.</li>
+  <li><strong>Purpose</strong>: Update domains are used to manage the application of updates (e.g., patches or software updates) without causing downtime for all VMs in an availability set. Updates are applied one update domain at a time, ensuring that the VMs in other update domains remain available during the process.</li>
+  <li><strong>Example</strong>: If you have five VMs in an availability set, they might be placed in five different update domains. During maintenance, Azure will update VMs in one update domain at a time, so only one-fifth of your VMs might be rebooted at any given time.</li>
+</ul>
+
+<h3 id="key-differences">Key Differences</h3>
+
+<ul>
+  <li><strong>Scope of Protection</strong>:
+    <ul>
+      <li>Fault Domain: Protects against hardware failures.</li>
+      <li>Update Domain: Protects against simultaneous reboots during maintenance or updates.</li>
+    </ul>
+  </li>
+  <li><strong>Number</strong>:
+    <ul>
+      <li>Fault Domain: Typically up to 3 fault domains.</li>
+      <li>Update Domain: Typically up to 5 update domains.</li>
+    </ul>
+  </li>
+  <li><strong>Function</strong>:
+    <ul>
+      <li>Fault Domain: Ensures VMs are spread across different physical hardware to mitigate hardware failure risk.</li>
+      <li>Update Domain: Ensures VMs are updated or rebooted in phases to maintain service availability during maintenance.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="management-group">Management group</h2>
+
+<p>In Microsoft Azure, a subscription can indeed be a member of only one management group at a time. Management groups in Azure are used to manage access, policy, and compliance across multiple Azure subscriptions. Each subscription must be associated with a single management group, but management groups can be nested to provide a hierarchical structure for management.</p>
+
+<h2 id="sas">SAS</h2>
+
+<p>Shared Access Signatures (SAS) in Microsoft Azure provide secure delegated access to resources in your storage account. A SAS token can be used to grant limited access to storage resources without exposing your account key. SAS tokens are supported by various Azure storage services, allowing you to fine-tune permissions and duration of access.</p>
+
+<p>Supported services: <strong>Blob, Queue, Table, File</strong>.</p>
+
+<h3 id="services-supported-by-sas-keys">Services Supported by SAS Keys</h3>
+
+<ol>
+  <li><strong>Azure Blob Storage:</strong>
+    <ul>
+      <li>Containers</li>
+      <li>Blobs</li>
+      <li>Blob snapshots</li>
+      <li>Supports operations like reading, writing, deleting, listing, and setting metadata on blobs and containers.</li>
+    </ul>
+  </li>
+  <li><strong>Azure Queue Storage:</strong>
+    <ul>
+      <li>Queues</li>
+      <li>Messages</li>
+      <li>Supports operations like adding, updating, reading, and deleting messages.</li>
+    </ul>
+  </li>
+  <li><strong>Azure Table Storage:</strong>
+    <ul>
+      <li>Tables</li>
+      <li>Entities</li>
+      <li>Supports operations like querying, inserting, updating, and deleting table entities.</li>
+    </ul>
+  </li>
+  <li><strong>Azure File Storage:</strong>
+    <ul>
+      <li>File shares</li>
+      <li>Directories</li>
+      <li>Files</li>
+      <li>Supports operations like reading, writing, deleting files, and managing file shares and directories.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="types-of-sas-tokens">Types of SAS Tokens</h3>
+
+<ol>
+  <li><strong>Service SAS:</strong>
+    <ul>
+      <li>Grants access to resources in a specific service (Blob, Queue, Table, File).</li>
+      <li>You can specify permissions, resource types, start and expiry times, and IP address range.</li>
+    </ul>
+  </li>
+  <li><strong>Account SAS:</strong>
+    <ul>
+      <li>Grants access to resources in any service within the storage account.</li>
+      <li>Provides more granular control, including access to service-level operations like listing the blobs in the account.</li>
+      <li>Permissions include service operations, service-level actions, and the ability to use specific protocols.</li>
+    </ul>
+  </li>
+  <li><strong>User Delegation SAS:</strong>
+    <ul>
+      <li>Available for Azure Blob Storage.</li>
+      <li>Uses Azure Active Directory (Azure AD) credentials to secure the SAS.</li>
+      <li>Allows generating SAS tokens with permissions defined by the user’s Azure AD roles.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="permissions-in-sas-tokens">Permissions in SAS Tokens</h3>
+
+<ul>
+  <li><strong>Read (r):</strong> Permits reading resources.</li>
+  <li><strong>Write (w):</strong> Permits writing or creating new resources.</li>
+  <li><strong>Delete (d):</strong> Permits deleting resources.</li>
+  <li><strong>List (l):</strong> Permits listing resources.</li>
+  <li><strong>Add (a):</strong> Permits adding messages (Queue Storage) or new resources.</li>
+  <li><strong>Create (c):</strong> Permits creating new resources.</li>
+  <li><strong>Update (u):</strong> Permits updating resources.</li>
+  <li><strong>Process (p):</strong> Permits processing messages (Queue Storage).</li>
+</ul>
+
+<h3 id="example-use-cases">Example Use Cases</h3>
+
+<ul>
+  <li><strong>Blob Storage:</strong> Generate a SAS token to allow a client to upload images to a blob container without granting full access to the storage account.</li>
+  <li><strong>File Storage:</strong> Create a SAS token to enable temporary access to a file share for a user to download files.</li>
+  <li><strong>Queue Storage:</strong> Provide limited access to a queue for an application to add messages without exposing the queue’s full access key.</li>
+  <li><strong>Table Storage:</strong> Grant access to a table for querying specific entities without exposing the entire storage account key.</li>
+</ul>
+
+<h3 id="using-an-azure-file-share-with-windows">Using an Azure file share with Windows</h3>
+
+<p>To use an Azure file share with Windows, you must either mount it, which means assigning it a drive letter or mount point path, or <a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows#access-an-azure-file-share-via-its-unc-path">access it via its UNC path</a>.</p>
+
+<p>This article uses the storage account key to access the file share. A storage account key is an administrator key for a storage account, including administrator permissions to all files and folders within the file share you’re accessing, and for all file shares and other storage resources (blobs, queues, tables, etc.) contained within your storage account. If this isn’t sufficient for your workload, you can use <a href="https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-planning">Azure File Sync</a> or <a href="https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview">identity-based authentication over SMB</a>. <strong>Shared access signature (SAS) tokens aren’t currently supported for mounting Azure file shares.</strong></p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>SAS tokens provide a secure and flexible way to grant limited access to various Azure storage services. By leveraging SAS tokens, you can control access to your storage resources precisely, ensuring that users and applications have the permissions they need without exposing sensitive account keys.</p>
+
+<h2 id="authorization-methods-for-azcopy">Authorization methods for <code class="language-plaintext highlighter-rouge">AzCopy</code></h2>
+
+<ul>
+  <li>MS Entra ID (AzureAD)</li>
+  <li>SAS token</li>
+</ul>
+
+<h2 id="vm-scale-set">VM scale set</h2>
+
+<p>Virtual Machine Scale Sets support both Linux and Windows VMs in Azure and can run up to <strong>1,000 VM</strong>s on a single scale set.</p>
+
+<p>The criteria used to activate the upscale or downscale can depend on a customized schedule or actual demand and usage. Scale sets can apply the same configuration to a group of VMs simultaneously. They don’t require you to manually configure instances individually if you don’t want to.</p>
+
+<p>Before you begin the upgrade process, the orchestrator will ensure that no more than 20% of instances in the entire scale set are unhealthy (for any reason), and for 1 instance at minimum (leq 5 instances).</p>
+
+<h2 id="os-image-upgrade-versus-reimage">OS image upgrade versus reimage</h2>
+
+<p>Both <strong>OS Image Upgrade</strong> and <strong><a href="https://learn.microsoft.com/en-us/rest/api/compute/virtual-machine-scale-sets/reimage">Reimage</a></strong> are methods used to update VMs within a scale set, but they serve different purposes and have distinct impacts.</p>
+
+<p>OS image upgrade involves updating the underlying operating system image that is used to create new instances in a scale set. When you perform an OS image upgrade, Azure will create new VM instances with the updated OS image and gradually replace the old VM instances in the scale set with the new ones. This process is typically performed in stages to ensure high availability. OS image upgrades are a non-disruptive way to apply updates or changes to the underlying OS of the VMs in a scale set. Existing VM instances are not affected until they are replaced with the new instances.</p>
+
+<p>Reimaging a VM instance in a scale set is a more immediate and disruptive action. When you choose to reimage a VM instance, Azure will stop the selected VM instance, perform the reimage operation, and then restart the VM using the same OS image. This effectively reinstalls the OS on that specific VM instance. Reimaging is typically used when you need to troubleshoot or reset a specific VM instance due to issues with that instance.</p>
+
+<h2 id="general-roles">General roles</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Built-in role</th>
+      <th style="text-align: left">Description</th>
+      <th style="text-align: left">ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#contributor">Contributor</a></td>
+      <td style="text-align: left">Grants full access to manage all resources, but does not allow you to assign roles in Azure RBAC, manage assignments in Azure Blueprints, or share image galleries.</td>
+      <td style="text-align: left">b24988ac-6180-42a0-ab88-20f7382dd24c</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#owner">Owner</a></td>
+      <td style="text-align: left">Grants full access to manage all resources, including the ability to assign roles in Azure RBAC.</td>
+      <td style="text-align: left">8e3af657-a8ff-443c-a75c-2fe8c4bcb635</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#reader">Reader</a></td>
+      <td style="text-align: left">View all resources, but does not allow you to make any changes.</td>
+      <td style="text-align: left">acdd72a7-3385-48ef-bd42-f606fba81ae7</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#role-based-access-control-administrator">Role Based Access Control Administrator</a></td>
+      <td style="text-align: left">Manage access to Azure resources by assigning roles using Azure RBAC. This role does not allow you to manage access using other ways, such as Azure Policy.</td>
+      <td style="text-align: left">f58310d9-a9f6-439a-9e8d-f62e7b41a168</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#user-access-administrator">User Access Administrator</a></td>
+      <td style="text-align: left">Lets you manage user access to Azure resources.</td>
+      <td style="text-align: left">18d7d88d-d35e-4fb5-a5c3-7773c20a72d9</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="vm-size-naming-convention">VM size naming convention</h2>
+
+<ol>
+  <li><strong>General purpose</strong>:
+    <ul>
+      <li>Prefix: D, A, B</li>
+      <li>Suffix: s (standard), v (version), p (premium), l (low priority), d (disk), a (availability)</li>
+      <li>Examples: B, Dsv3, Dv3, Dasv4, Dav4, DSv2, Dv2, Av2, Dpdsv5, Dpldsv5, Dpsv5, Dplsv5, Dv4, Dsv4, Ddv4, Ddsv4, Dv5, Dsv5, Ddv5, Ddsv5, Dasv5, Dadsv5, DCasv5, DCadsv5, DCesv5, DCedsv5</li>
+    </ul>
+  </li>
+  <li><strong>Compute optimized</strong>:
+    <ul>
+      <li>Prefix: F</li>
+      <li>Suffix: s (standard), v (version), X (special)</li>
+      <li>Examples: F, Fs, Fsv2, FX</li>
+    </ul>
+  </li>
+  <li><strong>Memory optimized</strong>:
+    <ul>
+      <li>Prefix: E, M, D (some overlap with general purpose)</li>
+      <li>Suffix: s (standard), v (version), p (premium), d (disk), a (availability), C (confidential)</li>
+      <li>Examples: Esv3, Ev3, Easv4, Eav4, Epdsv5, Epsv5, Ev4, Esv4, Edv4, Edsv4, Ev5, Esv5, Edv5, Edsv5, Easv5, Eadsv5, Mv2, M, DSv2, Dv2, ECasv5, ECadsv5, ECesv5, ECedsv5</li>
+    </ul>
+  </li>
+  <li><strong>Storage optimized</strong>:
+    <ul>
+      <li>Prefix: L</li>
+      <li>Suffix: s (standard), v (version), a (availability)</li>
+      <li>Examples: Lsv2, Lsv3, Lasv3</li>
+    </ul>
+  </li>
+  <li><strong>GPU</strong>:
+    <ul>
+      <li>Prefix: N</li>
+      <li>Suffix: v (version), A (specific GPU type), T (Tesla), r (remote), X (special), s (standard), m (multi-instance)</li>
+      <li>Examples: NC, NCv2, NCv3, NCasT4_v3, NCA100v4, ND, NDv2, NGadsV620, NV, NVv3, NVv4, NDasrA100_v4, NDm_A100_v4</li>
+    </ul>
+  </li>
+  <li><strong>High performance compute</strong>:
+    <ul>
+      <li>Prefix: H</li>
+      <li>Suffix: B (batch), C (compute), X (special), v (version)</li>
+      <li>Examples: HB, HBv2, HBv3, HBv4, HC, HX</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="vpn-gateways">VPN gateways</h2>
+
+<p>https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal</p>
+
+<h2 id="vm-scale-set-az-vmss">VM scale set <code class="language-plaintext highlighter-rouge">az vmss</code></h2>
+
+<p><code class="language-plaintext highlighter-rouge">az vmss scale</code> - change the number of VMs within a VMSS.</p>
+
+<h2 id="port-numbers-for-common-protocols">Port numbers for common protocols</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Protocol</strong></th>
+      <th><strong>Port Number</strong></th>
+      <th><strong>Description</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>HTTP</strong></td>
+      <td>80</td>
+      <td>Hypertext Transfer Protocol for web traffic.</td>
+    </tr>
+    <tr>
+      <td><strong>HTTPS</strong></td>
+      <td>443</td>
+      <td>Secure Hypertext Transfer Protocol for encrypted web traffic.</td>
+    </tr>
+    <tr>
+      <td><strong>FTP</strong></td>
+      <td>21</td>
+      <td>File Transfer Protocol for transferring files.</td>
+    </tr>
+    <tr>
+      <td><strong>FTPS</strong></td>
+      <td>990</td>
+      <td>Secure File Transfer Protocol over SSL/TLS.</td>
+    </tr>
+    <tr>
+      <td><strong>SFTP</strong></td>
+      <td>22</td>
+      <td>Secure File Transfer Protocol over SSH.</td>
+    </tr>
+    <tr>
+      <td><strong>SSH</strong></td>
+      <td>22</td>
+      <td>Secure Shell for secure remote login and command execution.</td>
+    </tr>
+    <tr>
+      <td><strong>Telnet</strong></td>
+      <td>23</td>
+      <td>Telnet protocol for unencrypted remote login (not recommended).</td>
+    </tr>
+    <tr>
+      <td><strong>SMTP</strong></td>
+      <td>25</td>
+      <td>Simple Mail Transfer Protocol for sending emails.</td>
+    </tr>
+    <tr>
+      <td><strong>SMTPS</strong></td>
+      <td>465</td>
+      <td>Secure SMTP over SSL.</td>
+    </tr>
+    <tr>
+      <td><strong>IMAP</strong></td>
+      <td>143</td>
+      <td>Internet Message Access Protocol for retrieving emails.</td>
+    </tr>
+    <tr>
+      <td><strong>IMAPS</strong></td>
+      <td>993</td>
+      <td>Secure IMAP over SSL.</td>
+    </tr>
+    <tr>
+      <td><strong>POP3</strong></td>
+      <td>110</td>
+      <td>Post Office Protocol version 3 for retrieving emails.</td>
+    </tr>
+    <tr>
+      <td><strong>POP3S</strong></td>
+      <td>995</td>
+      <td>Secure POP3 over SSL.</td>
+    </tr>
+    <tr>
+      <td><strong>RDP</strong></td>
+      <td>3389</td>
+      <td>Remote Desktop Protocol for remote desktop access.</td>
+    </tr>
+    <tr>
+      <td><strong>DNS</strong></td>
+      <td>53</td>
+      <td>Domain Name System for resolving domain names.</td>
+    </tr>
+    <tr>
+      <td><strong>MySQL</strong></td>
+      <td>3306</td>
+      <td>MySQL database service.</td>
+    </tr>
+    <tr>
+      <td><strong>PostgreSQL</strong></td>
+      <td>5432</td>
+      <td>PostgreSQL database service.</td>
+    </tr>
+    <tr>
+      <td><strong>SQL Server</strong></td>
+      <td>1433</td>
+      <td>Microsoft SQL Server database service.</td>
+    </tr>
+    <tr>
+      <td><strong>Oracle DB</strong></td>
+      <td>1521</td>
+      <td>Oracle database service.</td>
+    </tr>
+    <tr>
+      <td><strong>MongoDB</strong></td>
+      <td>27017</td>
+      <td>MongoDB database service.</td>
+    </tr>
+    <tr>
+      <td><strong>Redis</strong></td>
+      <td>6379</td>
+      <td>Redis in-memory data structure store.</td>
+    </tr>
+    <tr>
+      <td><strong>Memcached</strong></td>
+      <td>11211</td>
+      <td>Memcached caching service.</td>
+    </tr>
+    <tr>
+      <td><strong>NTP</strong></td>
+      <td>123</td>
+      <td>Network Time Protocol for clock synchronization.</td>
+    </tr>
+    <tr>
+      <td><strong>LDAP</strong></td>
+      <td>389</td>
+      <td>Lightweight Directory Access Protocol.</td>
+    </tr>
+    <tr>
+      <td><strong>LDAPS</strong></td>
+      <td>636</td>
+      <td>Secure LDAP over SSL.</td>
+    </tr>
+    <tr>
+      <td><strong>Kerberos</strong></td>
+      <td>88</td>
+      <td>Kerberos authentication protocol.</td>
+    </tr>
+    <tr>
+      <td><strong>NetBIOS</strong></td>
+      <td>137, 138, 139</td>
+      <td>NetBIOS over TCP/IP for network services.</td>
+    </tr>
+    <tr>
+      <td><strong>SMB/CIFS</strong></td>
+      <td>445</td>
+      <td>Server Message Block/Common Internet File System for file sharing.</td>
+    </tr>
+    <tr>
+      <td><strong>VPN (PPTP)</strong></td>
+      <td>1723</td>
+      <td>Point-to-Point Tunneling Protocol for VPN.</td>
+    </tr>
+    <tr>
+      <td><strong>IKEv2</strong></td>
+      <td>500</td>
+      <td>Internet Key Exchange for VPN.</td>
+    </tr>
+    <tr>
+      <td><strong>L2TP</strong></td>
+      <td>1701</td>
+      <td>Layer 2 Tunneling Protocol for VPN.</td>
+    </tr>
+    <tr>
+      <td><strong>ESP</strong></td>
+      <td>50</td>
+      <td>Encapsulating Security Payload for VPN.</td>
+    </tr>
+    <tr>
+      <td><strong>GRE</strong></td>
+      <td>47</td>
+      <td>Generic Routing Encapsulation for VPN.</td>
+    </tr>
+  </tbody>
+</table>
+
+        </div>
+        
+        <div class="col-12 col-md-4">
+            
+            <h2>Table of Content</h2>
+            
+            <ul id="toc" class="toc-list">
+<li class="toc-item toc-h2"><a href="#availability-set">Availability set</a>
+<ul class="toc-sublist">
+<li class="toc-item toc-h3"><a href="#fault-domain">Fault Domain</a></li>
+<li class="toc-item toc-h3"><a href="#update-domain">Update Domain</a></li>
+<li class="toc-item toc-h3"><a href="#key-differences">Key Differences</a></li>
+</ul>
+</li>
+<li class="toc-item toc-h2"><a href="#management-group">Management group</a></li>
+<li class="toc-item toc-h2"><a href="#sas">SAS</a>
+<ul class="toc-sublist">
+<li class="toc-item toc-h3"><a href="#services-supported-by-sas-keys">Services Supported by SAS Keys</a></li>
+<li class="toc-item toc-h3"><a href="#types-of-sas-tokens">Types of SAS Tokens</a></li>
+<li class="toc-item toc-h3"><a href="#permissions-in-sas-tokens">Permissions in SAS Tokens</a></li>
+<li class="toc-item toc-h3"><a href="#example-use-cases">Example Use Cases</a></li>
+<li class="toc-item toc-h3"><a href="#using-an-azure-file-share-with-windows">Using an Azure file share with Windows</a></li>
+<li class="toc-item toc-h3"><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-item toc-h2"><a href="#authorization-methods-for-azcopy">Authorization methods for AzCopy</a></li>
+<li class="toc-item toc-h2"><a href="#vm-scale-set">VM scale set</a></li>
+<li class="toc-item toc-h2"><a href="#os-image-upgrade-versus-reimage">OS image upgrade versus reimage</a></li>
+<li class="toc-item toc-h2"><a href="#general-roles">General roles</a></li>
+<li class="toc-item toc-h2"><a href="#vm-size-naming-convention">VM size naming convention</a></li>
+<li class="toc-item toc-h2"><a href="#vpn-gateways">VPN gateways</a></li>
+<li class="toc-item toc-h2"><a href="#vm-scale-set-az-vmss">VM scale set az vmss</a></li>
+<li class="toc-item toc-h2"><a href="#port-numbers-for-common-protocols">Port numbers for common protocols</a></li>
+</ul>
+            <div class="card my-card">
+  <div class="card-header my-card-header">
+    <h4 class="mb-0 display-text">Recent posts</h2>
+  </div>
+  <ul class="list-group list-group-flush">
+    
+    <a class="list-group-item my-list-group-item" href="/2024/06/02/azure-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          June 02, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/30/azure-storage.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Storage</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 30, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/27/Azure-SAS.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Sas</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 27, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/22/css-flex-layout.html">
+      <div class="row">
+        <div class="col">
+          <strong>CSS: layout of the header</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 22, 2024
+        </div>
+        <div class="col-auto">
+          
+          <div class="badge badge-info">web</div>
+          
+          <div class="badge badge-info">css</div>
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2023/03/05/SVM-dual-problem.html">
+      <div class="row">
+        <div class="col">
+          <strong>the dual problem of SVM</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          March 05, 2023
+        </div>
+        <div class="col-auto">
+          
+          <div class="badge badge-info">machine learning</div>
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2023/01/17/shellcode-development.html">
+      <div class="row">
+        <div class="col">
+          <strong>shellcode development - lab02</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          January 17, 2023
+        </div>
+        <div class="col-auto">
+          
+          <div class="badge badge-info">buffer overflow</div>
+          
+        </div>
+      </div>
+    </a>
+    
+  </ul>
+</div> 
+        </div>
+    </div>
+</main>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+</script>
+
+</html>

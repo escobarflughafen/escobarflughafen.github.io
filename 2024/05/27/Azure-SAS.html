@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS: layout of the header - escobarflughafen</title>
+  <title>Azure Sas - escobarflughafen</title>
   <meta name="description" content="This is an example site description. You can use Markdown here.">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/css/main.css">
@@ -25,7 +25,7 @@
 
             <div class="col flex-grow-1 pe-3">
                 <h1 class="head-text">
-                    CSS: layout of the header
+                    Azure Sas
                 </h1>
             </div>
 
@@ -94,53 +94,130 @@
 <main class="container my-3 px-3">
     <div class="row">
         <div class="col-12 col-md-8 mb-3 mb-md-0">
-            <p>The final result can refer to the header banner of this page. ⬆️</p>
+            <h2 id="features-of-entra-id">Features of Entra ID</h2>
 
-<h2 id="the-originals">the Originals</h2>
+<h3 id="sso-access">SSO access</h3>
 
-<p><img src="/assets/img/nyc-guidelines.jpg" alt="NYC MTA design guideline" /></p>
+<h3 id="ubiquitous-device-support">Ubiquitous device support</h3>
 
-<h2 id="the-header">the Header</h2>
+<h3 id="secure-remote-access">Secure remote access</h3>
 
-<p><img src="/assets/img/header.png" alt="header banner" /></p>
+<h3 id="cloud-extensibility">Cloud extensibility</h3>
 
-<h3 id="components">Components</h3>
+<h3 id="sensitive-data-protection">Sensitive data protection</h3>
 
-<h4 id="brand">Brand</h4>
+<h3 id="self-service-support">Self-service support</h3>
 
-<h4 id="post-title">Post title</h4>
+<h2 id="concepts">Concepts</h2>
 
-<h4 id="navigations">Navigations</h4>
+<h3 id="identity">Identity</h3>
 
-<h2 id="responsive-layout">Responsive layout</h2>
+<h3 id="account">Account</h3>
 
-<p>Using the grid system from Bootstrap, the header can adapt to different window/screen size by arranging its components  .</p>
+<h3 id="ms-entra-account">MS Entra account</h3>
+
+<h3 id="azure-tenant-directory---a-single-organization">Azure tenant (directory) - a single organization</h3>
+
+<h3 id="azure-subscription">Azure subscription</h3>
+
+<h2 id="create-user-accounts">Create user accounts</h2>
+
+<h3 id="lab-scenario">Lab scenario</h3>
+
+<p>Your organization will be using Microsoft Entra authentication. You’ve been tasked with provisioning the required user and group accounts. Membership of the groups should be updated automatically based on the user job titles. You also need to invite guest users from another tenant. These guest users should have only limited permissions to resources in your subscription.</p>
+
+<p>Your organization has these specific requirements:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">xs</code> and <code class="language-plaintext highlighter-rouge">sm</code></li>
+  <li>Any user with the Cloud Administrator job title should be assigned to the IT Cloud Administrator group.</li>
+  <li>Any user with the System Administrator job title should be assigned to the IT System Administrator group.</li>
+  <li>Any user that is a member of the IT Cloud Administrator group or the IT System Administrator group should be assigned to the IT Lab Administrator group.</li>
+  <li>A System Administrator in another Active Directory tenant should be invited as guest user with limited permissions.</li>
 </ul>
 
-<p>Using media queries <code class="language-plaintext highlighter-rouge">@media</code> to manually add some style based on the width of the viewport.</p>
+<h3 id="architecture-diagram">Architecture diagram</h3>
 
-<h2 id="display-flex"><code class="language-plaintext highlighter-rouge">display: flex</code></h2>
+<p><img src="https://learn.microsoft.com/en-us/training/wwl-azure/configure-user-group-accounts/media/lab-01.png" alt="Architecture diagram as explained in the text." /></p>
+
+<h3 id="objectives">Objectives</h3>
+
+<ul>
+  <li>Task 1: Create and configure Microsoft Entra users.
+    <ul>
+      <li>User <strong>AZ104-01a-aaduser1</strong> will be a Cloud Administrator assigned the User Administrator role.</li>
+      <li>User <strong>AZ104-01a-aaduser2</strong> will be a System Administrator.</li>
+    </ul>
+  </li>
+  <li>Task 2: Create AD groups with assigned and dynamic membership.
+    <ul>
+      <li>The <strong>IT Cloud Administrator</strong> group should include any user with the Cloud Administrator job title.</li>
+      <li>The <strong>IT System Administrator</strong> group should include any user with the System Administrator job title.</li>
+      <li>The <strong>IT Lab Administrator</strong> group should include any user in the IT Cloud Administrator group or the IT System Administrator group.</li>
+    </ul>
+  </li>
+  <li>Task 3: Create a Microsoft Entra tenant. This tenant will be used to demonstrate guest users.</li>
+  <li>Task 4: Manage Microsoft Entra guest users.
+    <ul>
+      <li>In the new Microsoft Entra tenant create a System Administrator user, <strong>az104-01b-aaduser1</strong>.</li>
+      <li>Invite the new user as a guest user to your subscription.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Task 1:</p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527213104416.png" alt="image-20240527213104416" /></p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527213308016.png" alt="image-20240527213308016" /></p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527213632925.png" alt="image-20240527213632925" /></p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527213658796.png" alt="image-20240527213658796" /></p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527213718690.png" alt="image-20240527213718690" /></p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527213820915.png" alt="image-20240527213820915" /></p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527213907247.png" alt="image-20240527213907247" /></p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527213949729.png" alt="image-20240527213949729" /></p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527214041178.png" alt="image-20240527214041178" /></p>
+
+<p>(Requires MFA)</p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527214227141.png" alt="image-20240527214227141" /></p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527214313747.png" alt="image-20240527214313747" /> (Able to create new users)</p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527214826343.png" alt="image-20240527214826343" /></p>
+
+<p>Change the name of the current directory</p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527215354687.png" alt="image-20240527215354687" /></p>
+
+<p>Dynamic Group Assignment requires P2 license</p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527220024294.png" alt="image-20240527220024294" /></p>
+
+<p>Create new tenant</p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527220359922.png" alt="image-20240527220359922" /></p>
+
+<p>Paid license needed if you want to create new MS Entra ID tenant</p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527220541905.png" alt="image-20240527220541905" /></p>
+
+<p>Invite external users</p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240527221910165.png" alt="image-20240527221910165" /></p>
 
 
         </div>
         
         <div class="col-12 col-md-4">
             
-            <h2>Table of Content</h2>
             
-            <ul id="toc" class="toc-list">
-<li class="toc-item toc-h2"><a href="#the-originals">the Originals</a></li>
-<li class="toc-item toc-h2"><a href="#the-header">the Header</a>
-<ul class="toc-sublist">
-<li class="toc-item toc-h3"><a href="#components">Components</a></li>
-</ul>
-</li>
-<li class="toc-item toc-h2"><a href="#responsive-layout">Responsive layout</a></li>
-<li class="toc-item toc-h2"><a href="#display-flex">display: flex</a></li>
-</ul>
             <div class="card my-card">
   <div class="card-header my-card-header">
     <h4 class="mb-0 display-text">Recent posts</h2>

@@ -19,8 +19,12 @@
 */
 
 body {
-    font-family:  "Univers", "Helvetica Neue", "Segoe UI", "YuGothic", Arial, sans-serif;
+    font-family: "Helvetica Neue", "Segoe UI", "YuGothic", Arial, sans-serif;
     font-weight: 400;
+}
+
+p {
+    font-family: "Helvetica Neue", "Segoe UI", "YuGothic", Arial, sans-serif;
 }
 
 img {
@@ -83,13 +87,12 @@ h6 {
     /* Ensure the nav fills the height of the nav-col */
 }
 
-.my-nav-item {
-}
+.my-nav-item {}
 
 @media (max-width: 767px) {
+
     /* nav-item in narrow window */
-    .my-nav-item {
-    }
+    .my-nav-item {}
 }
 
 .nav-link-banner {
@@ -128,7 +131,7 @@ h6 {
     background-color: white;
     color: #0d0015;
     */
-    font-family:  "Helvetica Neue", "Univers", "Segoe UI", "YuGothic", Arial, sans-serif;
+    font-family: "Helvetica Neue", "Univers", "Segoe UI", "YuGothic", Arial, sans-serif;
     color: var(--dark-text-color);
     background-color: var(--dark-bg-color);
     padding: 0;
@@ -140,7 +143,7 @@ h6 {
 
 .header-banner-row>[class^="col"] {
     /*> for direct child*/
-   padding-left: 0;
+    padding-left: 0;
 }
 
 @media (min-width: 768px) {
