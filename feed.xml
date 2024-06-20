@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-06-05T07:25:24+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">Azure Notes</title><link href="http://yourdomain.com/2024/06/02/azure-notes.html" rel="alternate" type="text/html" title="Azure Notes" /><published>2024-06-02T00:00:00+00:00</published><updated>2024-06-02T00:00:00+00:00</updated><id>http://yourdomain.com/2024/06/02/azure-notes</id><content type="html" xml:base="http://yourdomain.com/2024/06/02/azure-notes.html"><![CDATA[<h2 id="availability-set">Availability set</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-06-20T08:19:08+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">Azure Notes</title><link href="http://yourdomain.com/2024/06/02/azure-notes.html" rel="alternate" type="text/html" title="Azure Notes" /><published>2024-06-02T00:00:00+00:00</published><updated>2024-06-02T00:00:00+00:00</updated><id>http://yourdomain.com/2024/06/02/azure-notes</id><content type="html" xml:base="http://yourdomain.com/2024/06/02/azure-notes.html"><![CDATA[<h2 id="availability-set">Availability set</h2>
 
 <h3 id="fault-domain">Fault Domain</h3>
 
@@ -435,7 +435,394 @@
       <td>Generic Routing Encapsulation for VPN.</td>
     </tr>
   </tbody>
-</table>]]></content><author><name></name></author><summary type="html"><![CDATA[Availability set]]></summary></entry><entry><title type="html">Azure Storage</title><link href="http://yourdomain.com/2024/05/30/azure-storage.html" rel="alternate" type="text/html" title="Azure Storage" /><published>2024-05-30T00:00:00+00:00</published><updated>2024-05-30T00:00:00+00:00</updated><id>http://yourdomain.com/2024/05/30/azure-storage</id><content type="html" xml:base="http://yourdomain.com/2024/05/30/azure-storage.html"><![CDATA[<h2 id="install-azure-cli">Install Azure CLI</h2>
+</table>
+
+<h2 id="tutorial-create-a-site-to-site-vpn-connection">Tutorial: Create a site-to-site VPN connection</h2>
+
+<h3 id="vnet-preparation">VNet preparation</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Address</th>
+      <th>Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>TestRG1</td>
+      <td>Resource Group</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>VNet1</td>
+      <td>Virtual Network</td>
+      <td>10.1.0.0/16</td>
+      <td>Central Canada</td>
+    </tr>
+    <tr>
+      <td>FrontEnd</td>
+      <td>Subnet</td>
+      <td>10.1.0.0/24</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240606161716240.png" alt="image-20240606161716240" /></p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240606162220148.png" alt="image-20240606162220148" /></p>
+
+<h3 id="create-a-gateway-subnet">Create a gateway subnet</h3>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240606162615577.png" alt="image-20240606162615577" /></p>
+
+<p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240606162600108.png" alt="image-20240606162600108" /></p>
+
+<h3 id="create-a-vpn-gateway">Create a VPN gateway</h3>
+
+<ol>
+  <li>
+    <p>In search bar, search “Virtual network gateways”</p>
+  </li>
+  <li>
+    <p>Create a virtual network gateway with the following configs:</p>
+
+    <p><img src="/Users/aoi/Library/Application Support/typora-user-images/image-20240606163210724.png" alt="image-20240606163210724" /></p>
+  </li>
+</ol>
+
+<h2 id="vm-backup">VM backup</h2>
+
+<p>https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-first-look-arm</p>
+
+<h2 id="sspr">SSPR</h2>
+
+<p>SSPR is a centralized self-service password reset portal for accounts under Azure tenants.</p>
+
+<p>Requirements:</p>
+
+<ul>
+  <li>P1 license and up</li>
+  <li>Users with admin roles have more strict reset policies.
+    <ul>
+      <li>a strong default <em>two-gate</em> policy is enforced.
+        <ul>
+          <li>requires two pieces of authentication data:
+            <ul>
+              <li>Email address</li>
+              <li>authenticator app</li>
+              <li>phone number</li>
+            </ul>
+          </li>
+          <li>security questions are prohibited</li>
+        </ul>
+      </li>
+      <li>cmdlet <code class="language-plaintext highlighter-rouge">Update-MgPolicyAuthorizationPolicy</code> can be used to enable/disable SSPR for admin users with parameter <code class="language-plaintext highlighter-rouge">-AllowedToUseSspr</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="dns-verification-process">DNS verification process</h2>
+
+<p>The purpose of DNS verification using a TXT or MX record (containing a random token) is to confirm that the entity requesting the service owns the target domain. After verification, Azure provides the detailed configuration information to the verified domain owner.</p>
+
+<p>To use custom domains, first we need to register this domain at a registrar, then, configure the name server to one of the Azure NSs. Then, we can use Azure to manage the domain (including connecting to vnets and more).</p>
+
+<h3 id="dns-resolution-process">DNS Resolution Process</h3>
+
+<ol>
+  <li><strong>Local DNS Resolver</strong>:
+    <ul>
+      <li>When a user enters a domain name (e.g., <code class="language-plaintext highlighter-rouge">example.com</code>) in their browser, the request first goes to the user’s local DNS resolver, which is usually managed by their ISP or configured on their network.</li>
+    </ul>
+  </li>
+  <li><strong>Check Local Cache</strong>:
+    <ul>
+      <li>The local DNS resolver checks its cache to see if it already has a recent response for the domain name. If it does, it returns the cached result, skipping further steps.</li>
+    </ul>
+  </li>
+  <li><strong>Query the Root DNS Servers</strong>:
+    <ul>
+      <li>If the local DNS resolver does not have the cached result, it queries one of the root DNS servers. The root DNS servers know the authoritative servers for all top-level domains (TLDs, like <code class="language-plaintext highlighter-rouge">.com</code>, <code class="language-plaintext highlighter-rouge">.net</code>, etc.).</li>
+    </ul>
+  </li>
+  <li><strong>TLD DNS Servers</strong>:
+    <ul>
+      <li>The root DNS server responds with the address of the TLD DNS server responsible for <code class="language-plaintext highlighter-rouge">.com</code> domains.</li>
+      <li>The local DNS resolver then queries the TLD DNS server for <code class="language-plaintext highlighter-rouge">example.com</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Authoritative DNS Servers (Azure DNS)</strong>:
+    <ul>
+      <li>The TLD DNS server responds with the address of the authoritative DNS servers for <code class="language-plaintext highlighter-rouge">example.com</code>, which are the Azure DNS servers you configured.</li>
+      <li>The local DNS resolver queries one of the Azure DNS servers for <code class="language-plaintext highlighter-rouge">example.com</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Retrieve DNS Records</strong>:
+    <ul>
+      <li>The Azure DNS server responds with the DNS records for <code class="language-plaintext highlighter-rouge">example.com</code> (e.g., the IP address associated with the domain).</li>
+    </ul>
+  </li>
+  <li><strong>Return Response to Client</strong>:
+    <ul>
+      <li>The local DNS resolver caches the response and returns the result to the user’s machine.</li>
+      <li>The browser can now connect to the IP address returned and load the website.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="example-walkthrough">Example Walkthrough</h3>
+
+<ol>
+  <li><strong>User Input</strong>:
+    <ul>
+      <li>User enters <code class="language-plaintext highlighter-rouge">www.example.com</code> in their browser.</li>
+    </ul>
+  </li>
+  <li><strong>Local DNS Cache</strong>:
+    <ul>
+      <li>The local DNS resolver checks if <code class="language-plaintext highlighter-rouge">www.example.com</code> is in its cache.</li>
+    </ul>
+  </li>
+  <li><strong>Root Server Query</strong>:
+    <ul>
+      <li>If not in cache, the local DNS resolver queries a root DNS server.</li>
+    </ul>
+  </li>
+  <li><strong>TLD Server Query</strong>:
+    <ul>
+      <li>Root DNS server responds with the TLD DNS server for <code class="language-plaintext highlighter-rouge">.com</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Authoritative DNS Server Query</strong>:
+    <ul>
+      <li>The local DNS resolver queries the TLD DNS server for <code class="language-plaintext highlighter-rouge">example.com</code>.</li>
+      <li>TLD DNS server responds with the Azure DNS servers.</li>
+    </ul>
+  </li>
+  <li><strong>Azure DNS Response</strong>:
+    <ul>
+      <li>The local DNS resolver queries the Azure DNS server for <code class="language-plaintext highlighter-rouge">www.example.com</code>.</li>
+      <li>Azure DNS server responds with the IP address (e.g., <code class="language-plaintext highlighter-rouge">192.0.2.1</code>).</li>
+    </ul>
+  </li>
+  <li><strong>Browser Connects</strong>:
+    <ul>
+      <li>The local DNS resolver caches the response and returns the IP address to the browser.</li>
+      <li>The browser connects to <code class="language-plaintext highlighter-rouge">192.0.2.1</code> and loads the website.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="storage-replication-strategies">Storage replication strategies</h2>
+
+<p>LRS</p>
+
+<p>ZRS</p>
+
+<p>GRS</p>
+
+<p>GZRS</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Node in data center unavailable</th>
+      <th style="text-align: left">Entire data center unavailable</th>
+      <th style="text-align: left">Region-wide outage</th>
+      <th style="text-align: left">Read access during region-wide outage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">- <strong>LRS</strong> - <strong>ZRS</strong> - <strong>GRS</strong> - <strong>RA-GRS</strong> - <strong>GZRS</strong> - <strong>RA-GZRS</strong></td>
+      <td style="text-align: left">- <strong>ZRS</strong> - <strong>GRS</strong> - <strong>RA-GRS</strong> - <strong>GZRS</strong> - <strong>RA-GZRS</strong></td>
+      <td style="text-align: left">- <strong>GRS</strong> - <strong>RA-GRS</strong> - <strong>GZRS</strong> - <strong>RA-GZRS</strong></td>
+      <td style="text-align: left">- <strong>RA-GRS</strong> - <strong>RA-GZRS</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sas-features">SAS features</h2>
+
+<ul>
+  <li>Signing method</li>
+  <li>Signing key
+    <ul>
+      <li>MS-managed keys</li>
+      <li>customer-managed keys</li>
+    </ul>
+  </li>
+  <li>Permissions</li>
+  <li>Start and Expiry date/time</li>
+  <li>Allowed IP</li>
+  <li>Allowed protocols</li>
+</ul>
+
+<h3 id="uri-definitions">URI definitions</h3>
+
+<ul>
+  <li>Resource URI</li>
+  <li><code class="language-plaintext highlighter-rouge">sv</code> - storage version</li>
+  <li><code class="language-plaintext highlighter-rouge">ss</code> - storage service</li>
+  <li><code class="language-plaintext highlighter-rouge">st</code> - start time</li>
+  <li><code class="language-plaintext highlighter-rouge">se</code> - expiry time</li>
+  <li><code class="language-plaintext highlighter-rouge">sr</code> - resource</li>
+  <li><code class="language-plaintext highlighter-rouge">sp</code> - permissions</li>
+  <li><code class="language-plaintext highlighter-rouge">sip</code> - ip range</li>
+  <li><code class="language-plaintext highlighter-rouge">spr</code> - protocol</li>
+  <li><code class="language-plaintext highlighter-rouge">sig</code> - signature</li>
+</ul>
+
+<h2 id="summary-of-supported-authentication-methods-in-azcopy">Summary of supported authentication methods in <code class="language-plaintext highlighter-rouge">azcopy</code></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Supported Authentication Methods</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Azure Blob Storage</strong></td>
+      <td>SAS, OAuth</td>
+    </tr>
+    <tr>
+      <td><strong>Azure Files</strong></td>
+      <td>Share/Directory SAS</td>
+    </tr>
+    <tr>
+      <td><strong>Azure Data Lake Storage Gen2</strong></td>
+      <td>SAS, OAuth, Shared Key</td>
+    </tr>
+    <tr>
+      <td><strong>AWS S3 to Azure Blob</strong></td>
+      <td>Access Key (AWS) to SAS, OAuth (Azure Blob)</td>
+    </tr>
+    <tr>
+      <td><strong>Google Cloud Storage to Azure Blob</strong></td>
+      <td>Service Account Key (GCS) to SAS, OAuth (Azure Blob)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="azure-backup-services">Azure backup services</h2>
+
+<h3 id="access-tiers">Access tiers</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Snapshot Tier</th>
+      <th>Vault-Standard Tier</th>
+      <th>Archive Tier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Storage Location</strong></td>
+      <td>Customer’s subscription</td>
+      <td>Microsoft-managed tenant</td>
+      <td>Long-term, low-cost storage</td>
+    </tr>
+    <tr>
+      <td><strong>Restoration Speed</strong></td>
+      <td>Fastest</td>
+      <td>Moderate</td>
+      <td>Slowest</td>
+    </tr>
+    <tr>
+      <td><strong>Availability</strong></td>
+      <td>Locally available</td>
+      <td>Isolated copy</td>
+      <td>For compliance, rarely accessed</td>
+    </tr>
+    <tr>
+      <td><strong>Use Cases</strong></td>
+      <td>Quick restores</td>
+      <td>Regular backup and restore operations</td>
+      <td>Long-term retention for compliance</td>
+    </tr>
+    <tr>
+      <td><strong>RTO</strong></td>
+      <td>Low</td>
+      <td>Moderate</td>
+      <td>High</td>
+    </tr>
+    <tr>
+      <td><strong>Pricing</strong></td>
+      <td>Higher storage cost</td>
+      <td>Moderate cost</td>
+      <td>Lowest cost</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="built-in-security-measures">Built-in security measures</h3>
+
+<ul>
+  <li>RBAC</li>
+  <li>Encryption</li>
+  <li>Soft-delete</li>
+</ul>
+
+<h3 id="vm-protections">VM Protections</h3>
+
+<ul>
+  <li>
+    <p>Azure Backup</p>
+
+    <p>Snapshot of the entire vm. Restore the entire</p>
+  </li>
+  <li>
+    <p>Azure Site Recovery</p>
+  </li>
+  <li>
+    <p>Azure managed disks</p>
+
+    <ul>
+      <li>snapshot</li>
+      <li>image</li>
+    </ul>
+  </li>
+</ul>
+
+<p>images - the whole vm</p>
+
+<p>snapshots - one disk</p>
+
+<p>operating disk backups - for vm with only one disk</p>
+
+<h3 id="soft-delete">Soft delete</h3>
+
+<p>Steps:</p>
+
+<ul>
+  <li>Stop backup job</li>
+  <li>Apply soft-delete state</li>
+  <li>View soft-delete data in the vault - during the 14 day retention period.</li>
+  <li>Undelete backup items</li>
+  <li>Restore items</li>
+  <li>Resume backups</li>
+</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[Availability set]]></summary></entry><entry><title type="html">Azure Storage</title><link href="http://yourdomain.com/2024/05/30/azure-storage.html" rel="alternate" type="text/html" title="Azure Storage" /><published>2024-05-30T00:00:00+00:00</published><updated>2024-05-30T00:00:00+00:00</updated><id>http://yourdomain.com/2024/05/30/azure-storage</id><content type="html" xml:base="http://yourdomain.com/2024/05/30/azure-storage.html"><![CDATA[<h2 id="install-azure-cli">Install Azure CLI</h2>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install azure-cli
 </code></pre></div></div>
