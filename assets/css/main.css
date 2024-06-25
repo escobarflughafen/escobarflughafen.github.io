@@ -44,6 +44,7 @@ h6 {
     font-weight: 200;
 }
 
+
 .display-text {
     user-select: none;
     text-align: left;
@@ -158,6 +159,7 @@ h6 {
     }
 }
 
+
 /* Style for the pseudo-element to create the white line */
 .line-overlay::after {
     content: '';
@@ -176,7 +178,7 @@ h6 {
 }
 
 .line-overlay {
-    position: relative;
+    width: 100%;
     /* Necessary for the pseudo-element positioning --  delegate the padding to child elements */
     /*
         padding-top: 0.5rem;
