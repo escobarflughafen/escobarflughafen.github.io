@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-06-25T03:08:40+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">Azure Notes</title><link href="http://yourdomain.com/2024/06/02/azure-notes.html" rel="alternate" type="text/html" title="Azure Notes" /><published>2024-06-02T00:00:00+00:00</published><updated>2024-06-02T00:00:00+00:00</updated><id>http://yourdomain.com/2024/06/02/azure-notes</id><content type="html" xml:base="http://yourdomain.com/2024/06/02/azure-notes.html"><![CDATA[<h2 id="availability-set">Availability set</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-07-07T06:51:16+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">Passed AZ-104 (Azure Administrator Associate) Today</title><link href="http://yourdomain.com/2024/07/06/az104-exam.html" rel="alternate" type="text/html" title="Passed AZ-104 (Azure Administrator Associate) Today" /><published>2024-07-06T00:00:00+00:00</published><updated>2024-07-06T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/06/az104-exam</id><content type="html" xml:base="http://yourdomain.com/2024/07/06/az104-exam.html"><![CDATA[<p>Prepared the exam for nearly 2 months with intermittent learning and practice. The difficulty is moderate for me and the good thing is that we are able to browse MS learn during the exam. It helped me a lot to double-check details like configuration steps, role permissions which quite relieved me, since I thought it is not an open-book exam. Guidelines can be found here:
+<a href="https://learn.microsoft.com/en-us/credentials/support/exam-duration-exam-experience#accessing-microsoft-learn-during-your-certification-exam">Accessing Microsoft Learn during your certification exam</a></p>
+
+<p>Another thing is that I chose the OnVUE online exam, and the experience was not satisfactory. Although I am the first in queue when I started the exam and the exam went well, the exam window went frozen when I was about to submit. The proctor restarted my session (luckily I was able to chat with them… Only the exam window froze, not the pop-up toolbar) but I wasn’t able to click on any until I had restarted my laptop (M1 MacBook) and redo all check-in process to submit my exam. Luckily again, the data wasn’t lost. I think I will take the exam at a local test centre next time.
+:(</p>
+
+<p>Happy weekend! Will pursue AZ-500 in the next few weeks.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Prepared the exam for nearly 2 months with intermittent learning and practice. The difficulty is moderate for me and the good thing is that we are able to browse MS learn during the exam. It helped me a lot to double-check details like configuration steps, role permissions which quite relieved me, since I thought it is not an open-book exam. Guidelines can be found here: Accessing Microsoft Learn during your certification exam]]></summary></entry><entry><title type="html">Azure Notes</title><link href="http://yourdomain.com/2024/06/02/azure-notes.html" rel="alternate" type="text/html" title="Azure Notes" /><published>2024-06-02T00:00:00+00:00</published><updated>2024-06-02T00:00:00+00:00</updated><id>http://yourdomain.com/2024/06/02/azure-notes</id><content type="html" xml:base="http://yourdomain.com/2024/06/02/azure-notes.html"><![CDATA[<h2 id="availability-set">Availability set</h2>
 
 <h3 id="fault-domain">Fault Domain</h3>
 
@@ -861,7 +867,205 @@
   <dd>
     <p><code class="language-plaintext highlighter-rouge">Start-ADSyncSyncCycle -PolicyType Delta</code></p>
   </dd>
-</dl>]]></content><author><name></name></author><summary type="html"><![CDATA[Availability set]]></summary></entry><entry><title type="html">Azure Storage</title><link href="http://yourdomain.com/2024/05/30/azure-storage.html" rel="alternate" type="text/html" title="Azure Storage" /><published>2024-05-30T00:00:00+00:00</published><updated>2024-05-30T00:00:00+00:00</updated><id>http://yourdomain.com/2024/05/30/azure-storage</id><content type="html" xml:base="http://yourdomain.com/2024/05/30/azure-storage.html"><![CDATA[<h2 id="install-azure-cli">Install Azure CLI</h2>
+</dl>
+
+<h2 id="move-an-app-to-a-different-region">Move an app to a different region</h2>
+
+<p>The region in which your app runs is the region of the App Service plan it’s in. However, you cannot change an App Service plan’s region. If you want to run your app in a different region, one alternative is app cloning. Cloning makes a copy of your app in a new or existing App Service plan in any region.</p>
+
+<p>You can find <strong>Clone App</strong> in the <strong>Development Tools</strong> section of the menu.</p>
+
+<p><strong>Steps:</strong></p>
+
+<ol>
+  <li><a href="https://learn.microsoft.com/en-us/azure/app-service/manage-backup">Create a back up of the source app</a>.</li>
+  <li><a href="https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage#create-an-app-service-plan">Create an app in a new App Service plan, in the target region</a>.</li>
+  <li><a href="https://learn.microsoft.com/en-us/azure/app-service/manage-backup">Restore the back up in the target app</a></li>
+  <li>If you use a custom domain, <a href="https://learn.microsoft.com/en-us/azure/app-service/manage-custom-dns-migrate-domain#2-create-the-dns-records">bind it preemptively to the target app</a> with <code class="language-plaintext highlighter-rouge">asuid.</code> and <a href="https://learn.microsoft.com/en-us/azure/app-service/manage-custom-dns-migrate-domain#3-enable-the-domain-for-your-app">enable the domain in the target app</a>.</li>
+  <li>Configure everything else in your target app to be the same as the source app and verify your configuration.</li>
+  <li>When you’re ready for the custom domain to point to the target app, <a href="https://learn.microsoft.com/en-us/azure/app-service/manage-custom-dns-migrate-domain#4-remap-the-active-dns-name">remap the domain name</a>.</li>
+</ol>
+
+<h2 id="load-balancer-skus">Load Balancer SKUs</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left"> </th>
+      <th style="text-align: left">Standard Load Balancer</th>
+      <th>Basic Load Balancer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Scenario</td>
+      <td style="text-align: left">Equipped for load-balancing network layer traffic when high performance and ultra-low latency is needed. Routes traffic within and across regions, and to availability zones for high resiliency.</td>
+      <td>Equipped for small-scale applications that don’t need high availability or redundancy. Not compatible with availability zones.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Backend type</td>
+      <td style="text-align: left">IP based, NIC based</td>
+      <td>NIC based</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Protocol</td>
+      <td style="text-align: left">TCP, UDP</td>
+      <td>TCP, UDP</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Backend pool endpoints</td>
+      <td style="text-align: left">Any virtual machines or virtual machine scale sets in a single virtual network</td>
+      <td>Virtual machines in a single availability set or virtual machine scale set</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview#probe-protocol">Health probes</a></td>
+      <td style="text-align: left">TCP, HTTP, HTTPS</td>
+      <td>TCP, HTTP</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview#probe-down-behavior">Health probe down behavior</a></td>
+      <td style="text-align: left">TCP connections stay alive on an instance probe down <strong>and</strong> on all probes down.</td>
+      <td>TCP connections stay alive on an instance probe down. All TCP connections end when all probes are down.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Availability Zones</td>
+      <td style="text-align: left">Zone-redundant, zonal, or non-zonal frontend IP configurations can be used for inbound and outbound traffic</td>
+      <td>Not available</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Type</td>
+      <td style="text-align: left">Internal, Public</td>
+      <td>Internal, Public</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Frontend IP configuration</td>
+      <td style="text-align: left">When using a Public Standard Load Balancer, the SKU of the public IP must be Standard. Basic Public IPs are not supported on Standard LB</td>
+      <td>When using a Public Basic Load Balancer, the SKU of the public IP must be Basic. Standard Public IPs are not supported on Basic LB</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Diagnostics</td>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-diagnostics">Azure Monitor multi-dimensional metrics</a></td>
+      <td>Not supported</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">HA Ports</td>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-ha-ports-overview">Available for Internal Load Balancer</a></td>
+      <td>Not available</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Secure by default</td>
+      <td style="text-align: left">Closed to inbound flows unless allowed by a network security group. Internal traffic from the virtual network to the internal load balancer is allowed.</td>
+      <td>Open by default. Network security group optional.</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Outbound Rules</td>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections#outboundrules">Declarative outbound NAT configuration</a></td>
+      <td>Not available</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">TCP Reset on Idle</td>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-tcp-reset">Available on any rule</a></td>
+      <td>Not available</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-multivip-overview">Multiple front ends</a></td>
+      <td style="text-align: left">Inbound and <a href="https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections">outbound</a></td>
+      <td>Inbound only</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Management Operations</td>
+      <td style="text-align: left">Most operations &lt; 30 seconds</td>
+      <td>60-90+ seconds typical</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SLA</td>
+      <td style="text-align: left"><a href="https://azure.microsoft.com/support/legal/sla/load-balancer/v1_0/">99.99%</a></td>
+      <td>Not available</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Global VNet Peering Support</td>
+      <td style="text-align: left">Standard Internal Load Balancer is supported via Global VNet Peering</td>
+      <td>Not supported</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/virtual-network/nat-gateway/nat-overview">NAT Gateway Support</a></td>
+      <td style="text-align: left">Both Standard Internal Load Balancer and Standard Public Load Balancer are supported via Nat Gateway</td>
+      <td>Not supported</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/private-link/private-link-overview">Private Link Support</a></td>
+      <td style="text-align: left">Standard Internal Load Balancer is supported via Private Link</td>
+      <td>Not supported</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><a href="https://learn.microsoft.com/en-us/azure/load-balancer/cross-region-overview">Global tier</a></td>
+      <td style="text-align: left">Standard Load Balancer supports the Global tier for Public Load Balancers enabling cross-region load balancing</td>
+      <td>Not supported</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="azure-governance-tools">Azure governance tools</h2>
+
+<h3 id="a-azure-traffic-analytics">A. Azure Traffic Analytics</h3>
+
+<p>Azure Traffic Analytics is a cloud-based solution that provides visibility into user and application traffic on your Azure virtual network. It leverages Network Security Group (NSG) flow logs to give you insights into traffic patterns and identify potential security threats.</p>
+
+<p><strong>Key Features:</strong></p>
+
+<ul>
+  <li><strong>Network Traffic Visibility</strong>: Provides a comprehensive view of the traffic flow in your Azure network.</li>
+  <li><strong>Threat Detection</strong>: Helps identify potential security threats and anomalies in network traffic.</li>
+  <li><strong>Performance Monitoring</strong>: Monitors network performance and identifies bottlenecks.</li>
+  <li><strong>Compliance Reporting</strong>: Assists in compliance reporting by providing detailed traffic logs and analytics.</li>
+  <li><strong>Integration</strong>: Integrates with other Azure security services like Azure Security Center.</li>
+</ul>
+
+<h3 id="b-azure-monitor">B. Azure Monitor</h3>
+
+<p>Azure Monitor is a full-stack monitoring service that provides a comprehensive solution for collecting, analyzing, and acting on telemetry from your cloud and on-premises environments. It helps you maximize the availability and performance of your applications and services.</p>
+
+<p><strong>Key Features:</strong></p>
+
+<ul>
+  <li><strong>Data Collection</strong>: Collects data from various sources, including applications, guest operating systems, Azure resources, and custom sources.</li>
+  <li><strong>Metrics and Logs</strong>: Provides powerful metrics and log analytics capabilities.</li>
+  <li><strong>Dashboards</strong>: Customizable dashboards to visualize monitoring data.</li>
+  <li><strong>Alerts</strong>: Configurable alerts based on specific criteria to notify you of performance issues.</li>
+  <li><strong>Insights</strong>: Application Insights for monitoring application performance and dependencies.</li>
+  <li><strong>Diagnostics</strong>: Detailed diagnostics to troubleshoot issues.</li>
+</ul>
+
+<h3 id="c-azure-activity-log">C. Azure Activity Log</h3>
+
+<p>Azure Activity Log provides a record of all the activities that happen in your Azure subscription. It helps you understand the operations that were performed on resources in your subscription and provides insights into the “what, who, and when” for any write operations (PUT, POST, DELETE) taken on the resources.</p>
+
+<p><strong>Key Features:</strong></p>
+
+<ul>
+  <li><strong>Operation Logs</strong>: Logs of all create, update, and delete operations performed on Azure resources.</li>
+  <li><strong>User and System Actions</strong>: Tracks actions performed by users and systems.</li>
+  <li><strong>Event Insights</strong>: Provides insights into the events that have occurred within your Azure resources.</li>
+  <li><strong>Audit and Compliance</strong>: Useful for auditing and compliance purposes by providing detailed logs of resource changes.</li>
+  <li><strong>Integration</strong>: Can be integrated with Azure Monitor and other services for deeper analytics and alerts.</li>
+</ul>
+
+<h3 id="d-azure-advisor">D. Azure Advisor</h3>
+
+<p>Azure Advisor is a personalized cloud consultant that helps you follow best practices to optimize your Azure deployments. It analyzes your resource configuration and usage telemetry and offers recommendations to help you improve the cost-effectiveness, performance, reliability, and security of your resources.</p>
+
+<p><strong>Key Features:</strong></p>
+
+<ul>
+  <li><strong>Cost Recommendations</strong>: Provides suggestions to reduce your overall Azure spending.</li>
+  <li><strong>Performance Recommendations</strong>: Offers advice to improve the performance of your applications.</li>
+  <li><strong>Security Recommendations</strong>: Identifies potential security vulnerabilities and provides recommendations to mitigate them.</li>
+  <li><strong>Reliability Recommendations</strong>: Helps improve the reliability of your applications with best practices.</li>
+  <li><strong>Actionable Insights</strong>: Provides actionable insights and recommendations that you can implement directly from the Advisor portal.</li>
+  <li><strong>Integration</strong>: Integrates with other Azure services to provide a holistic view of your resource optimization.</li>
+</ul>
+
+<p>These tools collectively help you manage, monitor, and optimize your Azure environment effectively.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Availability set]]></summary></entry><entry><title type="html">Azure Storage</title><link href="http://yourdomain.com/2024/05/30/azure-storage.html" rel="alternate" type="text/html" title="Azure Storage" /><published>2024-05-30T00:00:00+00:00</published><updated>2024-05-30T00:00:00+00:00</updated><id>http://yourdomain.com/2024/05/30/azure-storage</id><content type="html" xml:base="http://yourdomain.com/2024/05/30/azure-storage.html"><![CDATA[<h2 id="install-azure-cli">Install Azure CLI</h2>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install azure-cli
 </code></pre></div></div>
