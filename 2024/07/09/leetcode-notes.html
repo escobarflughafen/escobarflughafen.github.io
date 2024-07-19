@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leetcode Notes - escobarflughafen</title>
+  <meta name="description" content="This is an example site description. You can use Markdown here.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/assets/img/home.png" type="image/x-icon">
+</head>
+<body class="mb-3">
+
+
+<header class="sticky-top header-banner line-overlay">
+    <div class="container">
+        <div class="row header-banner-row px-3">
+            <a href="/" class="col-auto subway-red link-no-effect pe-3">
+                <h1 class="head-text display-text">
+                    Exit
+                </h1>
+            </a>
+            <!--prev post-->
+
+
+            <div class="col flex-grow-1 pe-3">
+                <h1 class="head-text">
+                    Leetcode Notes
+                </h1>
+            </div>
+
+
+            <a class="col-auto subway-blue link-no-effect" href="#toc">
+                <h1 class="head-text display-text">
+                   Toc
+                </h1>
+            </a>
+
+            <div class="col-12 col-md px-0">
+                <ul class="nav nav-banner">
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/posts">
+            <h2 class="
+            mb-0">
+                posts
+            </h2>
+        </a>
+
+    </li>
+
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/projects">
+            <h2 class="
+            mb-0">
+                projects
+            </h2>
+        </a>
+    </li>
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/photos">
+            <h2 class="
+            mb-0">
+                photos
+            </h2>
+        </a>
+    </li>
+    <li class="nav-item my-nav-items">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/contacts">
+            <h2 class="
+            mb-0">
+                contacts
+            </h2>
+        </a>
+    </li>
+</ul>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</header>
+
+<main class="container my-3 px-3">
+    <div class="row">
+        <div class="col-12 col-md-8 mb-3 mb-md-0">
+            <h2 id="1701-average-waiting-time">1701. Average waiting time</h2>
+
+<p>A restaurant with single chef,</p>
+
+<p>customers[i] = [arrival_i, time_i]</p>
+
+<p>Chef prepares food for customers in the order they were given in the input.</p>
+
+<p>return the average waitiing time of all customers</p>
+
+<p>this question can be modelled as a non-preemptive single process at a time scheduling model.</p>
+
+<p>Intuitative solution (in Python3):</p>
+
+<pre><code class="language-python3">class Solution:
+    def averageWaitingTime(self, customers: List[List[int]]) -&gt; float:
+        # FCFS scheduling
+        customers[0].append(customers[0][0] + customers[0][1])
+        total_wait_time = customers[0][1]
+
+        for i in range(1, len(customers)):
+            prev_customer = customers[i-1]
+            customer = customers[i]
+
+            if customer[0] &lt; prev_customer[-1]:
+                customer.append(prev_customer[-1] + customer[1])
+            else:
+                customer.append(customer[0]+customer[1])
+            
+            total_wait_time += customer[2] - customer[0]
+            
+
+        
+        return total_wait_time/len(customers)
+            
+</code></pre>
+
+<p>Java Tips:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// to initialize an array with the length of an existing array arr</span>
+<span class="kt">int</span> <span class="n">newArr</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+</code></pre></div></div>
+
+<p>Optimized:</p>
+
+<ul>
+  <li>it is not necessary to save all the finish times of each customer</li>
+  <li>in the line <code class="language-plaintext highlighter-rouge">total_wait_time += customer[2] - customer[0]</code> , we just need to save the finish time of the previous customer, use a variable to iterate</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">averageWaitingTime</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">customers</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// finish time of the prev customer</span>
+        <span class="kt">int</span> <span class="n">ft</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">double</span> <span class="n">allWaitingTime</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">customers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// current customer arrived later than the prev customer ends</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">customers</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">ft</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">ft</span> <span class="o">=</span> <span class="n">customers</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="n">customers</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">1</span><span class="o">];</span>
+            <span class="o">}</span> 
+            <span class="c1">// current customer arrived no later than the prev customer ends</span>
+            <span class="k">else</span> <span class="o">{</span>
+                <span class="n">ft</span> <span class="o">=</span> <span class="n">ft</span> <span class="o">+</span> <span class="n">customers</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">1</span><span class="o">];</span>
+            <span class="o">}</span>
+            <span class="n">allWaitingTime</span> <span class="o">+=</span> <span class="n">ft</span><span class="o">-</span><span class="n">customers</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">];</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">allWaitingTime</span><span class="o">/</span><span class="n">customers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>       
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="1598-crawler-log-folder">1598. Crawler log folder</h2>
+
+<p>A very easy question…</p>
+
+<pre><code class="language-Java">class Solution {
+    public int minOperations(String[] logs) {
+        int layer = 0;
+        
+        for(int i=0; i&lt;logs.length; i++) {
+            if(logs[i].equals("../")) {
+                layer = Math.max(0, layer-1);
+            }
+            else if (logs[i].equals("./")) {
+                // no action - current dir
+            } else {
+                layer++;
+            }
+        }
+
+        return layer;
+    }
+}
+</code></pre>
+
+<h2 id="1717-maximum-score-from-removing-substrings">1717. Maximum score from removing substrings</h2>
+
+<p><strong>Preservation of Opportunities</strong>:</p>
+
+<ul>
+  <li>Removing higher-scoring pairs first does not diminish the opportunity to remove lower-scoring pairs later. For instance, after all “ba” pairs are removed from the string, it still contains “ab” pairs if they existed initially.</li>
+  <li>If we reverse this order, i.e., remove lower-scoring pairs first, we might miss out on higher-scoring pairs that could have been formed by the initial configuration of the string.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maximumGain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># intuitive - recursion and search
+</span>
+        <span class="n">ab</span> <span class="o">=</span> <span class="s">"ab"</span>
+        <span class="n">ba</span> <span class="o">=</span> <span class="s">"ba"</span>
+
+        <span class="n">first</span> <span class="o">=</span> <span class="s">""</span>
+        <span class="n">second</span> <span class="o">=</span> <span class="s">""</span>
+        <span class="n">maxxy</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">minxy</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">y</span><span class="p">:</span>
+            <span class="n">first</span> <span class="o">=</span> <span class="n">ab</span>
+            <span class="n">second</span> <span class="o">=</span> <span class="n">ba</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">first</span> <span class="o">=</span> <span class="n">ba</span>
+            <span class="n">second</span> <span class="o">=</span> <span class="n">ab</span>
+
+        <span class="n">st</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">it</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="n">it</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">it</span><span class="p">]</span>
+            <span class="n">it</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">st</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+                <span class="k">continue</span>
+                
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">st</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+            
+            <span class="k">if</span> <span class="n">prev</span><span class="o">+</span><span class="n">curr</span> <span class="o">==</span> <span class="n">first</span><span class="p">:</span>
+                <span class="n">score</span> <span class="o">+=</span> <span class="n">maxxy</span>
+                <span class="n">st</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">st</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+            
+           
+        
+        <span class="n">s</span> <span class="o">=</span> <span class="s">""</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">it</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="n">it</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">it</span><span class="p">]</span>
+            <span class="n">it</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">st</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">st</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+                <span class="k">continue</span>
+                
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">st</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+            
+            <span class="k">if</span> <span class="n">prev</span><span class="o">+</span><span class="n">curr</span> <span class="o">==</span> <span class="n">second</span><span class="p">:</span>
+                <span class="n">score</span> <span class="o">+=</span> <span class="n">minxy</span>
+                <span class="n">st</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">st</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+            
+            
+        
+
+        <span class="k">return</span> <span class="n">score</span>
+                
+        
+
+        
+</code></pre></div></div>
+
+<h2 id="1530-number-of-good-leaf-node-pairs">1530. Number of good leaf node pairs</h2>
+
+<ul>
+  <li>use BFS - “distance” indicates that we need to search for pairs layer by layer</li>
+  <li>construct a graph is necessary since we need to search bidirectionally – than tree having one-way references</li>
+  <li>when searching in each layer, use the length of the queue as the number of nodes of this layer</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="nf">_traverse_tree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">curr_node</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">prev_node</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">leaf_nodes</span><span class="p">:</span> <span class="nb">set</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">curr_node</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">curr_node</span><span class="p">.</span><span class="n">left</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">curr_node</span><span class="p">.</span><span class="n">right</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">leaf_nodes</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">curr_node</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">prev_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">prev_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">prev_node</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">prev_node</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">curr_node</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">curr_node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">curr_node</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">curr_node</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">prev_node</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="p">.</span><span class="n">_traverse_tree</span><span class="p">(</span><span class="n">curr_node</span><span class="p">.</span><span class="n">left</span><span class="p">,</span> <span class="n">curr_node</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">leaf_nodes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_traverse_tree</span><span class="p">(</span><span class="n">curr_node</span><span class="p">.</span><span class="n">right</span><span class="p">,</span> <span class="n">curr_node</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">leaf_nodes</span><span class="p">)</span>
+ 
+    <span class="k">def</span> <span class="nf">countPairs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">graph</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">leaf_nodes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">_traverse_tree</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="n">graph</span><span class="p">,</span> <span class="n">leaf_nodes</span><span class="p">)</span>
+
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># begin of DFS
+</span>
+        <span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="n">leaf_nodes</span><span class="p">:</span>
+            <span class="n">queue</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">leaf</span><span class="p">)</span>
+            <span class="n">seen</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">leaf</span><span class="p">)</span>
+
+            <span class="c1"># visiting all nodes, start from the leaf node (distance is 0 at this time)
+</span>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">distance</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span>
+                <span class="c1">#print(f"leaf:{leaf.val}, distance:{i}, size:{size}")
+</span>                <span class="c1"># nodes of this distance
+</span>                <span class="c1"># visit all nodes of i distance
+</span>                <span class="c1"># add all nodes of i+1 distance
+</span>                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+                    <span class="n">curr_node</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># bfs -- queue -&gt; popleft
+</span>                    <span class="k">if</span> <span class="n">curr_node</span> <span class="ow">in</span> <span class="n">leaf_nodes</span> <span class="ow">and</span> <span class="n">curr_node</span> <span class="o">!=</span> <span class="n">leaf</span><span class="p">:</span>
+                        <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># a satisfied leaf node has been visited
+</span>                    <span class="k">if</span> <span class="n">curr_node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">curr_node</span><span class="p">]:</span>
+                            <span class="k">if</span> <span class="n">_</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                                <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+                                <span class="n">seen</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">count</span><span class="o">//</span><span class="mi">2</span>
+
+</code></pre></div></div>
+
+
+        </div>
+        
+        <div class="col-12 col-md-4">
+            
+            <h2>Table of Content</h2>
+            
+            <ul id="toc" class="toc-list">
+<li class="toc-item toc-h2"><a href="#1701-average-waiting-time">1701. Average waiting time</a></li>
+<li class="toc-item toc-h2"><a href="#1598-crawler-log-folder">1598. Crawler log folder</a></li>
+<li class="toc-item toc-h2"><a href="#1717-maximum-score-from-removing-substrings">1717. Maximum score from removing substrings</a></li>
+<li class="toc-item toc-h2"><a href="#1530-number-of-good-leaf-node-pairs">1530. Number of good leaf node pairs</a></li>
+</ul>
+            <div class="card my-card">
+  <div class="card-header my-card-header">
+    <h4 class="mb-0 display-text">Recent posts</h2>
+  </div>
+  <ul class="list-group list-group-flush">
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/16/configure-a-ts-project.html">
+      <div class="row">
+        <div class="col">
+          <strong>Configure a TypeScript project with CI/CD</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          July 16, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/09/leetcode-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>Leetcode Notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          July 09, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/09/azure-500-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>AZ-500 notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          July 09, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/06/az104-exam.html">
+      <div class="row">
+        <div class="col">
+          <strong>Passed AZ-104 (Azure Administrator Associate) Today</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          July 06, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/06/02/azure-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          June 02, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/30/azure-storage.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Storage</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 30, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/27/Azure-SAS.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Sas</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 27, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/22/css-flex-layout.html">
+      <div class="row">
+        <div class="col">
+          <strong>CSS: layout of the header</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 22, 2024
+        </div>
+        <div class="col-auto">
+          
+          <div class="badge badge-info">web</div>
+          
+          <div class="badge badge-info">css</div>
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2023/03/05/SVM-dual-problem.html">
+      <div class="row">
+        <div class="col">
+          <strong>the dual problem of SVM</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          March 05, 2023
+        </div>
+        <div class="col-auto">
+          
+          <div class="badge badge-info">machine learning</div>
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2023/01/17/shellcode-development.html">
+      <div class="row">
+        <div class="col">
+          <strong>shellcode development - lab02</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          January 17, 2023
+        </div>
+        <div class="col-auto">
+          
+          <div class="badge badge-info">buffer overflow</div>
+          
+        </div>
+      </div>
+    </a>
+    
+  </ul>
+</div> 
+        </div>
+    </div>
+</main>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+</script>
+
+</html>
