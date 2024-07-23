@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-07-19T07:19:20+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">Configure a TypeScript project with CI/CD</title><link href="http://yourdomain.com/2024/07/16/configure-a-ts-project.html" rel="alternate" type="text/html" title="Configure a TypeScript project with CI/CD" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-07-16T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/16/configure-a-ts-project</id><content type="html" xml:base="http://yourdomain.com/2024/07/16/configure-a-ts-project.html"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-07-23T05:23:56+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">Configure a TypeScript project with CI/CD</title><link href="http://yourdomain.com/2024/07/16/configure-a-ts-project.html" rel="alternate" type="text/html" title="Configure a TypeScript project with CI/CD" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-07-16T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/16/configure-a-ts-project</id><content type="html" xml:base="http://yourdomain.com/2024/07/16/configure-a-ts-project.html"><![CDATA[<blockquote>
   <p>[!NOTE]</p>
 
   <p>The project to be configured:</p>
@@ -410,7 +410,220 @@
         
         <span class="k">return</span> <span class="n">count</span><span class="o">//</span><span class="mi">2</span>
 
-</code></pre></div></div>]]></content><author><name></name></author><summary type="html"><![CDATA[1701. Average waiting time]]></summary></entry><entry><title type="html">Passed AZ-104 (Azure Administrator Associate) Today</title><link href="http://yourdomain.com/2024/07/06/az104-exam.html" rel="alternate" type="text/html" title="Passed AZ-104 (Azure Administrator Associate) Today" /><published>2024-07-06T00:00:00+00:00</published><updated>2024-07-06T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/06/az104-exam</id><content type="html" xml:base="http://yourdomain.com/2024/07/06/az104-exam.html"><![CDATA[<p>Prepared the exam for nearly 2 months with intermittent learning and practice. The difficulty is moderate for me and the good thing is that we are able to browse MS learn during the exam. It helped me a lot to double-check details like configuration steps, role permissions which quite relieved me, since I thought it is not an open-book exam. Guidelines can be found here:
+</code></pre></div></div>
+
+<h2 id="1380-lucky-numbers-in-a-matrix">1380. Lucky numbers in a matrix</h2>
+
+<ul>
+  <li>
+    <p>Since matrix contains distinct numbers – we just need to get two sets, one is max values in cols and another is min values in rows.</p>
+  </li>
+  <li>
+    <p>The intersection of this two sets is the answer.</p>
+
+    <p>Proof that there is only one lucky numbers in a matrix – proof by contradicary</p>
+
+    <ul>
+      <li>
+        <p>suppose that in a matrix, if two lucky numbers, X and Y exist</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a b X c
+d Y e f
+</code></pre></div>        </div>
+      </li>
+      <li>
+        <p>since X is a lucky number - min of the row and max of the col: X &lt; b and X &gt; e</p>
+
+        <ul>
+          <li>in an axis:   —-e—-X—-b—-</li>
+        </ul>
+      </li>
+      <li>
+        <p>Y is also a lucky number: Y &lt; e and Y &gt; b</p>
+
+        <ul>
+          <li>in the above axis: –Y?—e—X—b—Y?—</li>
+        </ul>
+      </li>
+      <li>
+        <p>a contradiction arise - hence, only one lucky number can exist.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">luckyNumbers</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matrix</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="n">col_maxs</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">row_mins</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)):</span>
+            <span class="n">row_mins</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        
+        <span class="n">m_T</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">matrix</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">m_T</span><span class="p">)):</span>
+            <span class="n">col_maxs</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">m_T</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+        <span class="s">"""
+        for i in range(len(matrix[0])):
+            col_max = -1
+            for j in range(len(matrix)):
+                elem = matrix[j][i]
+                if elem &gt; col_max:
+                    col_max = elem
+        
+            col_maxs.add(col_max)
+        """</span>
+
+        <span class="s">"""
+        class Solution:
+            def luckyNumbers (self, matrix: List[List[int]]) -&gt; List[int]:
+                return set(map(min,matrix)) &amp; set(map(max,zip(*matrix)))
+        """</span>
+
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">col_maxs</span><span class="p">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">row_mins</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="912-sort-an-array---onlogn-complexity">912. Sort an array - o(nlogn) complexity</h2>
+
+<ul>
+  <li>
+    <p>although quicksort is an optimized sorting algorithm, however in worst case, it takes o(n^2) times.</p>
+
+    <ul>
+      <li>
+        <p>quicksort</p>
+
+        <ul>
+          <li>quicksort() and partiton()</li>
+          <li>use index i to label the position that all elem before index i is less than the pivot.</li>
+        </ul>
+
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">sortArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">quicksort</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+    
+        <span class="k">return</span> <span class="n">nums</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">quicksort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">low</span><span class="o">,</span> <span class="kt">int</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">low</span> <span class="o">&lt;</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">partitionIndex</span> <span class="o">=</span> <span class="n">partition</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">low</span><span class="o">,</span> <span class="n">high</span><span class="o">);</span>
+    
+            <span class="n">quicksort</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">low</span><span class="o">,</span> <span class="n">partitionIndex</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+            <span class="n">quicksort</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">partitionIndex</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">high</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">partition</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">low</span><span class="o">,</span> <span class="kt">int</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">high</span><span class="o">];</span>
+    
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">low</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+    
+    
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">low</span><span class="o">;</span> <span class="n">j</span><span class="o">&lt;=</span> <span class="n">high</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">pivot</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">i</span><span class="o">++;</span>
+    
+                <span class="c1">// all elements before index at i is less than the pivot</span>
+                <span class="c1">// therefore, if elem at j is less than the pivot</span>
+                <span class="c1">// swap elem at j with elem at i</span>
+                <span class="c1">// in special circumstance - low...j is all less than the pivot, the swapping swaps the element by itself</span>
+                <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+                <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    
+        <span class="k">return</span> <span class="n">i</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="2418-sort-the-people">2418. Sort the people</h2>
+
+<ul>
+  <li>easy solution - “distinct value in heights” - create a map mapping height to name, then sort the keys (heights), output the names in the sorted order.</li>
+  <li>Or, sorting manually with quicksort.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">sortPeople</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">heights</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="n">height_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">h</span><span class="p">:</span><span class="n">n</span> <span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="n">names</span><span class="p">)}</span>
+
+        <span class="n">sorted_keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">height_dict</span><span class="p">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">[</span><span class="n">height_dict</span><span class="p">[</span><span class="n">height</span><span class="p">]</span> <span class="k">for</span> <span class="n">height</span> <span class="ow">in</span> <span class="n">sorted_keys</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="1636-sort-array-by-increasing-frequency">1636. Sort array by increasing frequency</h2>
+
+<ul>
+  <li>
+    <p>Count the frequency for each number into pairs</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># initial attempt
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">frequencySort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="n">reversedlookup</span> <span class="o">=</span> <span class="p">{}</span>
+  
+        <span class="n">n_min</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span>
+        <span class="n">n_max</span> <span class="o">=</span> <span class="mi">100</span>
+  
+        <span class="n">frequency</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_min</span><span class="p">,</span> <span class="n">n_max</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+          
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="n">frequency</span><span class="p">[</span><span class="n">num</span><span class="o">-</span><span class="n">n_min</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+          
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">frequency</span><span class="p">)):</span>
+            <span class="n">num</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="n">n_min</span>
+            <span class="n">freq</span> <span class="o">=</span> <span class="n">frequency</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">freq</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">reversedlookup</span><span class="p">:</span>
+                    <span class="n">reversedlookup</span><span class="p">[</span><span class="n">freq</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">reversedlookup</span><span class="p">[</span><span class="n">freq</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span><span class="p">]</span>
+          
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">sorted_keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">reversedlookup</span><span class="p">.</span><span class="n">keys</span><span class="p">())</span>
+          
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">sorted_keys</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">reversedlookup</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+                    <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
+          
+  
+        <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Sort the frequency by key</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">frequencySort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="p">{}</span>
+  
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">freq</span><span class="p">:</span>
+                <span class="n">freq</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">freq</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+          
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">freq</span><span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="o">-</span><span class="n">x</span><span class="p">))</span> <span class="c1"># by the frequency first, if they have the same frequency, sort the numbers in decreasing order
+</span>  
+        <span class="k">return</span> <span class="n">result</span>
+              
+  
+          
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="2058-find-the-minimum-and-maximum-number-of-nodes-between-critical-points"><a href="https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/">2058. Find the Minimum and Maximum Number of Nodes Between Critical Points</a></h2>]]></content><author><name></name></author><summary type="html"><![CDATA[1701. Average waiting time]]></summary></entry><entry><title type="html">Passed AZ-104 (Azure Administrator Associate) Today</title><link href="http://yourdomain.com/2024/07/06/az104-exam.html" rel="alternate" type="text/html" title="Passed AZ-104 (Azure Administrator Associate) Today" /><published>2024-07-06T00:00:00+00:00</published><updated>2024-07-06T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/06/az104-exam</id><content type="html" xml:base="http://yourdomain.com/2024/07/06/az104-exam.html"><![CDATA[<p>Prepared the exam for nearly 2 months with intermittent learning and practice. The difficulty is moderate for me and the good thing is that we are able to browse MS learn during the exam. It helped me a lot to double-check details like configuration steps, role permissions which quite relieved me, since I thought it is not an open-book exam. Guidelines can be found here:
 <a href="https://learn.microsoft.com/en-us/credentials/support/exam-duration-exam-experience#accessing-microsoft-learn-during-your-certification-exam">Accessing Microsoft Learn during your certification exam</a></p>
 
 <p>Another thing is that I chose the OnVUE online exam, and the experience was not satisfactory. Although I am the first in queue when I started the exam and the exam went well, the exam window went frozen when I was about to submit. The proctor restarted my session (luckily I was able to chat with them… Only the exam window froze, not the pop-up toolbar) but I wasn’t able to click on any until I had restarted my laptop (M1 MacBook) and redo all check-in process to submit my exam. Luckily again, the data wasn’t lost. I think I will take the exam at a local test centre next time.
