@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Angular Notes - escobarflughafen</title>
+  <meta name="description" content="This is an example site description. You can use Markdown here.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="/assets/img/home.png" type="image/x-icon">
+</head>
+<body class="mb-3">
+
+
+<header class="sticky-top header-banner line-overlay">
+    <div class="container">
+        <div class="row header-banner-row px-3">
+            <a href="/" class="col-auto subway-red link-no-effect pe-3">
+                <h1 class="head-text display-text">
+                    Exit
+                </h1>
+            </a>
+            <!--prev post-->
+
+
+            <div class="col flex-grow-1 pe-3">
+                <h1 class="head-text">
+                    Angular Notes
+                </h1>
+            </div>
+
+
+            <a class="col-auto subway-blue link-no-effect" href="#toc">
+                <h1 class="head-text display-text">
+                   Toc
+                </h1>
+            </a>
+
+            <div class="col-12 col-md px-0">
+                <ul class="nav nav-banner">
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/posts">
+            <h2 class="
+            mb-0">
+                posts
+            </h2>
+        </a>
+
+    </li>
+
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/projects">
+            <h2 class="
+            mb-0">
+                projects
+            </h2>
+        </a>
+    </li>
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/photos">
+            <h2 class="
+            mb-0">
+                photos
+            </h2>
+        </a>
+    </li>
+    <li class="nav-item my-nav-items">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/contacts">
+            <h2 class="
+            mb-0">
+                contacts
+            </h2>
+        </a>
+    </li>
+</ul>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</header>
+
+<main class="container my-3 px-3">
+    <div class="row">
+        <div class="col-12 col-md-8 mb-3 mb-md-0">
+            <h2 id="bindings">Bindings</h2>
+
+<h3 id="interpolation-binding-">Interpolation binding (``)</h3>
+
+<ul>
+  <li>cannot interpolate arbitrary javascript commands, instead, calling functions from that component</li>
+</ul>
+
+<h3 id="property-binding-">Property binding (<code class="language-plaintext highlighter-rouge">[]</code>)</h3>
+
+<h3 id="event-binding-">Event binding (<code class="language-plaintext highlighter-rouge">()</code>)</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">app.component.css</span><span class="dl">'</span><span class="p">],</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+  &lt;div&gt;
+    &lt;input type="text" (change)="onChange($event)" /&gt;
+    &lt;p&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  `</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="nl">isEditable</span><span class="p">:</span><span class="nx">boolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="nl">value</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+
+  <span class="nx">onChange</span><span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">Event</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">inputElem</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="k">as</span> <span class="nx">HTMLInputElement</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">inputElem</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>A list of events</p>
+
+    <h4 id="mouse-events">Mouse Events</h4>
+
+    <ul>
+      <li><strong>(click)</strong>: Triggered when an element is clicked.</li>
+      <li><strong>(dblclick)</strong>: Triggered when an element is double-clicked.</li>
+      <li><strong>(mousedown)</strong>: Triggered when a mouse button is pressed on an element.</li>
+      <li><strong>(mouseup)</strong>: Triggered when a mouse button is released over an element.</li>
+      <li><strong>(mouseenter)</strong>: Triggered when the mouse pointer enters the element.</li>
+      <li><strong>(mouseleave)</strong>: Triggered when the mouse pointer leaves the element.</li>
+      <li><strong>(mousemove)</strong>: Triggered when the mouse pointer is moved over the element.</li>
+      <li><strong>(mouseover)</strong>: Triggered when the mouse pointer is moved onto the element.</li>
+      <li><strong>(mouseout)</strong>: Triggered when the mouse pointer is moved out of the element.</li>
+      <li><strong>(contextmenu)</strong>: Triggered when the right mouse button is clicked to open a context menu.</li>
+    </ul>
+
+    <h4 id="keyboard-events">Keyboard Events</h4>
+
+    <ul>
+      <li><strong>(keydown)</strong>: Triggered when a key is pressed.</li>
+      <li><strong>(keypress)</strong>: Triggered when a key is pressed and held.</li>
+      <li><strong>(keyup)</strong>: Triggered when a key is released.</li>
+    </ul>
+
+    <h4 id="focus-events">Focus Events</h4>
+
+    <ul>
+      <li><strong>(focus)</strong>: Triggered when an element gains focus.</li>
+      <li><strong>(blur)</strong>: Triggered when an element loses focus.</li>
+    </ul>
+
+    <h4 id="form-events">Form Events</h4>
+
+    <ul>
+      <li><strong>(input)</strong>: Triggered when the value of an input element changes.</li>
+      <li><strong>(change)</strong>: Triggered when the value of an input element changes and the element loses focus.</li>
+      <li><strong>(submit)</strong>: Triggered when a form is submitted.</li>
+      <li><strong>(reset)</strong>: Triggered when a form is reset.</li>
+    </ul>
+
+    <h4 id="drag-and-drop-events">Drag and Drop Events</h4>
+
+    <ul>
+      <li><strong>(drag)</strong>: Triggered when an element is being dragged.</li>
+      <li><strong>(dragstart)</strong>: Triggered when the user starts dragging an element.</li>
+      <li><strong>(dragend)</strong>: Triggered when the user stops dragging an element.</li>
+      <li><strong>(dragenter)</strong>: Triggered when a dragged element enters a drop target.</li>
+      <li><strong>(dragleave)</strong>: Triggered when a dragged element leaves a drop target.</li>
+      <li><strong>(dragover)</strong>: Triggered when an element is being dragged over a drop target.</li>
+      <li><strong>(drop)</strong>: Triggered when a dragged element is dropped on a drop target.</li>
+    </ul>
+
+    <h4 id="clipboard-events">Clipboard Events</h4>
+
+    <ul>
+      <li><strong>(copy)</strong>: Triggered when content is copied to the clipboard.</li>
+      <li><strong>(cut)</strong>: Triggered when content is cut to the clipboard.</li>
+      <li><strong>(paste)</strong>: Triggered when content is pasted from the clipboard.</li>
+    </ul>
+
+    <h4 id="touch-events">Touch Events</h4>
+
+    <ul>
+      <li><strong>(touchstart)</strong>: Triggered when a touch point is placed on the touch surface.</li>
+      <li><strong>(touchmove)</strong>: Triggered when a touch point is moved along the touch surface.</li>
+      <li><strong>(touchend)</strong>: Triggered when a touch point is removed from the touch surface.</li>
+      <li><strong>(touchcancel)</strong>: Triggered when a touch event is interrupted.</li>
+    </ul>
+
+    <h4 id="miscellaneous-events">Miscellaneous Events</h4>
+
+    <ul>
+      <li><strong>(scroll)</strong>: Triggered when the user scrolls an element.</li>
+      <li><strong>(resize)</strong>: Triggered when the window is resized.</li>
+      <li><strong>(error)</strong>: Triggered when an error occurs.</li>
+      <li><strong>(load)</strong>: Triggered when an element or resource finishes loading.</li>
+      <li><strong>(unload)</strong>: Triggered when the document or a resource is being unloaded.</li>
+    </ul>
+
+    <h4 id="custom-events">Custom Events</h4>
+
+    <ul>
+      <li><strong>(ngModelChange)</strong>: Triggered when the value of a form control bound with <code class="language-plaintext highlighter-rouge">[(ngModel)]</code> changes.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="two-way-data-binding----use-formsmodule-to-handle-form-value-changes">Two-way data binding (<code class="language-plaintext highlighter-rouge">[()]</code>) - use <code class="language-plaintext highlighter-rouge">FormsModule</code> to handle form value changes</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">FormsModule</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/forms</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">app.component.css</span><span class="dl">'</span><span class="p">],</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+  &lt;div&gt;
+    &lt;input type="text" [(ngModel)]="value" /&gt;
+    &lt;p&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  `</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">FormsModule</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="nl">isEditable</span><span class="p">:</span><span class="nx">boolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="nl">value</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+
+  <span class="nx">onChange</span><span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">Event</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">inputElem</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="k">as</span> <span class="nx">HTMLInputElement</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">inputElem</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="component-communication">Component communication</h2>
+
+<h3 id="input"><code class="language-plaintext highlighter-rouge">@Input</code></h3>
+
+<p>For receiving values from other components.</p>
+
+<h3 id="output"><code class="language-plaintext highlighter-rouge">@Output</code></h3>
+
+<p>For notifying other components that a event has happened.</p>
+
+<p>child component - output an event emitter for emitting a string - emitter can be treated as a source of event, like (change), (click) and others.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">Output</span><span class="p">,</span> <span class="nx">EventEmitter</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-child</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styles</span><span class="p">:</span> <span class="s2">`.btn { padding: 5px; }`</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+    &lt;button class="btn" (click)="addItem()"&gt;Add Item&lt;/button&gt;
+  `</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">ChildComponent</span> <span class="p">{</span>
+  <span class="p">@</span><span class="nd">Output</span><span class="p">()</span> <span class="nx">addItemEvent</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventEmitter</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span><span class="p">();</span>
+
+  <span class="nx">addItem</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">addItemEvent</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">'</span><span class="s1">🐢</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>parent component - use an emitter from child component as an event binding to handle events.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">ChildComponent</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./child.component</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+    &lt;app-child (addItemEvent)="addItem($event)" /&gt;
+    &lt;p&gt;🐢 all the way down &lt;/p&gt;
+  `</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">ChildComponent</span><span class="p">],</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="nx">items</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+
+  <span class="nx">addItem</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+
+        </div>
+        
+        <div class="col-12 col-md-4">
+            
+            <h2>Table of Content</h2>
+            
+            <ul id="toc" class="toc-list">
+<li class="toc-item toc-h2"><a href="#bindings">Bindings</a>
+<ul class="toc-sublist">
+<li class="toc-item toc-h3"><a href="#interpolation-binding-">Interpolation binding (``)</a></li>
+<li class="toc-item toc-h3"><a href="#property-binding-">Property binding ([])</a></li>
+<li class="toc-item toc-h3"><a href="#event-binding-">Event binding (())</a></li>
+<li class="toc-item toc-h3"><a href="#two-way-data-binding----use-formsmodule-to-handle-form-value-changes">Two-way data binding ([()]) - use FormsModule to handle form value changes</a></li>
+</ul>
+</li>
+<li class="toc-item toc-h2"><a href="#component-communication">Component communication</a>
+<ul class="toc-sublist">
+<li class="toc-item toc-h3"><a href="#input">@Input</a></li>
+<li class="toc-item toc-h3"><a href="#output">@Output</a></li>
+</ul>
+</li>
+</ul>
+            <div class="card my-card">
+  <div class="card-header my-card-header">
+    <h4 class="mb-0 display-text">Recent posts</h2>
+  </div>
+  <ul class="list-group list-group-flush">
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/22/angular-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>Angular Notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          July 22, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/16/configure-a-ts-project.html">
+      <div class="row">
+        <div class="col">
+          <strong>Configure a TypeScript project with CI/CD</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          July 16, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/09/leetcode-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>Leetcode Notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          July 09, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/09/azure-500-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>AZ-500 notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          July 09, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/06/az104-exam.html">
+      <div class="row">
+        <div class="col">
+          <strong>Passed AZ-104 (Azure Administrator Associate) Today</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          July 06, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/06/02/azure-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          June 02, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/30/azure-storage.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Storage</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 30, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/27/Azure-SAS.html">
+      <div class="row">
+        <div class="col">
+          <strong>Azure Sas</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 27, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/05/22/css-flex-layout.html">
+      <div class="row">
+        <div class="col">
+          <strong>CSS: layout of the header</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          May 22, 2024
+        </div>
+        <div class="col-auto">
+          
+          <div class="badge badge-info">web</div>
+          
+          <div class="badge badge-info">css</div>
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2023/03/05/SVM-dual-problem.html">
+      <div class="row">
+        <div class="col">
+          <strong>the dual problem of SVM</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          March 05, 2023
+        </div>
+        <div class="col-auto">
+          
+          <div class="badge badge-info">machine learning</div>
+          
+        </div>
+      </div>
+    </a>
+    
+  </ul>
+</div> 
+        </div>
+    </div>
+</main>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+</script>
+
+</html>

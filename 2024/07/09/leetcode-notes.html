@@ -565,6 +565,94 @@ d Y e f
 
 <h2 id="2058-find-the-minimum-and-maximum-number-of-nodes-between-critical-points"><a href="https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/">2058. Find the Minimum and Maximum Number of Nodes Between Critical Points</a></h2>
 
+<h2 id="2191-sort-the-jumbled-numbers">2191. Sort the jumbled numbers</h2>
+
+<ul>
+  <li>design a key that jumbles numbers.</li>
+  <li>use sorted to sort <code class="language-plaintext highlighter-rouge">nums</code> using that key</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="n">num</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">digit</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">10</span>
+            <span class="n">num</span> <span class="o">=</span> <span class="n">num</span><span class="o">//</span><span class="mi">10</span>
+            <span class="n">val</span> <span class="o">+=</span> <span class="n">mapping</span><span class="p">[</span><span class="n">digit</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="n">i</span>
+            <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">val</span>
+
+    <span class="k">def</span> <span class="nf">sortJumbled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapping</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">convert</span><span class="p">(</span><span class="n">mapping</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="164-maximum-gap">164. Maximum gap</h2>
+
+<ul>
+  <li>
+    <p>Vanilla approach - sort then count</p>
+
+    <ul>
+      <li>
+        <p>however this violates the restriction that you must write an algorithm that runs in <strong>linear time</strong> and uses <strong>linear extra space</strong>.</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maximumGap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+    
+        <span class="n">max_gap</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">sorted_nums</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sorted_nums</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">curr_n</span> <span class="o">=</span> <span class="n">sorted_nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">next_n</span> <span class="o">=</span> <span class="n">sorted_nums</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    
+            <span class="n">max_gap</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">next_n</span><span class="o">-</span><span class="n">curr_n</span><span class="p">,</span> <span class="n">max_gap</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">max_gap</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Hence we can consider bucket sort - where we compare the gap between adjacent buckets</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maximumGap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nums</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">nums</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+  
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">high</span> <span class="o">==</span> <span class="n">low</span><span class="p">:</span> <span class="k">return</span> <span class="n">high</span> <span class="o">-</span> <span class="n">low</span>
+  
+        <span class="n">buckets</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+  
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="n">bucket_index</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span> <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="n">high</span> <span class="k">else</span> <span class="p">((</span><span class="n">num</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">//</span><span class="p">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="p">)</span> <span class="c1"># the index of the bucket
+</span>            <span class="n">buckets</span><span class="p">[</span><span class="n">bucket_index</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+  
+          
+        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">min</span><span class="p">(</span><span class="n">buckets</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">buckets</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">buckets</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+  
+        <span class="n">max_gap</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="c1">#for k in buckets.keys():
+</span>            <span class="c1">#print(k, buckets[k])
+</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># min: next bucket #max: curr bucket
+</span>            <span class="n">max_gap</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_gap</span><span class="p">,</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+          
+        <span class="k">return</span> <span class="n">max_gap</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+
         </div>
         
         <div class="col-12 col-md-4">
@@ -581,12 +669,30 @@ d Y e f
 <li class="toc-item toc-h2"><a href="#2418-sort-the-people">2418. Sort the people</a></li>
 <li class="toc-item toc-h2"><a href="#1636-sort-array-by-increasing-frequency">1636. Sort array by increasing frequency</a></li>
 <li class="toc-item toc-h2"><a href="#2058-find-the-minimum-and-maximum-number-of-nodes-between-critical-points">2058. Find the Minimum and Maximum Number of Nodes Between Critical Points</a></li>
+<li class="toc-item toc-h2"><a href="#2191-sort-the-jumbled-numbers">2191. Sort the jumbled numbers</a></li>
+<li class="toc-item toc-h2"><a href="#164-maximum-gap">164. Maximum gap</a></li>
 </ul>
             <div class="card my-card">
   <div class="card-header my-card-header">
     <h4 class="mb-0 display-text">Recent posts</h2>
   </div>
   <ul class="list-group list-group-flush">
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/22/angular-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>Angular Notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          July 22, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
     
     <a class="list-group-item my-list-group-item" href="/2024/07/16/configure-a-ts-project.html">
       <div class="row">
@@ -733,24 +839,6 @@ d Y e f
         <div class="col-auto">
           
           <div class="badge badge-info">machine learning</div>
-          
-        </div>
-      </div>
-    </a>
-    
-    <a class="list-group-item my-list-group-item" href="/2023/01/17/shellcode-development.html">
-      <div class="row">
-        <div class="col">
-          <strong>shellcode development - lab02</strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          January 17, 2023
-        </div>
-        <div class="col-auto">
-          
-          <div class="badge badge-info">buffer overflow</div>
           
         </div>
       </div>

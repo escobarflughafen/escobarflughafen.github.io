@@ -1,4 +1,218 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-07-23T05:23:56+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">Configure a TypeScript project with CI/CD</title><link href="http://yourdomain.com/2024/07/16/configure-a-ts-project.html" rel="alternate" type="text/html" title="Configure a TypeScript project with CI/CD" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-07-16T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/16/configure-a-ts-project</id><content type="html" xml:base="http://yourdomain.com/2024/07/16/configure-a-ts-project.html"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-07-25T00:42:54+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">Angular Notes</title><link href="http://yourdomain.com/2024/07/22/angular-notes.html" rel="alternate" type="text/html" title="Angular Notes" /><published>2024-07-22T00:00:00+00:00</published><updated>2024-07-22T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/22/angular-notes</id><content type="html" xml:base="http://yourdomain.com/2024/07/22/angular-notes.html"><![CDATA[<h2 id="bindings">Bindings</h2>
+
+<h3 id="interpolation-binding-">Interpolation binding (``)</h3>
+
+<ul>
+  <li>cannot interpolate arbitrary javascript commands, instead, calling functions from that component</li>
+</ul>
+
+<h3 id="property-binding-">Property binding (<code class="language-plaintext highlighter-rouge">[]</code>)</h3>
+
+<h3 id="event-binding-">Event binding (<code class="language-plaintext highlighter-rouge">()</code>)</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">app.component.css</span><span class="dl">'</span><span class="p">],</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+  &lt;div&gt;
+    &lt;input type="text" (change)="onChange($event)" /&gt;
+    &lt;p&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  `</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="nl">isEditable</span><span class="p">:</span><span class="nx">boolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="nl">value</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+
+  <span class="nx">onChange</span><span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">Event</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">inputElem</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="k">as</span> <span class="nx">HTMLInputElement</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">inputElem</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>A list of events</p>
+
+    <h4 id="mouse-events">Mouse Events</h4>
+
+    <ul>
+      <li><strong>(click)</strong>: Triggered when an element is clicked.</li>
+      <li><strong>(dblclick)</strong>: Triggered when an element is double-clicked.</li>
+      <li><strong>(mousedown)</strong>: Triggered when a mouse button is pressed on an element.</li>
+      <li><strong>(mouseup)</strong>: Triggered when a mouse button is released over an element.</li>
+      <li><strong>(mouseenter)</strong>: Triggered when the mouse pointer enters the element.</li>
+      <li><strong>(mouseleave)</strong>: Triggered when the mouse pointer leaves the element.</li>
+      <li><strong>(mousemove)</strong>: Triggered when the mouse pointer is moved over the element.</li>
+      <li><strong>(mouseover)</strong>: Triggered when the mouse pointer is moved onto the element.</li>
+      <li><strong>(mouseout)</strong>: Triggered when the mouse pointer is moved out of the element.</li>
+      <li><strong>(contextmenu)</strong>: Triggered when the right mouse button is clicked to open a context menu.</li>
+    </ul>
+
+    <h4 id="keyboard-events">Keyboard Events</h4>
+
+    <ul>
+      <li><strong>(keydown)</strong>: Triggered when a key is pressed.</li>
+      <li><strong>(keypress)</strong>: Triggered when a key is pressed and held.</li>
+      <li><strong>(keyup)</strong>: Triggered when a key is released.</li>
+    </ul>
+
+    <h4 id="focus-events">Focus Events</h4>
+
+    <ul>
+      <li><strong>(focus)</strong>: Triggered when an element gains focus.</li>
+      <li><strong>(blur)</strong>: Triggered when an element loses focus.</li>
+    </ul>
+
+    <h4 id="form-events">Form Events</h4>
+
+    <ul>
+      <li><strong>(input)</strong>: Triggered when the value of an input element changes.</li>
+      <li><strong>(change)</strong>: Triggered when the value of an input element changes and the element loses focus.</li>
+      <li><strong>(submit)</strong>: Triggered when a form is submitted.</li>
+      <li><strong>(reset)</strong>: Triggered when a form is reset.</li>
+    </ul>
+
+    <h4 id="drag-and-drop-events">Drag and Drop Events</h4>
+
+    <ul>
+      <li><strong>(drag)</strong>: Triggered when an element is being dragged.</li>
+      <li><strong>(dragstart)</strong>: Triggered when the user starts dragging an element.</li>
+      <li><strong>(dragend)</strong>: Triggered when the user stops dragging an element.</li>
+      <li><strong>(dragenter)</strong>: Triggered when a dragged element enters a drop target.</li>
+      <li><strong>(dragleave)</strong>: Triggered when a dragged element leaves a drop target.</li>
+      <li><strong>(dragover)</strong>: Triggered when an element is being dragged over a drop target.</li>
+      <li><strong>(drop)</strong>: Triggered when a dragged element is dropped on a drop target.</li>
+    </ul>
+
+    <h4 id="clipboard-events">Clipboard Events</h4>
+
+    <ul>
+      <li><strong>(copy)</strong>: Triggered when content is copied to the clipboard.</li>
+      <li><strong>(cut)</strong>: Triggered when content is cut to the clipboard.</li>
+      <li><strong>(paste)</strong>: Triggered when content is pasted from the clipboard.</li>
+    </ul>
+
+    <h4 id="touch-events">Touch Events</h4>
+
+    <ul>
+      <li><strong>(touchstart)</strong>: Triggered when a touch point is placed on the touch surface.</li>
+      <li><strong>(touchmove)</strong>: Triggered when a touch point is moved along the touch surface.</li>
+      <li><strong>(touchend)</strong>: Triggered when a touch point is removed from the touch surface.</li>
+      <li><strong>(touchcancel)</strong>: Triggered when a touch event is interrupted.</li>
+    </ul>
+
+    <h4 id="miscellaneous-events">Miscellaneous Events</h4>
+
+    <ul>
+      <li><strong>(scroll)</strong>: Triggered when the user scrolls an element.</li>
+      <li><strong>(resize)</strong>: Triggered when the window is resized.</li>
+      <li><strong>(error)</strong>: Triggered when an error occurs.</li>
+      <li><strong>(load)</strong>: Triggered when an element or resource finishes loading.</li>
+      <li><strong>(unload)</strong>: Triggered when the document or a resource is being unloaded.</li>
+    </ul>
+
+    <h4 id="custom-events">Custom Events</h4>
+
+    <ul>
+      <li><strong>(ngModelChange)</strong>: Triggered when the value of a form control bound with <code class="language-plaintext highlighter-rouge">[(ngModel)]</code> changes.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="two-way-data-binding----use-formsmodule-to-handle-form-value-changes">Two-way data binding (<code class="language-plaintext highlighter-rouge">[()]</code>) - use <code class="language-plaintext highlighter-rouge">FormsModule</code> to handle form value changes</h3>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">FormsModule</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/forms</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">app.component.css</span><span class="dl">'</span><span class="p">],</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+  &lt;div&gt;
+    &lt;input type="text" [(ngModel)]="value" /&gt;
+    &lt;p&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  `</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">FormsModule</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="nl">isEditable</span><span class="p">:</span><span class="nx">boolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+  <span class="nl">value</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
+
+  <span class="nx">onChange</span><span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">Event</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">inputElem</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="k">as</span> <span class="nx">HTMLInputElement</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">inputElem</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="component-communication">Component communication</h2>
+
+<h3 id="input"><code class="language-plaintext highlighter-rouge">@Input</code></h3>
+
+<p>For receiving values from other components.</p>
+
+<h3 id="output"><code class="language-plaintext highlighter-rouge">@Output</code></h3>
+
+<p>For notifying other components that a event has happened.</p>
+
+<p>child component - output an event emitter for emitting a string - emitter can be treated as a source of event, like (change), (click) and others.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">Output</span><span class="p">,</span> <span class="nx">EventEmitter</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-child</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">styles</span><span class="p">:</span> <span class="s2">`.btn { padding: 5px; }`</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+    &lt;button class="btn" (click)="addItem()"&gt;Add Item&lt;/button&gt;
+  `</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">ChildComponent</span> <span class="p">{</span>
+  <span class="p">@</span><span class="nd">Output</span><span class="p">()</span> <span class="nx">addItemEvent</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventEmitter</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span><span class="p">();</span>
+
+  <span class="nx">addItem</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">addItemEvent</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">'</span><span class="s1">🐢</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p>parent component - use an emitter from child component as an event binding to handle events.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">ChildComponent</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./child.component</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`
+    &lt;app-child (addItemEvent)="addItem($event)" /&gt;
+    &lt;p&gt;🐢 all the way down &lt;/p&gt;
+  `</span><span class="p">,</span>
+  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">ChildComponent</span><span class="p">],</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
+  <span class="nx">items</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+
+  <span class="nx">addItem</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>]]></content><author><name></name></author><summary type="html"><![CDATA[Bindings]]></summary></entry><entry><title type="html">Configure a TypeScript project with CI/CD</title><link href="http://yourdomain.com/2024/07/16/configure-a-ts-project.html" rel="alternate" type="text/html" title="Configure a TypeScript project with CI/CD" /><published>2024-07-16T00:00:00+00:00</published><updated>2024-07-16T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/16/configure-a-ts-project</id><content type="html" xml:base="http://yourdomain.com/2024/07/16/configure-a-ts-project.html"><![CDATA[<blockquote>
   <p>[!NOTE]</p>
 
   <p>The project to be configured:</p>
@@ -623,7 +837,94 @@ d Y e f
   </li>
 </ul>
 
-<h2 id="2058-find-the-minimum-and-maximum-number-of-nodes-between-critical-points"><a href="https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/">2058. Find the Minimum and Maximum Number of Nodes Between Critical Points</a></h2>]]></content><author><name></name></author><summary type="html"><![CDATA[1701. Average waiting time]]></summary></entry><entry><title type="html">Passed AZ-104 (Azure Administrator Associate) Today</title><link href="http://yourdomain.com/2024/07/06/az104-exam.html" rel="alternate" type="text/html" title="Passed AZ-104 (Azure Administrator Associate) Today" /><published>2024-07-06T00:00:00+00:00</published><updated>2024-07-06T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/06/az104-exam</id><content type="html" xml:base="http://yourdomain.com/2024/07/06/az104-exam.html"><![CDATA[<p>Prepared the exam for nearly 2 months with intermittent learning and practice. The difficulty is moderate for me and the good thing is that we are able to browse MS learn during the exam. It helped me a lot to double-check details like configuration steps, role permissions which quite relieved me, since I thought it is not an open-book exam. Guidelines can be found here:
+<h2 id="2058-find-the-minimum-and-maximum-number-of-nodes-between-critical-points"><a href="https://leetcode.com/problems/find-the-minimum-and-maximum-number-of-nodes-between-critical-points/">2058. Find the Minimum and Maximum Number of Nodes Between Critical Points</a></h2>
+
+<h2 id="2191-sort-the-jumbled-numbers">2191. Sort the jumbled numbers</h2>
+
+<ul>
+  <li>design a key that jumbles numbers.</li>
+  <li>use sorted to sort <code class="language-plaintext highlighter-rouge">nums</code> using that key</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapping</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="n">num</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">digit</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">10</span>
+            <span class="n">num</span> <span class="o">=</span> <span class="n">num</span><span class="o">//</span><span class="mi">10</span>
+            <span class="n">val</span> <span class="o">+=</span> <span class="n">mapping</span><span class="p">[</span><span class="n">digit</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="n">i</span>
+            <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">val</span>
+
+    <span class="k">def</span> <span class="nf">sortJumbled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mapping</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        
+        <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">convert</span><span class="p">(</span><span class="n">mapping</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+</code></pre></div></div>
+
+<h2 id="164-maximum-gap">164. Maximum gap</h2>
+
+<ul>
+  <li>
+    <p>Vanilla approach - sort then count</p>
+
+    <ul>
+      <li>
+        <p>however this violates the restriction that you must write an algorithm that runs in <strong>linear time</strong> and uses <strong>linear extra space</strong>.</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maximumGap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+    
+        <span class="n">max_gap</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">sorted_nums</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sorted_nums</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">curr_n</span> <span class="o">=</span> <span class="n">sorted_nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">next_n</span> <span class="o">=</span> <span class="n">sorted_nums</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    
+            <span class="n">max_gap</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">next_n</span><span class="o">-</span><span class="n">curr_n</span><span class="p">,</span> <span class="n">max_gap</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">max_gap</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Hence we can consider bucket sort - where we compare the gap between adjacent buckets</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">maximumGap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nums</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">nums</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+  
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">high</span> <span class="o">==</span> <span class="n">low</span><span class="p">:</span> <span class="k">return</span> <span class="n">high</span> <span class="o">-</span> <span class="n">low</span>
+  
+        <span class="n">buckets</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+  
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="n">bucket_index</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span> <span class="k">if</span> <span class="n">num</span> <span class="o">==</span> <span class="n">high</span> <span class="k">else</span> <span class="p">((</span><span class="n">num</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">//</span><span class="p">(</span><span class="n">high</span><span class="o">-</span><span class="n">low</span><span class="p">)</span> <span class="c1"># the index of the bucket
+</span>            <span class="n">buckets</span><span class="p">[</span><span class="n">bucket_index</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+  
+          
+        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[[</span><span class="nb">min</span><span class="p">(</span><span class="n">buckets</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">buckets</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">buckets</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+  
+        <span class="n">max_gap</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="c1">#for k in buckets.keys():
+</span>            <span class="c1">#print(k, buckets[k])
+</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># min: next bucket #max: curr bucket
+</span>            <span class="n">max_gap</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_gap</span><span class="p">,</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+          
+        <span class="k">return</span> <span class="n">max_gap</span>
+</code></pre></div>    </div>
+  </li>
+</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[1701. Average waiting time]]></summary></entry><entry><title type="html">Passed AZ-104 (Azure Administrator Associate) Today</title><link href="http://yourdomain.com/2024/07/06/az104-exam.html" rel="alternate" type="text/html" title="Passed AZ-104 (Azure Administrator Associate) Today" /><published>2024-07-06T00:00:00+00:00</published><updated>2024-07-06T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/06/az104-exam</id><content type="html" xml:base="http://yourdomain.com/2024/07/06/az104-exam.html"><![CDATA[<p>Prepared the exam for nearly 2 months with intermittent learning and practice. The difficulty is moderate for me and the good thing is that we are able to browse MS learn during the exam. It helped me a lot to double-check details like configuration steps, role permissions which quite relieved me, since I thought it is not an open-book exam. Guidelines can be found here:
 <a href="https://learn.microsoft.com/en-us/credentials/support/exam-duration-exam-experience#accessing-microsoft-learn-during-your-certification-exam">Accessing Microsoft Learn during your certification exam</a></p>
 
 <p>Another thing is that I chose the OnVUE online exam, and the experience was not satisfactory. Although I am the first in queue when I started the exam and the exam went well, the exam window went frozen when I was about to submit. The proctor restarted my session (luckily I was able to chat with them… Only the exam window froze, not the pop-up toolbar) but I wasn’t able to click on any until I had restarted my laptop (M1 MacBook) and redo all check-in process to submit my exam. Luckily again, the data wasn’t lost. I think I will take the exam at a local test centre next time.
@@ -1996,277 +2297,4 @@ d Y e f
   <li><strong>Efficiency</strong>: For high-dimensional data, the dual problem can be more computationally efficient to solve than the primal problem.</li>
 </ol>
 
-<p>In conclusion, the dual formulation of SVMs provides critical computational and conceptual benefits, particularly in handling complex, high-dimensional data.</p>]]></content><author><name>Jianing</name></author><category term="machine learning" /><summary type="html"><![CDATA[Support Vector Machines (SVM) are supervised learning models used for classification and regression tasks. The dual problem formulation of SVM provides an alternative perspective that can be computationally advantageous, particularly for high-dimensional feature spaces.]]></summary></entry><entry><title type="html">shellcode development - lab02</title><link href="http://yourdomain.com/2023/01/17/shellcode-development.html" rel="alternate" type="text/html" title="shellcode development - lab02" /><published>2023-01-17T12:00:00+00:00</published><updated>2023-01-17T12:00:00+00:00</updated><id>http://yourdomain.com/2023/01/17/shellcode-development</id><content type="html" xml:base="http://yourdomain.com/2023/01/17/shellcode-development.html"><![CDATA[<h3 id="1-printing-on-the-screen">1. Printing on the Screen</h3>
-
-<p>Program using Relative Addressing technique</p>
-
-<p><code class="language-plaintext highlighter-rouge">src/task1/print_rel.asm</code></p>
-
-<pre><code class="language-assembly">[SECTION .text]
-global _start
-_start:
-        jmp saveme			; (complete)	jump to the call instruction that right
-        								;							before the "Hello, world!" string
-shellcode:
-				pop esi					; (complete)	pop the top value of stack (address of
-												;							msg) and save to esi register
-												
-        mov eax, 4  		; (complete)	opcode for write system call
-        mov ebx, 1  		; (complete)	1st arg is the fd (1 = STDOUT)
-        mov ecx, esi  	; (complete)	2nd arg is the string address
-        mov edx, 15   	; 3rd arg is len
-        int 0x80      	; system call interrupt
-
-        mov eax, 1    	; opcode for exit system call
-        mov ebx, 0    	; 1st arg, exit(0)
-        int 0x80      	; system call interrupt
- saveme:
-        call shellcode	; (complete)	jump back to the 1st instruction after jmp
-        								;							instruction, and save the address of 
-        								;							msg on the top of stack
-        msg db "Hello, world!", 0xA, 0xD
-</code></pre>
-
-<p><img src="/assets/screenshots/1-1-rel.png" alt="1-1-rel" /></p>
-
-<p>Program using Stack methods</p>
-
-<p><code class="language-plaintext highlighter-rouge">src/task1/print_stk.asm</code></p>
-
-<pre><code class="language-assembly">[SECTION .text]
-global _start
-_start:
-        mov eax, 0
-        push eax
-        push 0x000a0d21	; hex format of "!\r\n\0"
-        push "orld"
-        push "o, w"			; (complete)	push "o, w" to stack
-        push "Hell"			; (complete)	push "Hell" to stack
-
-        mov eax, 4			; (complete)	opcode for write system call
-        mov ebx, 1			; (complete)	1st arg is the fd (1 = STDOUT)
-        mov ecx, esp		; (complete)	2nd arg is the string address (stack top)
-				mov edx, 15			; 3rd arg, len
-        int 0x80				; system call interrupt
-
-        mov eax, 1			; opcode for exit system call
-        mov ebx, 0			; 1st arg, exit(0)
-        int 0x80				; system call interrupt
-</code></pre>
-
-<p><img src="/assets/screenshots/1-2-stk.png" alt="1-2-stk" /></p>
-
-<blockquote>
-  <p><em>(a) In <code class="language-plaintext highlighter-rouge">print_stk.asm</code>, explain how the line “<code class="language-plaintext highlighter-rouge">push 0x000a0d21</code>” works. Show a screenshot from gdb to support your explanation.</em></p>
-</blockquote>
-
-<p>From the gdb disassembler, the line <code class="language-plaintext highlighter-rouge">push 0x000a0d21</code> is located in memory at <code class="language-plaintext highlighter-rouge">0x08048066</code>.</p>
-
-<p><img src="/assets/screenshots/1-1-1-disassembler.png" alt="1-1-1-disassembler" /></p>
-
-<p>I set a breakpoint at <code class="language-plaintext highlighter-rouge">_start</code> and used <code class="language-plaintext highlighter-rouge">si</code> command to execute one instruction each time. When the program is running before executing the instruction of <code class="language-plaintext highlighter-rouge">push 0x000a0d21</code>, from the status of all registers,</p>
-
-<p><img src="/assets/screenshots/1-1-2-registers-before.png" alt="1-1-2-registers-before" /></p>
-
-<p>we can see that the current stack top address in memory is <code class="language-plaintext highlighter-rouge">0xbffff5fc</code>, and the value inside is <code class="language-plaintext highlighter-rouge">0x0</code>.</p>
-
-<p>Then, after running the <code class="language-plaintext highlighter-rouge">push 0x000a0d21</code> instruction. From the register info, we can see that the value <code class="language-plaintext highlighter-rouge">0x000a0d21</code> is pushed into stack and the value of register <code class="language-plaintext highlighter-rouge">esp</code> has changed to <code class="language-plaintext highlighter-rouge">0xbffff5f8</code> (deduced 4), pointing to address of the top of stack.</p>
-
-<p><img src="/assets/screenshots/1-1-3-registers-after.png" alt="1-1-3-registers-after" /></p>
-
-<blockquote>
-  <p><em>(b) Also, in the same file, explain how you got the string address. Show a screenshot from gdb to support your explanation.</em></p>
-</blockquote>
-
-<p>I used instruction <code class="language-plaintext highlighter-rouge">mov ecx, esp</code> to get the string address where it sets <code class="language-plaintext highlighter-rouge">ecx</code> register to the value inside <code class="language-plaintext highlighter-rouge">esp</code>. The <code class="language-plaintext highlighter-rouge">esp</code> register keeps the address of the stack top which points to one segment of the string <code class="language-plaintext highlighter-rouge">Hello, world!\r\n</code>.</p>
-
-<p>By executing instructions one by one, from gdb, we can see that after <code class="language-plaintext highlighter-rouge">mov ecx, esp</code> is executed, the <code class="language-plaintext highlighter-rouge">ecx</code> register holds the address points to the string. Then, the system call <code class="language-plaintext highlighter-rouge">write</code> can use the string address as second argument.</p>
-
-<p><img src="/assets/screenshots/1-2-1-register-after.png" alt="1-2-1-register-after" /></p>
-
-<hr />
-
-<h3 id="2-spawning-a-shell">2. Spawning a Shell</h3>
-
-<h4 id="21-startup-code-labshasm">2.1 Startup Code (labsh.asm)</h4>
-
-<blockquote>
-  <ol>
-    <li><em>The process number of both the calling shell and the spawned shell using “<code class="language-plaintext highlighter-rouge">echo $$</code>”.</em></li>
-  </ol>
-</blockquote>
-
-<p><img src="/assets/screenshots/2-1-1.png" alt="2-1-1" /></p>
-
-<blockquote>
-  <ol>
-    <li><em>The passed environment variables to the spawned shell using “<code class="language-plaintext highlighter-rouge">/usr/bin/env</code>”</em></li>
-  </ol>
-</blockquote>
-
-<p><img src="/assets/screenshots/2-1-2-usr-bin-env.png" alt="2-1-2-usr-bin-env" /></p>
-
-<h4 id="22-providing-arguments-to-binsh">2.2 Providing Arguments to <code class="language-plaintext highlighter-rouge">/bin/sh</code></h4>
-
-<p>I constructed the argument string “<code class="language-plaintext highlighter-rouge">-c</code>” and “<code class="language-plaintext highlighter-rouge">ls -la</code>” by pushing them into stack and use <code class="language-plaintext highlighter-rouge">esi</code> register to keep their address in memory. When constructing <code class="language-plaintext highlighter-rouge">argv</code>, I pushed the address of each argument string into the stack to form an array of strings.</p>
-
-<p><code class="language-plaintext highlighter-rouge">src/task2/labsh_args.asm</code></p>
-
-<pre><code class="language-assembly">section .text
-  global _start
-    _start:
-      mov  eax, 0
-      push eax          ; Use 0 to terminate the string
-      push "//sh"
-      push "/bin"
-      mov  ebx, esp     ; Get the string address of "/bin//sh"
-
-      ; push "-c" and "ls -la" into stack
-      push eax
-      push "-c"
-      push eax
-      push "la"
-      push "ls -"
-      mov esi, esp			; Keep the current stack top address to esi register
-      
-      ; Construct the argument array argv[]
-      push eax					; argv[3] = 0, EOL
-      push esi					; argv[2] points to "ls -la"
-      add esi, 12				; move the esi register to point to "-c"
-      push esi					; argv[1] points to "-c"
-      add esi, 20				; move the esi register to point to "/bin//sh"
-      push esi					; argv[0] points to "/bin//sh"
-      mov  ecx, esp     ; Get the address of argv[]
-
-      ; For environment variable 
-      mov edx, 0     		; No env variables 
-
-      ; Call execve()
-      mov  eax, 0     	; eax = 0x00000000
-      mov  al, 0x0b    	; eax = 0x0000000b
-      int  0x80
-</code></pre>
-
-<p><img src="/assets/screenshots/2-2-1-result.png" alt="2-2-1-result" /></p>
-
-<h4 id="23-providing-env-variable-to-binsh">2.3 Providing Env. Variable to <code class="language-plaintext highlighter-rouge">/bin/sh</code></h4>
-
-<p>I constructed environment variable strings by pushing them into stack and use <code class="language-plaintext highlighter-rouge">esi</code> register to keep their address in memory as in the 2.2. When constructing <code class="language-plaintext highlighter-rouge">envp</code>, I pushed the address of each envrionment variable string into the stack to form an array of strings.</p>
-
-<p><code class="language-plaintext highlighter-rouge">src/task2/labsh_env.asm</code></p>
-
-<pre><code class="language-assembly">section .text
-  global _start
-    _start:
-      ; Store the argument string on stack
-      mov  	eax, 0
-      push 	eax					; Use 0 to terminate the string
-      push 	"//sh"
-      push 	"/bin"
-      mov  	ebx, esp		; Get the string address
-
-			; Construct the argument array argv[] = { NULL }
-      mov 	ecx, eax
- 			
-			; Construct the envrionment variable strings
-      push 	eax
-      push 	"4"
-      push 	"=123"
-      push 	"aaaa"
-      push 	eax
-      push 	"8"
-      push 	"=567"
-      push 	"bbbb"
-      push 	eax
-      push 	"4"
-      push 	"=123"
-      push 	"cccc"
-      mov 	esi, esp	; Save the address of stack top to esi
-      
-      ; Construct the environment array envp[]
-      push 	eax				; envp[3] = 0, EOL
-      push 	esi				; envp[2] points to "cccc=1234"
-      add 	esi, 16 	; move the esi to point to next string
-      push 	esi				; envp[1] points to "bbbb=5678"
-      add 	esi, 16 	; move the esi to point to next string
-      push 	esi				; envp[0] points to "aaaa=1234"
-      mov  	edx, esp	; Get the address of envp[]
-
-      ; Call execve()
-      mov  	eax, 0		; eax = 0x00000000
-      mov  	al, 0x0b	; eax = 0x0000000b
-      int  	0x80
-</code></pre>
-
-<p><img src="/assets/screenshots/2-3-1-result.png" alt="2-3-1-result" /></p>
-
-<h4 id="24-using-the-relative-addressing-technique">2.4 Using the Relative Addressing Technique</h4>
-
-<p>First, the program jumps to a <code class="language-plaintext highlighter-rouge">call</code> instruction at line 19, right before the the string.</p>
-
-<p><img src="/assets/screenshots/2-4-2-start.png" alt="2-4-2-start" /></p>
-
-<p>Then, the program executes the <code class="language-plaintext highlighter-rouge">call</code> instruction and jumps back to the instruction after the previous <code class="language-plaintext highlighter-rouge">jmp</code> instruction, and push the address of the string <code class="language-plaintext highlighter-rouge">/bin/sh*AAAABBBB</code> into stack.</p>
-
-<p><img src="/assets/screenshots/2-4-3-one.png" alt="2-4-3-one" /></p>
-
-<p>Now, The stack top contains the address of the string:</p>
-
-<p><img src="/assets/screenshots/2-4-4-stack-top.png" alt="2-4-4-stack-top" /></p>
-
-<p>The program will pop the string address and save to <code class="language-plaintext highlighter-rouge">esi</code> register after the instruction <code class="language-plaintext highlighter-rouge">pop esi</code>. <code class="language-plaintext highlighter-rouge">esi</code> register now holds the address of the string.</p>
-
-<p><img src="/assets/screenshots/2-4-5-esi-holds-string-addr.png" alt="2-4-5-esi-holds-string-addr" /></p>
-
-<p>Then, the program copys the string address to <code class="language-plaintext highlighter-rouge">ebx</code> register, ready to be used as first argument of <code class="language-plaintext highlighter-rouge">execve </code> system call.</p>
-
-<p>The first 7 characters in the string contains the filename of the shell program we want to run in the shellcode. To construct the filename string, the program rewrites the memory at <code class="language-plaintext highlighter-rouge">[ebx+7]</code> with <code class="language-plaintext highlighter-rouge">\0</code> to terminate the filename string.</p>
-
-<p><img src="/assets/screenshots/2-4-6-turncate-string.png" alt="2-4-6-turncate-string" /></p>
-
-<p>Next, the program saves the address of string <code class="language-plaintext highlighter-rouge">/bin/sh</code> to the memory at <code class="language-plaintext highlighter-rouge">[ebx+8]</code>, ready to construct the <code class="language-plaintext highlighter-rouge">argv</code> array.</p>
-
-<p><img src="/assets/screenshots/2-4-7-argv.png" alt="2-4-7-argv" /></p>
-
-<p>The program terminate the <code class="language-plaintext highlighter-rouge">argv</code> array with <code class="language-plaintext highlighter-rouge">0</code> at <code class="language-plaintext highlighter-rouge">[ebx+12]</code> and assigns the <code class="language-plaintext highlighter-rouge">ecx</code> register with the <code class="language-plaintext highlighter-rouge">argv</code> array.</p>
-
-<p><img src="/assets/screenshots/2-4-8-argv-array.png" alt="2-4-8-argv-array" /></p>
-
-<p>The program save <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">edx</code> for no environment variable is passed to the shell program.</p>
-
-<p><img src="/assets/screenshots/2-4-9-no-envp.png" alt="2-4-9-no-envp" /></p>
-
-<p>In the last, the program save <code class="language-plaintext highlighter-rouge">0x0b</code> to <code class="language-plaintext highlighter-rouge">eax</code> and invokes a system call interrupt to spawn a shell.</p>
-
-<p><img src="/assets/screenshots/2-4-10-sh.png" alt="2-4-10-sh" /></p>
-
-<p><code class="language-plaintext highlighter-rouge">src/task2/labsh_rel.asm</code></p>
-
-<pre><code class="language-assembly">section .text
-global _start
-_start:
-      	jmp two
-one:
-				pop esi
-        mov ebx, esi 						; (complete) ebx should contain the string address
-				mov eax, 0
-        mov byte [ebx+7], 0x00  ; (complete) terminate /bin/sh with 0x00 (1 byte)
-        mov [ebx+8], ebx   			; (complete) save ebx to memory at addressebx+8, points to "/bin/sh" saved at $ebx
-        mov [ebx+12], eax  			; (complete) save eax to memory at address ebx+12, terminates the argv[]
-        lea ecx, [ebx+8]   			; let ecx = ebx + 8
-        
-				mov edx, 0
-        mov al, 0x0b
-        int 0x80
-				;	execve("/bin/sh", ["/bin/sh"], NULL)
-two:
-        call one
-        db "/bin/sh*AAAABBBB"		; "/bin/sh" and remaining characters as placeholder
-</code></pre>
-
-<p>Since this program is required for writable code segment, to produce a executable binary file for this program, we need to use the <code class="language-plaintext highlighter-rouge">--omagic</code> flag to enable <code class="language-plaintext highlighter-rouge">ld</code> to do so.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nasm <span class="nt">-f</span> elf32 ./src/task2/labsh.rel.asm
-ld <span class="nt">--omagic</span> ./src/task2/labsh_rel.o <span class="nt">-o</span> labsh_rel
-./labsh_rel
-</code></pre></div></div>]]></content><author><name>jianing</name></author><category term="buffer overflow" /><summary type="html"><![CDATA[1. Printing on the Screen]]></summary></entry></feed>
+<p>In conclusion, the dual formulation of SVMs provides critical computational and conceptual benefits, particularly in handling complex, high-dimensional data.</p>]]></content><author><name>Jianing</name></author><category term="machine learning" /><summary type="html"><![CDATA[Support Vector Machines (SVM) are supervised learning models used for classification and regression tasks. The dual problem formulation of SVM provides an alternative perspective that can be computationally advantageous, particularly for high-dimensional feature spaces.]]></summary></entry></feed>
