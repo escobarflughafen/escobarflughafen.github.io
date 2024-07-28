@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Azure Storage - escobarflughafen</title>
+  <title>Canada PR application (after provincial nomination) - escobarflughafen</title>
   <meta name="description" content="This is an example site description. You can use Markdown here.">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/css/main.css">
@@ -25,7 +25,7 @@
 
             <div class="col flex-grow-1 pe-3">
                 <h1 class="head-text">
-                    Azure Storage
+                    Canada PR application (after provincial nomination)
                 </h1>
             </div>
 
@@ -101,145 +101,119 @@
 <main class="container my-3 px-3">
     <div class="row">
         <div class="col-12 col-md-8 mb-3 mb-md-0">
-            <h2 id="install-azure-cli">Install Azure CLI</h2>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install azure-cli
-</code></pre></div></div>
-
-<h2 id="login-to-azure-in-azure-cli">Login to Azure in Azure CLI</h2>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az login
-</code></pre></div></div>
-
-<p>A browser will start and perform the authentication process.</p>
-
-<h2 id="auth-modes">Auth modes</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th><strong>Authentication Mode</strong></th>
-      <th><strong>Description</strong></th>
-      <th><strong>Pros</strong></th>
-      <th><strong>Cons</strong></th>
-      <th><strong>Use Cases</strong></th>
-      <th><strong>Command Example</strong></th>
-      <th><strong>Parameters</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Shared Key Authorization</strong></td>
-      <td>Uses the storage account name and account key.</td>
-      <td>Easy to use, straightforward for development.</td>
-      <td>Security risks if account keys are shared.</td>
-      <td>Development, some production scenarios.</td>
-      <td><code class="language-plaintext highlighter-rouge">az storage blob upload --account-name myaccount --account-key myaccountkey --container-name mycontainer --name myblob --file myfile</code></td>
-      <td><code class="language-plaintext highlighter-rouge">--account-name</code>, <code class="language-plaintext highlighter-rouge">--account-key</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code></td>
-    </tr>
-    <tr>
-      <td><strong>Shared Access Signature (SAS)</strong></td>
-      <td>Provides delegated access with specific permissions and expiration.</td>
-      <td>Fine-grained control over permissions and expiration.</td>
-      <td>Needs careful management to avoid security risks.</td>
-      <td>Temporary access, limited permissions.</td>
-      <td><code class="language-plaintext highlighter-rouge">az storage blob upload --sas-token mySASToken --container-name mycontainer --name myblob --file myfile</code></td>
-      <td><code class="language-plaintext highlighter-rouge">--sas-token</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code></td>
-    </tr>
-    <tr>
-      <td><strong>Azure Active Directory (Azure AD)</strong></td>
-      <td>Provides role-based access control (RBAC) using Azure AD identities.</td>
-      <td>Provides RBAC, integrates with Azure AD.</td>
-      <td>More complex setup compared to shared key or SAS.</td>
-      <td>Production, enterprise environments.</td>
-      <td><code class="language-plaintext highlighter-rouge">az login \n az storage blob upload --account-name myaccount --container-name mycontainer --name myblob --file myfile --auth-mode login</code></td>
-      <td><code class="language-plaintext highlighter-rouge">--account-name</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code>, <code class="language-plaintext highlighter-rouge">--auth-mode</code></td>
-    </tr>
-    <tr>
-      <td><strong>Managed Identities</strong></td>
-      <td>Uses automatically managed identity for Azure resources to authenticate.</td>
-      <td>Simplifies identity management, no credentials needed.</td>
-      <td>Requires services to support managed identities.</td>
-      <td>Production, simplifying identity management.</td>
-      <td><code class="language-plaintext highlighter-rouge">az login --identity \n az storage blob upload --account-name myaccount --container-name mycontainer --name myblob --file myfile --auth-mode login</code></td>
-      <td><code class="language-plaintext highlighter-rouge">--account-name</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code>, <code class="language-plaintext highlighter-rouge">--auth-mode</code></td>
-    </tr>
-    <tr>
-      <td><strong>OAuth Bearer Token</strong></td>
-      <td>Uses OAuth tokens obtained from Azure AD to authenticate.</td>
-      <td>Supports OAuth 2.0, flexible token-based authentication.</td>
-      <td>Requires handling OAuth token lifecycle.</td>
-      <td>Token-based scenarios, custom authentication flows.</td>
-      <td><code class="language-plaintext highlighter-rouge">TOKEN=$(az account get-access-token --resource https://storage.azure.com/ --query accessToken --output tsv) \n curl -X PUT -H "Authorization: Bearer $TOKEN" -T myfile "https://myaccount.blob.core.windows.net/mycontainer/myblob"</code></td>
-      <td><code class="language-plaintext highlighter-rouge">--resource</code>, <code class="language-plaintext highlighter-rouge">--query</code>, <code class="language-plaintext highlighter-rouge">--output</code> (for <code class="language-plaintext highlighter-rouge">az account get-access-token</code>), <code class="language-plaintext highlighter-rouge">-X PUT</code>, <code class="language-plaintext highlighter-rouge">-H "Authorization: Bearer $TOKEN"</code>, <code class="language-plaintext highlighter-rouge">-T myfile</code> (for <code class="language-plaintext highlighter-rouge">curl</code>)</td>
-    </tr>
-  </tbody>
-</table>
+            <h2 id="emails">Emails</h2>
 
 <ul>
-  <li><strong>Account Key</strong>:
-    <ul>
-      <li>Suitable for full administrative control and development purposes.</li>
-      <li>Provides access to all resources within the storage account.</li>
-      <li>Higher security risk due to the breadth of access granted.</li>
-    </ul>
-  </li>
-  <li><strong>Shared Access Signature (SAS)</strong>:
-    <ul>
-      <li>Suitable for scenarios requiring delegated, limited access.</li>
-      <li>Provides granular control over permissions, resources, and duration.</li>
-      <li>Enhances security by restricting access based on permissions, IP, and protocol.</li>
-    </ul>
+  <li>
+    <p>from PNPInfo@gov.bc.ca</p>
+
+    <p>BC Provincial Nominee Program</p>
+
+    <p>[Mailing Address]</p>
+
+    <p>The attached certificate confirms that you have been nominated for the Provincial Nominee Program. You must apply to Immigration, Refugees and Citizenship Canada (IRCC)  <strong>before the nomination expiry date listed on the certificate.  Please note this is not valid for Express Entry.</strong></p>
+
+    <p>Visit IRCC’s website (<a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/provincial-nominees/non-express-entry/apply.html">IRCC Non-Express Entry Provincial Nominee</a>) for instructions and forms for applying for permanent residence for a non-Express Entry nominee.  <strong>IRCC must receive your complete application before the nomination certificate expiry date indicated.</strong></p>
+
+    <p>As a BC PNP Nominee, if you are considering a real estate purchase please review <a href="https://www2.gov.bc.ca/gov/content/taxes/property-taxes/property-transfer-tax/additional-property-transfer-tax#:~:text=B.C. Provincial Nominees">this important information from the Ministry of Finance.</a></p>
+
+    <p>Please refer to our <a href="https://www.welcomebc.ca/immigrate-to-b-c/guides-forms-reports-documents">Post Nomination Guide</a> for further information.</p>
+
+    <p>Please be aware that Immigration, Refugees and Citizenship Canada is responsible for conducting medical, criminal, and security screening processes and only their officers have the authority to make the final determination as to whether you meet the requirements to become a permanent resident.</p>
+
+    <p>Sincerely,</p>
+
+    <p>BC Provincial Nominee Program
+Email: PNPInfo@gov.bc.ca
+Website: WelcomeBC.ca/PNP</p>
+
+    <p>This communication is intended for the use of the recipient to whom it is addressed, and may contain confidential, personal and/or privileged information. Please contact us immediately if you are not the intended recipient of this communication, and do not copy, distribute, or take action relying on it. A communication received in error, or subsequent reply, should be deleted or destroyed.</p>
   </li>
 </ul>
 
-<h2 id="azure-blobs">Azure blobs</h2>
+<h2 id="references">References</h2>
 
-<blockquote>
-  <p>Using account-key authentication methods</p>
+<p><a href="https://www.welcomebc.ca/immigrate-to-b-c/bc-pnp-si-post-nomination-guide-pdf">Skills Immigration Post-Nomination Guide (PDF, 1MB)</a></p>
 
-  <p>Account keys can be found here:</p>
+<p>https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/provincial-nominees/non-express-entry/apply.html</p>
 
-  <p><img src="/Users/aoi/Desktop/Screenshot 2024-05-30 at 5.09.24 PM.png" alt="Screenshot 2024-05-30 at 5.09.24 PM" /></p>
-</blockquote>
+<h2 id="in-canada-applicants">In-Canada applicants</h2>
 
-<h3 id="create-a-container">Create a container</h3>
+<p>IRCC has put in place a <a href="https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/2022-foreign-exempt-ime.html">temporary public policy</a> for immigration medical exams (IMEs) <strong>until October 6, 2024</strong>.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az storage container create \
---name $container-name \
---account-name $storage-account \
---account-key $storage-access-key \
-</code></pre></div></div>
+<p>If you completed an IME within 5 years of submitting your new application, include the IME number (or the unique medical identifier number) from your previous exam in your current application.</p>
 
-<p><img src="/Users/aoi/Desktop/Screenshot 2024-05-30 at 5.12.13 PM.png" alt="Screenshot 2024-05-30 at 5.12.13 PM" /></p>
+<p>You may be exempt from completing another IME if you meet <strong>all</strong> of these conditions:</p>
 
-<h3 id="upload-a-file-to-the-container">Upload a file to the container</h3>
+<ul>
+  <li>You applied, or are applying, for either permanent residence or temporary residence.</li>
+  <li>You already live in Canada.</li>
+  <li>You completed your previous IME in the last 5 years.</li>
+  <li>Your previous IME indicated a low risk or no risk to public health or public safety.</li>
+</ul>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az storage blob upload \
---file $file \
---container-name $container-name \
---account-name $storage-account \
---account-key $storage-access-key
-</code></pre></div></div>
+<h2 id="checklist">Checklist</h2>
 
-<p><img src="/Users/aoi/Desktop/Screenshot 2024-05-30 at 5.34.14 PM.png" alt="Screenshot 2024-05-30 at 5.34.14 PM" /></p>
+<p>https://www.canada.ca/en/immigration-refugees-citizenship/services/application/application-forms-guides/guide-p7000-application-permanent-residence-provincial-nominee-class.html</p>
 
-<h3 id="upload-multiple-files-recursively">Upload multiple files recursively</h3>
+<h3 id="supporting-documents-for-provincial-nominee-program-pnp-required">Supporting Documents for Provincial Nominee Program (PNP) <strong>(required)</strong></h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az storage blob upload-batch \
---destination $container-name \
---source $path \
---pattern *.png \
---account-name $storage-account \
---account-key $storage-access-key
-</code></pre></div></div>
+<p>Upload all of the required supporting documents for your immigration program.</p>
 
+<p><strong>Document labelling:</strong></p>
+
+<p>If you have more than one document to upload under any one category, upload each one separately with a unique name (for example: Police_Certificate1, Police_Certificate2, Police_Certificate3).</p>
+
+<ul>
+  <li>Use this naming convention to label your documents: “Last Name - First Name – Document type - #.” For example: “Wong - John - Proof of Education -1.”</li>
+  <li>Visit the <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/pr-card/apply-renew-replace/photo.html">guide(opens in a new browser tab)</a> for permanent resident photos for instructions.</li>
+  <li><strong>Accepted file types:</strong> PDF, JPG, JPEG, PNG, DOC, and DOCX</li>
+  <li><strong>Accepted file size:</strong> File size should be 4 MB maximum and photos should be 420x540 pixels minimum.</li>
+  <li><strong>Accepted characters for file names:</strong> File names can only contain the following characters: “A-Z” “a-z” “0-9” “-“ “_” “.”</li>
+</ul>
+
+<ol>
+  <li>Travel documents and passports</li>
+  <li>Confirmation of nomination
+    <ul>
+      <li>Sent by PNPInfo@gov.bc.ca</li>
+    </ul>
+  </li>
+  <li>Proof of language proficiency
+    <ul>
+      <li>Not required for BCPNP-IPG non-EE stream</li>
+    </ul>
+  </li>
+  <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/medical-police/police-certificates/about.html">Police certificates and clearances</a>
+    <ul>
+      <li>Provide clearances for any place you have lived for more than 6 months, excluding Canada.</li>
+      <li>Accredited translation if the original copy is not in English.</li>
+    </ul>
+  </li>
+  <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/pr-card/apply-renew-replace/photo.html">Photos</a></li>
+  <li>Birth certificates
+    <ul>
+      <li>Accredited translation if the original copy is not in English.</li>
+    </ul>
+  </li>
+</ol>
 
         </div>
         
         <div class="col-12 col-md-4">
             
+            <h2>Table of Content</h2>
             
+            <ul id="toc" class="toc-list">
+<li class="toc-item toc-h2"><a href="#emails">Emails</a></li>
+<li class="toc-item toc-h2"><a href="#references">References</a></li>
+<li class="toc-item toc-h2"><a href="#in-canada-applicants">In-Canada applicants</a></li>
+<li class="toc-item toc-h2"><a href="#checklist">Checklist</a>
+<ul class="toc-sublist">
+<li class="toc-item toc-h3"><a href="#supporting-documents-for-provincial-nominee-program-pnp-required">Supporting Documents for Provincial Nominee Program (PNP) (required)</a></li>
+</ul>
+</li>
+</ul>
             <div class="card my-card">
   <div class="card-header my-card-header">
     <h4 class="mb-0 display-text">Recent posts</h2>
