@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-07-28T06:48:37+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">Canada PR application (after provincial nomination)</title><link href="http://yourdomain.com/2024/07/27/canada-pr-application.html" rel="alternate" type="text/html" title="Canada PR application (after provincial nomination)" /><published>2024-07-27T00:00:00+00:00</published><updated>2024-07-27T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/27/canada-pr-application</id><content type="html" xml:base="http://yourdomain.com/2024/07/27/canada-pr-application.html"><![CDATA[<h2 id="emails">Emails</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://yourdomain.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://yourdomain.com/" rel="alternate" type="text/html" /><updated>2024-07-30T01:21:19+00:00</updated><id>http://yourdomain.com/feed.xml</id><title type="html">Your Site Title</title><subtitle>This is an example site description. You can use Markdown here.</subtitle><entry><title type="html">Canada PR application (after provincial nomination)</title><link href="http://yourdomain.com/2024/07/27/canada-pr-application.html" rel="alternate" type="text/html" title="Canada PR application (after provincial nomination)" /><published>2024-07-27T00:00:00+00:00</published><updated>2024-07-27T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/27/canada-pr-application</id><content type="html" xml:base="http://yourdomain.com/2024/07/27/canada-pr-application.html"><![CDATA[<h2 id="emails">Emails</h2>
 
 <ul>
   <li>
@@ -32,7 +32,7 @@ Website: WelcomeBC.ca/PNP</p>
 
 <p><a href="https://www.welcomebc.ca/immigrate-to-b-c/bc-pnp-si-post-nomination-guide-pdf">Skills Immigration Post-Nomination Guide (PDF, 1MB)</a></p>
 
-<p>https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/provincial-nominees/non-express-entry/apply.html</p>
+<p><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/provincial-nominees/non-express-entry/apply.html">Application process for non-EE PNP application</a></p>
 
 <h2 id="in-canada-applicants">In-Canada applicants</h2>
 
@@ -93,7 +93,101 @@ Website: WelcomeBC.ca/PNP</p>
       <li>Accredited translation if the original copy is not in English.</li>
     </ul>
   </li>
-</ol>]]></content><author><name></name></author><summary type="html"><![CDATA[Emails]]></summary></entry><entry><title type="html">Angular Notes</title><link href="http://yourdomain.com/2024/07/22/angular-notes.html" rel="alternate" type="text/html" title="Angular Notes" /><published>2024-07-22T00:00:00+00:00</published><updated>2024-07-22T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/22/angular-notes</id><content type="html" xml:base="http://yourdomain.com/2024/07/22/angular-notes.html"><![CDATA[<h2 id="bindings">Bindings</h2>
+</ol>
+
+<h2 id="additional-notes">Additional notes</h2>
+
+<h3 id="apply-for-trv-in-canada">Apply for TRV in Canada</h3>
+
+<ul>
+  <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/account/where-submit-passport.html">mailing instructions after receiving OPR</a></li>
+</ul>
+
+<p>If you applied for a new temporary resident visa, or a study or temporary work permit from within Canada you</p>
+
+<ul>
+  <li>must <strong>mail us</strong> your passport</li>
+  <li>can’t submit your passport in person</li>
+</ul>
+
+<p>Read the details in your passport request letter and follow the instructions below.</p>
+
+<p>You should <strong>wait until you have your passport back before booking travel outside Canada</strong>.</p>
+
+<h5 id="mailing-instructions">Mailing instructions</h5>
+
+<ul>
+  <li>Send us your passport by mail (Canada Post) or courier. Choose and pay for a mailing service:
+    <ul>
+      <li>If you’re not using a courier service, we recommend you use Canada Post’s Xpresspost or Priority Post services so you can track your envelopes.</li>
+      <li>The mailing service you choose will determine how fast it will take for your passport to be returned to you.</li>
+    </ul>
+  </li>
+  <li>Purchase 2 prepaid envelopes:
+    <ul>
+      <li>If you live in Ontario or Quebec, purchase <strong>regional envelopes</strong>.</li>
+      <li>If you live in another province or territory, purchase <strong>national envelopes</strong>.</li>
+    </ul>
+  </li>
+  <li>Envelope sizes:
+    <ul>
+      <li>To send us your passport:
+        <ul>
+          <li>1 letter-size envelope (318 x 241 mm)</li>
+        </ul>
+      </li>
+      <li>For us to mail you back your passport:
+        <ul>
+          <li>1 standard-size envelope (260 x 159 mm)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Write down the tracking numbers for both envelopes. To track your envelopes with Canada Post or with your courier service:</p>
+
+    <ul>
+      <li>Use the tracking number for the letter-size envelope to find out when <strong>we receive your passport at our office</strong>.</li>
+      <li>Use the tracking number for the return envelope (standard-size), to find out <strong>when we mail it back to you</strong>.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Prepare your package:</p>
+
+    <ul>
+      <li>Write your <strong>full</strong> mailing address on the return envelope (standard-size) in the “Deliver to” field.</li>
+      <li>In the letter-size envelope, put:
+        <ul>
+          <li>your passport</li>
+          <li>a copy of your passport request letter showing your unique client identifier (UCI) and application numbers</li>
+          <li>the return envelope with your address on it</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Mailing addresses</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Canada Post address
+  
+Temporary Resident Visa Section
+CPC-Ottawa (e-Application)
+PO Box 9640
+Ottawa, Ontario
+K1G 6T2
+  
+===============================
+  
+Courier address
+  
+Temporary Resident Visa Section
+CPC-Ottawa (e-Application)
+365 Laurier Avenue West
+Ottawa, Ontario
+K1A 1L1
+</code></pre></div>    </div>
+  </li>
+</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[Emails]]></summary></entry><entry><title type="html">Angular Notes</title><link href="http://yourdomain.com/2024/07/22/angular-notes.html" rel="alternate" type="text/html" title="Angular Notes" /><published>2024-07-22T00:00:00+00:00</published><updated>2024-07-22T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/22/angular-notes</id><content type="html" xml:base="http://yourdomain.com/2024/07/22/angular-notes.html"><![CDATA[<h2 id="bindings">Bindings</h2>
 
 <h3 id="interpolation-binding-">Interpolation binding (``)</h3>
 
@@ -1018,6 +1112,92 @@ d Y e f
           
         <span class="k">return</span> <span class="n">max_gap</span>
 </code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance">1334. Find the city with the smallest number of neighbors at a threshold distance</h2>
+
+<ul>
+  <li>
+    <p>BFS won’t suffice for this question! – it can only visit a node once but there will be circumstance that two paths using the same node.</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findTheCity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">distanceThreshold</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># solution - BFS with threshold cut
+</span>          
+      
+        <span class="n">graph</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># notes: init the graph map first, in case there may have city with no neighbour -- wont be added to keys when building the graph
+</span>        <span class="k">for</span> <span class="n">city_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">city_no</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">candidates</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">city_no</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+  
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+            <span class="n">node_0</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">node_1</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">distance</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+              
+            <span class="k">if</span> <span class="n">node_0</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">node_0</span><span class="p">].</span><span class="n">append</span><span class="p">([</span><span class="n">node_1</span><span class="p">,</span> <span class="n">distance</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">node_0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="n">node_1</span><span class="p">,</span> <span class="n">distance</span><span class="p">]]</span>
+  
+            <span class="k">if</span> <span class="n">node_1</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">node_1</span><span class="p">].</span><span class="n">append</span><span class="p">([</span><span class="n">node_0</span><span class="p">,</span> <span class="n">distance</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">node_1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="n">node_0</span><span class="p">,</span> <span class="n">distance</span><span class="p">]]</span>
+              
+        <span class="k">print</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+  
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+            <span class="n">queue</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+              
+            <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">node</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+                        <span class="c1"># node, accumulated distance, city_visited
+</span>  
+            <span class="n">most_city_visited</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+              
+            <span class="k">while</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="n">curr</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">city</span> <span class="o">=</span> <span class="n">curr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">city</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                  
+                <span class="n">acc_dist</span> <span class="o">=</span> <span class="n">curr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                  
+                <span class="k">if</span> <span class="n">acc_dist</span> <span class="o">&gt;</span> <span class="n">distanceThreshold</span><span class="p">:</span>
+                    <span class="k">continue</span>
+  
+                <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+                <span class="n">most_city_visited</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">city_visited</span> <span class="o">=</span> <span class="n">curr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+  
+                <span class="k">print</span><span class="p">(</span><span class="s">"startcity"</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="s">"visiting"</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="s">"city_visited"</span><span class="p">,</span> <span class="n">most_city_visited</span><span class="p">,</span> <span class="s">'acc_dist'</span><span class="p">,</span> <span class="n">acc_dist</span><span class="p">)</span>
+                  
+                <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">city</span><span class="p">]:</span>
+                    <span class="n">neighbour</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">distance</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">acc_dist</span>
+                    <span class="k">if</span> <span class="n">neighbour</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                        <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">neighbour</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">city_visited</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+              
+            <span class="n">candidates</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="p">,</span> <span class="n">most_city_visited</span><span class="p">]</span>
+          
+          
+                                                                  <span class="c1">#dsc city_visited #asc city_no
+</span>        <span class="n">sorted_by_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pair</span><span class="p">:</span> <span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">sorted_by_name</span><span class="p">)</span>
+  
+        <span class="k">return</span> <span class="n">sorted_by_name</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+  
+          
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>The best solution should be using the Floyd-Warshall algorithm</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div>    </div>
   </li>
 </ul>]]></content><author><name></name></author><summary type="html"><![CDATA[1701. Average waiting time]]></summary></entry><entry><title type="html">Passed AZ-104 (Azure Administrator Associate) Today</title><link href="http://yourdomain.com/2024/07/06/az104-exam.html" rel="alternate" type="text/html" title="Passed AZ-104 (Azure Administrator Associate) Today" /><published>2024-07-06T00:00:00+00:00</published><updated>2024-07-06T00:00:00+00:00</updated><id>http://yourdomain.com/2024/07/06/az104-exam</id><content type="html" xml:base="http://yourdomain.com/2024/07/06/az104-exam.html"><![CDATA[<p>Prepared the exam for nearly 2 months with intermittent learning and practice. The difficulty is moderate for me and the good thing is that we are able to browse MS learn during the exam. It helped me a lot to double-check details like configuration steps, role permissions which quite relieved me, since I thought it is not an open-book exam. Guidelines can be found here:
 <a href="https://learn.microsoft.com/en-us/credentials/support/exam-duration-exam-experience#accessing-microsoft-learn-during-your-certification-exam">Accessing Microsoft Learn during your certification exam</a></p>

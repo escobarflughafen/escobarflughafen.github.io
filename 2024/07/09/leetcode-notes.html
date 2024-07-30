@@ -652,6 +652,92 @@ d Y e f
   </li>
 </ul>
 
+<h2 id="1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance">1334. Find the city with the smallest number of neighbors at a threshold distance</h2>
+
+<ul>
+  <li>
+    <p>BFS won’t suffice for this question! – it can only visit a node once but there will be circumstance that two paths using the same node.</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findTheCity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">distanceThreshold</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># solution - BFS with threshold cut
+</span>          
+      
+        <span class="n">graph</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># notes: init the graph map first, in case there may have city with no neighbour -- wont be added to keys when building the graph
+</span>        <span class="k">for</span> <span class="n">city_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">city_no</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">candidates</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">city_no</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+  
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+            <span class="n">node_0</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">node_1</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">distance</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+              
+            <span class="k">if</span> <span class="n">node_0</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">node_0</span><span class="p">].</span><span class="n">append</span><span class="p">([</span><span class="n">node_1</span><span class="p">,</span> <span class="n">distance</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">node_0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="n">node_1</span><span class="p">,</span> <span class="n">distance</span><span class="p">]]</span>
+  
+            <span class="k">if</span> <span class="n">node_1</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">node_1</span><span class="p">].</span><span class="n">append</span><span class="p">([</span><span class="n">node_0</span><span class="p">,</span> <span class="n">distance</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">graph</span><span class="p">[</span><span class="n">node_1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="n">node_0</span><span class="p">,</span> <span class="n">distance</span><span class="p">]]</span>
+              
+        <span class="k">print</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+  
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+            <span class="n">queue</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+              
+            <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">node</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+                        <span class="c1"># node, accumulated distance, city_visited
+</span>  
+            <span class="n">most_city_visited</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+              
+            <span class="k">while</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="n">curr</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">city</span> <span class="o">=</span> <span class="n">curr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">city</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                  
+                <span class="n">acc_dist</span> <span class="o">=</span> <span class="n">curr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                  
+                <span class="k">if</span> <span class="n">acc_dist</span> <span class="o">&gt;</span> <span class="n">distanceThreshold</span><span class="p">:</span>
+                    <span class="k">continue</span>
+  
+                <span class="n">visited</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+                <span class="n">most_city_visited</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">city_visited</span> <span class="o">=</span> <span class="n">curr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+  
+                <span class="k">print</span><span class="p">(</span><span class="s">"startcity"</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="s">"visiting"</span><span class="p">,</span> <span class="n">city</span><span class="p">,</span> <span class="s">"city_visited"</span><span class="p">,</span> <span class="n">most_city_visited</span><span class="p">,</span> <span class="s">'acc_dist'</span><span class="p">,</span> <span class="n">acc_dist</span><span class="p">)</span>
+                  
+                <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">city</span><span class="p">]:</span>
+                    <span class="n">neighbour</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">distance</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">acc_dist</span>
+                    <span class="k">if</span> <span class="n">neighbour</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                        <span class="n">queue</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">neighbour</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">city_visited</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+              
+            <span class="n">candidates</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">node</span><span class="p">,</span> <span class="n">most_city_visited</span><span class="p">]</span>
+          
+          
+                                                                  <span class="c1">#dsc city_visited #asc city_no
+</span>        <span class="n">sorted_by_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pair</span><span class="p">:</span> <span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]]))</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">sorted_by_name</span><span class="p">)</span>
+  
+        <span class="k">return</span> <span class="n">sorted_by_name</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+  
+          
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>The best solution should be using the Floyd-Warshall algorithm</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div>    </div>
+  </li>
+</ul>
+
 
         </div>
         
@@ -671,6 +757,7 @@ d Y e f
 <li class="toc-item toc-h2"><a href="#2058-find-the-minimum-and-maximum-number-of-nodes-between-critical-points">2058. Find the Minimum and Maximum Number of Nodes Between Critical Points</a></li>
 <li class="toc-item toc-h2"><a href="#2191-sort-the-jumbled-numbers">2191. Sort the jumbled numbers</a></li>
 <li class="toc-item toc-h2"><a href="#164-maximum-gap">164. Maximum gap</a></li>
+<li class="toc-item toc-h2"><a href="#1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance">1334. Find the city with the smallest number of neighbors at a threshold distance</a></li>
 </ul>
             <div class="card my-card">
   <div class="card-header my-card-header">
