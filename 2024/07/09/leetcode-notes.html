@@ -12,7 +12,7 @@
 <body class="mb-3">
 
 
-<header class="sticky-top header-banner line-overlay">
+<header class="header-banner line-overlay">
     <div class="container">
         <div class="row header-banner-row px-3">
             <a href="/" class="col-auto subway-red link-no-effect pe-3">
@@ -734,9 +734,405 @@ d Y e f
   <li>
     <p>The best solution should be using the Floyd-Warshall algorithm</p>
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div>    </div>
+    <ul>
+      <li>with $O(n^3)$ time complexity and $O(n^2)$ space complexity.</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findTheCity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">distanceThreshold</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># large value to represent inf
+</span>        <span class="n">INF</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span><span class="p">)</span>
+          
+        <span class="n">distance_matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="n">INF</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+  
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">distance_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  
+        <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+            <span class="n">distance_matrix</span><span class="p">[</span><span class="n">start</span><span class="p">][</span><span class="n">end</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span>
+            <span class="n">distance_matrix</span><span class="p">[</span><span class="n">end</span><span class="p">][</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">weight</span>
+  
+        <span class="bp">self</span><span class="p">.</span><span class="n">floyd</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">distance_matrix</span><span class="p">)</span>
+  
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">get_city_with_fewest_reachable</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">distance_matrix</span><span class="p">,</span> <span class="n">distanceThreshold</span><span class="p">)</span>
+  
+		<span class="c1"># a n^3 algorithm
+</span>    <span class="k">def</span> <span class="nf">floyd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">distance_matrix</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                    <span class="c1"># compare the distance of previous path and the path passing by node k
+</span>                    <span class="n">distance_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+                        <span class="n">distance_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span>
+                        <span class="n">distance_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">distance_matrix</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+                    <span class="p">)</span>
+          
+      
+    <span class="k">def</span> <span class="nf">get_city_with_fewest_reachable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">distance_matrix</span><span class="p">,</span> <span class="n">distanceThreshold</span><span class="p">):</span>
+        <span class="n">fewest_city_id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">fewest_reachable_cities</span> <span class="o">=</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">for</span> <span class="n">start_city</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">dest_city</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">start_city</span> <span class="o">!=</span> <span class="n">dest_city</span> <span class="ow">and</span> <span class="n">distance_matrix</span><span class="p">[</span><span class="n">start_city</span><span class="p">][</span><span class="n">dest_city</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">distanceThreshold</span><span class="p">:</span>
+                    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+              
+            <span class="k">if</span> <span class="n">count</span> <span class="o">&lt;=</span> <span class="n">fewest_reachable_cities</span><span class="p">:</span>
+                <span class="n">fewest_reachable_cities</span> <span class="o">=</span> <span class="n">count</span>
+                <span class="n">fewest_city_id</span> <span class="o">=</span> <span class="n">start_city</span>
+          
+  
+        <span class="k">return</span> <span class="n">fewest_city_id</span>
+</code></pre></div>    </div>
   </li>
 </ul>
+
+<h2 id="2976-minimum-cost-to-convert-string-i">2976. Minimum cost to convert string I</h2>
+
+<ul>
+  <li>actually it is a application of searching the shortest path between each two nodes in a graph</li>
+  <li>the tuple <code class="language-plaintext highlighter-rouge">(original, changed, cost)</code> describes the edges in the graph
+    <ul>
+      <li>need to notice that: there may exist indices <code class="language-plaintext highlighter-rouge">i</code>, <code class="language-plaintext highlighter-rouge">j</code> such that <code class="language-plaintext highlighter-rouge">original[j] == original[i]</code> and <code class="language-plaintext highlighter-rouge">changed[j] == changed[i]</code>.</li>
+    </ul>
+  </li>
+  <li>it is possibly that one letter cannot reach another letter through exchanges, so <em>If it is impossible to convert</em> <code class="language-plaintext highlighter-rouge">source</code> <em>to</em> <code class="language-plaintext highlighter-rouge">target</code>, <em>return</em> <code class="language-plaintext highlighter-rouge">-1</code>.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="c1"># consider using floyd-warshall
+</span>    <span class="k">def</span> <span class="nf">minimumCost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">original</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">changed</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">cost</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">INF</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span>
+        <span class="n">alphabet_lookup</span><span class="p">,</span> <span class="n">alphabet_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">floyd</span><span class="p">(</span><span class="n">source</span> <span class="p">,</span><span class="n">target</span><span class="p">,</span> <span class="n">original</span><span class="p">,</span> <span class="n">changed</span><span class="p">,</span> <span class="n">cost</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">alphabet_lookup</span><span class="p">,</span> <span class="n">alphabet_matrix</span><span class="p">)</span>
+        <span class="n">cost</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">source</span><span class="p">)):</span>
+            <span class="n">source_a</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">target_a</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+            <span class="n">source_index</span> <span class="o">=</span> <span class="n">alphabet_lookup</span><span class="p">[</span><span class="n">source_a</span><span class="p">]</span>
+            <span class="n">target_index</span> <span class="o">=</span> <span class="n">alphabet_lookup</span><span class="p">[</span><span class="n">target_a</span><span class="p">]</span>
+            
+            <span class="n">change_cost</span> <span class="o">=</span> <span class="n">alphabet_matrix</span><span class="p">[</span><span class="n">source_index</span><span class="p">][</span><span class="n">target_index</span><span class="p">]</span>
+            
+            <span class="k">if</span> <span class="n">change_cost</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">INF</span><span class="p">:</span>
+                <span class="n">cost</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="k">break</span>
+
+            <span class="n">cost</span> <span class="o">+=</span> <span class="n">change_cost</span>
+        
+        <span class="k">return</span> <span class="n">cost</span>
+        
+    <span class="k">def</span> <span class="nf">floyd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">original</span><span class="p">,</span> <span class="n">changed</span><span class="p">,</span> <span class="n">cost</span><span class="p">):</span>
+        <span class="n">alphabet_original</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">original</span><span class="p">)</span>
+        <span class="n">alphabet_change</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">changed</span><span class="p">)</span>
+        <span class="n">alphabet_source</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+        <span class="n">alphabet_target</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+
+        <span class="n">alphabet</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">alphabet_original</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="n">alphabet_change</span><span class="p">,</span> <span class="n">alphabet_source</span><span class="p">,</span> <span class="n">alphabet_target</span><span class="p">))</span>
+        
+        <span class="n">lookup</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)):</span>
+            <span class="n">lookup</span><span class="p">[</span><span class="n">alphabet</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+        
+
+
+        <span class="n">alphabet_matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">self</span><span class="p">.</span><span class="n">INF</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">))]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">))</span> <span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)):</span>
+            <span class="n">alphabet_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cost</span><span class="p">)):</span>
+            <span class="n">from_index</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">[</span><span class="n">original</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            <span class="n">to_index</span> <span class="o">=</span> <span class="n">lookup</span><span class="p">[</span><span class="n">changed</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            
+            <span class="n">alphabet_matrix</span><span class="p">[</span><span class="n">from_index</span><span class="p">][</span><span class="n">to_index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">cost</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alphabet_matrix</span><span class="p">[</span><span class="n">from_index</span><span class="p">][</span><span class="n">to_index</span><span class="p">])</span>
+            <span class="c1"># to avoid cases as: Note that there may exist indices i, j such that original[j] == original[i] and changed[j] == changed[i].
+</span>        
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)):</span>
+                    <span class="n">alphabet_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+                        <span class="n">alphabet_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span>
+                        <span class="n">alphabet_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">alphabet_matrix</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+                    <span class="p">)</span>
+
+
+        <span class="k">return</span> <span class="n">lookup</span><span class="p">,</span> <span class="n">alphabet_matrix</span>
+</code></pre></div></div>
+
+<h2 id="2134-minimum-swaps-to-group-all-1s-together-ii">2134. Minimum swaps to group all 1’s together II</h2>
+
+<ul>
+  <li>use suffix sum</li>
+</ul>
+
+<h2 id="3243-shortest-distance-after-road-addition-queries-i">3243. Shortest distance after road addition queries I</h2>
+
+<ul>
+  <li>
+    <p>Floyd-warshall will exceed the time limit</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">shortestDistanceAfterQueries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">queries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+          
+        <span class="n">INF</span> <span class="o">=</span> <span class="mi">10000</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="p">[[</span><span class="n">INF</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+          
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+              
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+              
+        <span class="c1"># build the initial graph
+</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+                <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span><span class="o">-</span><span class="n">i</span>
+          
+        <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+  
+          
+        <span class="c1"># adding routes
+</span>        <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
+            <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">query</span>
+            <span class="n">distances</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+              
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+                        <span class="n">dist_i_j</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+                        <span class="n">dist_i_k_j</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">distances</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+                        <span class="n">distances</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dist_i_j</span><span class="p">,</span> <span class="n">dist_i_k_j</span><span class="p">)</span>
+              
+              
+            <span class="c1">#count current min distance
+</span>            <span class="n">ans</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">distances</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+          
+        <span class="k">return</span> <span class="n">ans</span>
+          
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Using Dijkstra with priority queue (heap queue):</p>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">shortestDistanceAfterQueries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">queries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="n">graph</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)}</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+          
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+  
+        <span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+            <span class="n">distances</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s">'infinity'</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)}</span>
+            <span class="n">distances</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">priority_queue</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">)]</span>
+              
+            <span class="k">while</span> <span class="n">priority_queue</span><span class="p">:</span>
+                <span class="n">current_distance</span><span class="p">,</span> <span class="n">current_node</span> <span class="o">=</span> <span class="n">heapq</span><span class="p">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">priority_queue</span><span class="p">)</span>
+                <span class="c1"># the current_distance is greater than the known shortest distance between start and c_node
+</span>                <span class="k">if</span> <span class="n">current_distance</span> <span class="o">&gt;</span> <span class="n">distances</span><span class="p">[</span><span class="n">current_node</span><span class="p">]:</span>
+                    <span class="k">continue</span>
+                  
+                <span class="k">for</span> <span class="n">neighbor</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">current_node</span><span class="p">]:</span>
+                    <span class="n">distance</span> <span class="o">=</span> <span class="n">current_distance</span> <span class="o">+</span> <span class="n">weight</span>
+                    <span class="k">if</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="n">distances</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]:</span>
+                        <span class="n">distances</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span>
+                        <span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">priority_queue</span><span class="p">,</span> <span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">))</span>
+              
+            <span class="k">return</span> <span class="n">distances</span><span class="p">[</span><span class="n">end</span><span class="p">]</span>
+          
+        <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">append</span><span class="p">((</span><span class="n">v</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="n">shortest_path_length</span> <span class="o">=</span> <span class="n">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">shortest_path_length</span><span class="p">)</span>
+          
+        <span class="k">return</span> <span class="n">results</span>
+              
+      
+          
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="2053-kth-distinct-string-in-an-array">2053. Kth distinct string in an array</h2>
+
+<ul>
+  <li>We can organize two sets, one is distinct string set and another is duplicated string set. (set is unordered)</li>
+  <li>To find the kth distinct string, we need to follow the order of the original array. We can iterate over the original array and check if each string is in the distinct string set, and use a counter to count the number of distinct string we’ve seen.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">kthDistinct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arr</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">dist_s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">dup_s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">dup_s</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">dist_s</span><span class="p">:</span>
+                <span class="n">dist_s</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="n">dup_s</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dist_s</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">dist_s</span><span class="p">:</span>
+                <span class="n">n</span><span class="o">+=</span><span class="mi">1</span>
+            
+            <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="n">k</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">s</span>
+        
+        <span class="k">return</span> <span class="s">""</span>
+</code></pre></div></div>
+
+<h2 id="1460-make-two-arrays-equal-by-reversing-subarrays">1460. Make two arrays equal by reversing subarrays</h2>
+
+<ul>
+  <li>
+    <p>Think of swapping two adjacent elements – the same as reversing a subarray with length of 2.</p>
+  </li>
+  <li>
+    <p>Therefore, as long as two arrays have the amount of elements, they can be adjusted to be equal.</p>
+  </li>
+  <li>
+    <p>Hence, either we count the elements in two arrays, or we sort them to see if the two arrays are the same after sorting.</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># count the elements
+</span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">canBeEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">arr</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+          
+        <span class="n">target_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">arr_map</span> <span class="o">=</span> <span class="p">{}</span>
+  
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">arr_map</span><span class="p">:</span>
+                <span class="n">arr_map</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arr_map</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+          
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">target_map</span><span class="p">:</span>
+                <span class="n">target_map</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">target_map</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+          
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">arr_map</span><span class="p">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target_map</span><span class="p">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">return</span> <span class="bp">False</span>
+              
+            <span class="k">if</span> <span class="n">arr_map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">!=</span> <span class="n">target_map</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+          
+        <span class="k">return</span> <span class="bp">True</span>
+</code></pre></div>    </div>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">canBeEqual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">arr</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+          
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">False</span>
+  
+        <span class="n">arr_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+        <span class="n">target_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+  
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr_sorted</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">arr_sorted</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">target_sorted</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+  
+        <span class="k">return</span> <span class="bp">True</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="1508-range-sum-of-sorted-subarray-sums">1508. Range sum of sorted subarray sums</h2>
+
+<ul>
+  <li>
+    <p>Use two for-loops to iterate all the ranges, then, sort the array fo subarray sums, get the sum of the sorted array with given indexes.</p>
+
+    <ul>
+      <li>this is a brute force solution with $O(n^2 \cdot \log n)$ time complexity – since the solution is sorting an array with $n^2$ elements, at best it need $O(n^2 \cdot \log n^2) = O(n^2 \cdot 2 \log n) = O(n^2 \cdot \log n)$ time.</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">rangeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">right</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">subsums</span> <span class="o">=</span> <span class="p">[]</span>
+  
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">subsum</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+                <span class="n">subsum</span> <span class="o">+=</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">subsums</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">subsum</span><span class="p">)</span>
+          
+        <span class="n">_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">subsums</span><span class="p">)</span>
+  
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">_sorted</span><span class="p">[</span><span class="n">left</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="n">right</span><span class="p">])</span> <span class="o">%</span> <span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">9</span> <span class="o">+</span> <span class="mi">7</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Alternatively, we can use a priority queue to maintain the order of subarray sums.</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">rangeSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">left</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">right</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">pq</span> <span class="o">=</span> <span class="p">[]</span>
+  
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">))</span>
+          
+        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">mod</span> <span class="o">=</span> <span class="mf">1e9</span><span class="o">+</span><span class="mi">7</span>
+  
+        <span class="k">print</span><span class="p">(</span><span class="n">pq</span><span class="p">)</span>
+  
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">heapq</span><span class="p">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">pq</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">left</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">=</span> <span class="p">(</span><span class="n">ans</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">%</span> <span class="n">mod</span>
+              
+            <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">nums</span><span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">heapq</span><span class="p">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+          
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="3016-minimum-number-tof-pushes-to-type-word-ii">3016. Minimum number tof pushes to type word II</h2>
+
+<ul>
+  <li>Count the frequency of each character in the word.</li>
+  <li>Sort the items in the frequency map in descending order, then get the key press times for each character by <code class="language-plaintext highlighter-rouge">math.ceil(ch_freq/numpad_n)</code> (prioritize high-frequency characters in the keypad, once reached the number of total available keys, characters are placed in the second, third, … place of a key – we don’t have to assign them just need to count them).</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">minimumPushes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">freq</span><span class="p">:</span>
+                <span class="n">freq</span><span class="p">[</span><span class="n">ch</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">freq</span><span class="p">[</span><span class="n">ch</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="n">numpad_n</span> <span class="o">=</span> <span class="mi">8</span>
+
+        <span class="n">items</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">freq</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="o">-</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+            <span class="n">pressing</span> <span class="o">=</span> <span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">numpad_n</span><span class="p">))</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">pressing</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">pressing</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">count</span>
+</code></pre></div></div>
 
 
         </div>
@@ -758,6 +1154,13 @@ d Y e f
 <li class="toc-item toc-h2"><a href="#2191-sort-the-jumbled-numbers">2191. Sort the jumbled numbers</a></li>
 <li class="toc-item toc-h2"><a href="#164-maximum-gap">164. Maximum gap</a></li>
 <li class="toc-item toc-h2"><a href="#1334-find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance">1334. Find the city with the smallest number of neighbors at a threshold distance</a></li>
+<li class="toc-item toc-h2"><a href="#2976-minimum-cost-to-convert-string-i">2976. Minimum cost to convert string I</a></li>
+<li class="toc-item toc-h2"><a href="#2134-minimum-swaps-to-group-all-1s-together-ii">2134. Minimum swaps to group all 1’s together II</a></li>
+<li class="toc-item toc-h2"><a href="#3243-shortest-distance-after-road-addition-queries-i">3243. Shortest distance after road addition queries I</a></li>
+<li class="toc-item toc-h2"><a href="#2053-kth-distinct-string-in-an-array">2053. Kth distinct string in an array</a></li>
+<li class="toc-item toc-h2"><a href="#1460-make-two-arrays-equal-by-reversing-subarrays">1460. Make two arrays equal by reversing subarrays</a></li>
+<li class="toc-item toc-h2"><a href="#1508-range-sum-of-sorted-subarray-sums">1508. Range sum of sorted subarray sums</a></li>
+<li class="toc-item toc-h2"><a href="#3016-minimum-number-tof-pushes-to-type-word-ii">3016. Minimum number tof pushes to type word II</a></li>
 </ul>
             <div class="card my-card">
   <div class="card-header my-card-header">
