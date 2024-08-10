@@ -101,15 +101,25 @@
 <main class="container my-3 px-3">
     <div class="row">
         <div class="col-12 col-md-8 mb-3 mb-md-0">
+            <p class="subway-blue">
+                posted on May 30, 2024,
+                last updated on Saturday, August 10, 2024 at 06:15 AM
+            </p>
             <h2 id="install-azure-cli">Install Azure CLI</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install azure-cli
-</code></pre></div></div>
+<div class="language-plaintext highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>brew install azure-cli
+</pre></div>
+</div>
+</div>
 
 <h2 id="login-to-azure-in-azure-cli">Login to Azure in Azure CLI</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az login
-</code></pre></div></div>
+<div class="language-plaintext highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>az login
+</pre></div>
+</div>
+</div>
 
 <p>A browser will start and perform the authentication process.</p>
 
@@ -134,8 +144,8 @@
       <td>Easy to use, straightforward for development.</td>
       <td>Security risks if account keys are shared.</td>
       <td>Development, some production scenarios.</td>
-      <td><code class="language-plaintext highlighter-rouge">az storage blob upload --account-name myaccount --account-key myaccountkey --container-name mycontainer --name myblob --file myfile</code></td>
-      <td><code class="language-plaintext highlighter-rouge">--account-name</code>, <code class="language-plaintext highlighter-rouge">--account-key</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code></td>
+      <td><code>az storage blob upload --account-name myaccount --account-key myaccountkey --container-name mycontainer --name myblob --file myfile</code></td>
+      <td><code>--account-name</code>, <code>--account-key</code>, <code>--container-name</code>, <code>--name</code>, <code>--file</code></td>
     </tr>
     <tr>
       <td><strong>Shared Access Signature (SAS)</strong></td>
@@ -143,8 +153,8 @@
       <td>Fine-grained control over permissions and expiration.</td>
       <td>Needs careful management to avoid security risks.</td>
       <td>Temporary access, limited permissions.</td>
-      <td><code class="language-plaintext highlighter-rouge">az storage blob upload --sas-token mySASToken --container-name mycontainer --name myblob --file myfile</code></td>
-      <td><code class="language-plaintext highlighter-rouge">--sas-token</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code></td>
+      <td><code>az storage blob upload --sas-token mySASToken --container-name mycontainer --name myblob --file myfile</code></td>
+      <td><code>--sas-token</code>, <code>--container-name</code>, <code>--name</code>, <code>--file</code></td>
     </tr>
     <tr>
       <td><strong>Azure Active Directory (Azure AD)</strong></td>
@@ -152,8 +162,8 @@
       <td>Provides RBAC, integrates with Azure AD.</td>
       <td>More complex setup compared to shared key or SAS.</td>
       <td>Production, enterprise environments.</td>
-      <td><code class="language-plaintext highlighter-rouge">az login \n az storage blob upload --account-name myaccount --container-name mycontainer --name myblob --file myfile --auth-mode login</code></td>
-      <td><code class="language-plaintext highlighter-rouge">--account-name</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code>, <code class="language-plaintext highlighter-rouge">--auth-mode</code></td>
+      <td><code>az login \n az storage blob upload --account-name myaccount --container-name mycontainer --name myblob --file myfile --auth-mode login</code></td>
+      <td><code>--account-name</code>, <code>--container-name</code>, <code>--name</code>, <code>--file</code>, <code>--auth-mode</code></td>
     </tr>
     <tr>
       <td><strong>Managed Identities</strong></td>
@@ -161,8 +171,8 @@
       <td>Simplifies identity management, no credentials needed.</td>
       <td>Requires services to support managed identities.</td>
       <td>Production, simplifying identity management.</td>
-      <td><code class="language-plaintext highlighter-rouge">az login --identity \n az storage blob upload --account-name myaccount --container-name mycontainer --name myblob --file myfile --auth-mode login</code></td>
-      <td><code class="language-plaintext highlighter-rouge">--account-name</code>, <code class="language-plaintext highlighter-rouge">--container-name</code>, <code class="language-plaintext highlighter-rouge">--name</code>, <code class="language-plaintext highlighter-rouge">--file</code>, <code class="language-plaintext highlighter-rouge">--auth-mode</code></td>
+      <td><code>az login --identity \n az storage blob upload --account-name myaccount --container-name mycontainer --name myblob --file myfile --auth-mode login</code></td>
+      <td><code>--account-name</code>, <code>--container-name</code>, <code>--name</code>, <code>--file</code>, <code>--auth-mode</code></td>
     </tr>
     <tr>
       <td><strong>OAuth Bearer Token</strong></td>
@@ -170,8 +180,8 @@
       <td>Supports OAuth 2.0, flexible token-based authentication.</td>
       <td>Requires handling OAuth token lifecycle.</td>
       <td>Token-based scenarios, custom authentication flows.</td>
-      <td><code class="language-plaintext highlighter-rouge">TOKEN=$(az account get-access-token --resource https://storage.azure.com/ --query accessToken --output tsv) \n curl -X PUT -H "Authorization: Bearer $TOKEN" -T myfile "https://myaccount.blob.core.windows.net/mycontainer/myblob"</code></td>
-      <td><code class="language-plaintext highlighter-rouge">--resource</code>, <code class="language-plaintext highlighter-rouge">--query</code>, <code class="language-plaintext highlighter-rouge">--output</code> (for <code class="language-plaintext highlighter-rouge">az account get-access-token</code>), <code class="language-plaintext highlighter-rouge">-X PUT</code>, <code class="language-plaintext highlighter-rouge">-H "Authorization: Bearer $TOKEN"</code>, <code class="language-plaintext highlighter-rouge">-T myfile</code> (for <code class="language-plaintext highlighter-rouge">curl</code>)</td>
+      <td><code>TOKEN=$(az account get-access-token --resource https://storage.azure.com/ --query accessToken --output tsv) \n curl -X PUT -H "Authorization: Bearer $TOKEN" -T myfile "https://myaccount.blob.core.windows.net/mycontainer/myblob"</code></td>
+      <td><code>--resource</code>, <code>--query</code>, <code>--output</code> (for <code>az account get-access-token</code>), <code>-X PUT</code>, <code>-H "Authorization: Bearer $TOKEN"</code>, <code>-T myfile</code> (for <code>curl</code>)</td>
     </tr>
   </tbody>
 </table>
@@ -205,34 +215,43 @@
 
 <h3 id="create-a-container">Create a container</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az storage container create \
---name $container-name \
---account-name $storage-account \
---account-key $storage-access-key \
-</code></pre></div></div>
+<div class="language-plaintext highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>az storage container create \
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>--name $container-name \
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>--account-name $storage-account \
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>--account-key $storage-access-key \
+</pre></div>
+</div>
+</div>
 
 <p><img src="/Users/aoi/Desktop/Screenshot 2024-05-30 at 5.12.13 PM.png" alt="Screenshot 2024-05-30 at 5.12.13 PM" /></p>
 
 <h3 id="upload-a-file-to-the-container">Upload a file to the container</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az storage blob upload \
---file $file \
---container-name $container-name \
---account-name $storage-account \
---account-key $storage-access-key
-</code></pre></div></div>
+<div class="language-plaintext highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>az storage blob upload \
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>--file $file \
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>--container-name $container-name \
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>--account-name $storage-account \
+<span class="line-numbers"><a href="#n5" name="n5">5</a></span>--account-key $storage-access-key
+</pre></div>
+</div>
+</div>
 
 <p><img src="/Users/aoi/Desktop/Screenshot 2024-05-30 at 5.34.14 PM.png" alt="Screenshot 2024-05-30 at 5.34.14 PM" /></p>
 
 <h3 id="upload-multiple-files-recursively">Upload multiple files recursively</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az storage blob upload-batch \
---destination $container-name \
---source $path \
---pattern *.png \
---account-name $storage-account \
---account-key $storage-access-key
-</code></pre></div></div>
+<div class="language-plaintext highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>az storage blob upload-batch \
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>--destination $container-name \
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>--source $path \
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>--pattern *.png \
+<span class="line-numbers"><a href="#n5" name="n5">5</a></span>--account-name $storage-account \
+<span class="line-numbers"><a href="#n6" name="n6">6</a></span>--account-key $storage-access-key
+</pre></div>
+</div>
+</div>
 
 
         </div>
@@ -254,7 +273,8 @@
       </div>
       <div class="row">
         <div class="col">
-          July 27, 2024
+          created at July 27, 2024,
+          last updated on August 10, 2024
         </div>
         <div class="col-auto">
           
@@ -270,7 +290,8 @@
       </div>
       <div class="row">
         <div class="col">
-          July 22, 2024
+          created at July 22, 2024,
+          last updated on August 10, 2024
         </div>
         <div class="col-auto">
           
@@ -286,7 +307,8 @@
       </div>
       <div class="row">
         <div class="col">
-          July 16, 2024
+          created at July 16, 2024,
+          last updated on August 10, 2024
         </div>
         <div class="col-auto">
           
@@ -302,7 +324,8 @@
       </div>
       <div class="row">
         <div class="col">
-          July 09, 2024
+          created at July 09, 2024,
+          last updated on August 10, 2024
         </div>
         <div class="col-auto">
           
@@ -318,93 +341,10 @@
       </div>
       <div class="row">
         <div class="col">
-          July 09, 2024
+          created at July 09, 2024,
+          last updated on August 10, 2024
         </div>
         <div class="col-auto">
-          
-        </div>
-      </div>
-    </a>
-    
-    <a class="list-group-item my-list-group-item" href="/2024/07/06/az104-exam.html">
-      <div class="row">
-        <div class="col">
-          <strong>Passed AZ-104 (Azure Administrator Associate) Today</strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          July 06, 2024
-        </div>
-        <div class="col-auto">
-          
-        </div>
-      </div>
-    </a>
-    
-    <a class="list-group-item my-list-group-item" href="/2024/06/02/azure-notes.html">
-      <div class="row">
-        <div class="col">
-          <strong>Azure Notes</strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          June 02, 2024
-        </div>
-        <div class="col-auto">
-          
-        </div>
-      </div>
-    </a>
-    
-    <a class="list-group-item my-list-group-item" href="/2024/05/30/azure-storage.html">
-      <div class="row">
-        <div class="col">
-          <strong>Azure Storage</strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          May 30, 2024
-        </div>
-        <div class="col-auto">
-          
-        </div>
-      </div>
-    </a>
-    
-    <a class="list-group-item my-list-group-item" href="/2024/05/27/Azure-SAS.html">
-      <div class="row">
-        <div class="col">
-          <strong>Azure Sas</strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          May 27, 2024
-        </div>
-        <div class="col-auto">
-          
-        </div>
-      </div>
-    </a>
-    
-    <a class="list-group-item my-list-group-item" href="/2024/05/22/css-flex-layout.html">
-      <div class="row">
-        <div class="col">
-          <strong>CSS: layout of the header</strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          May 22, 2024
-        </div>
-        <div class="col-auto">
-          
-          <div class="badge badge-info">web</div>
-          
-          <div class="badge badge-info">css</div>
           
         </div>
       </div>
@@ -413,6 +353,7 @@
   </ul>
 </div> 
         </div>
+
     </div>
 </main>
 

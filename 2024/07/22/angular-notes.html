@@ -101,6 +101,10 @@
 <main class="container my-3 px-3">
     <div class="row">
         <div class="col-12 col-md-8 mb-3 mb-md-0">
+            <p class="subway-blue">
+                posted on July 22, 2024,
+                last updated on Saturday, August 10, 2024 at 06:15 AM
+            </p>
             <h2 id="bindings">Bindings</h2>
 
 <h3 id="interpolation-binding-">Interpolation binding (``)</h3>
@@ -109,36 +113,39 @@
   <li>cannot interpolate arbitrary javascript commands, instead, calling functions from that component</li>
 </ul>
 
-<h3 id="property-binding-">Property binding (<code class="language-plaintext highlighter-rouge">[]</code>)</h3>
+<h3 id="property-binding-">Property binding (<code>[]</code>)</h3>
 
-<h3 id="event-binding-">Event binding (<code class="language-plaintext highlighter-rouge">()</code>)</h3>
+<h3 id="event-binding-">Event binding (<code>()</code>)</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
-  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">app.component.css</span><span class="dl">'</span><span class="p">],</span>
-  <span class="na">template</span><span class="p">:</span> <span class="s2">`
-  &lt;div&gt;
-    &lt;input type="text" (change)="onChange($event)" /&gt;
-    &lt;p&gt;&lt;/p&gt;
-  &lt;/div&gt;
-  `</span><span class="p">,</span>
-  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="p">})</span>
-
-<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
-  <span class="nl">isEditable</span><span class="p">:</span><span class="nx">boolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-
-  <span class="nl">value</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
-
-  <span class="nx">onChange</span><span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">Event</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">inputElem</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="k">as</span> <span class="nx">HTMLInputElement</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">inputElem</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div></div>
+<div class="language-typescript highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>import {Component} from '@angular/core';
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>@Component({
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>  selector: 'app-root',
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>  styleUrls: ['app.component.css'],
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>  template: `
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>  &lt;div&gt;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    &lt;input type=&quot;text&quot; (change)=&quot;onChange($event)&quot; /&gt;
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    &lt;p&gt;&lt;/p&gt;
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>  &lt;/div&gt;
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>  `,
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>  standalone: true,
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>})
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>export class AppComponent {
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>  isEditable:boolean = true;
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>  value: string = &quot;&quot;;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>  onChange(event: Event): void {
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>    const inputElem = event.target as HTMLInputElement;
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>    this.value = inputElem.value;
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>  }
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>}
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>
+</pre></div>
+</div>
+</div>
 
 <ul>
   <li>
@@ -225,97 +232,106 @@
     <h4 id="custom-events">Custom Events</h4>
 
     <ul>
-      <li><strong>(ngModelChange)</strong>: Triggered when the value of a form control bound with <code class="language-plaintext highlighter-rouge">[(ngModel)]</code> changes.</li>
+      <li><strong>(ngModelChange)</strong>: Triggered when the value of a form control bound with <code>[(ngModel)]</code> changes.</li>
     </ul>
   </li>
 </ul>
 
-<h3 id="two-way-data-binding----use-formsmodule-to-handle-form-value-changes">Two-way data binding (<code class="language-plaintext highlighter-rouge">[()]</code>) - use <code class="language-plaintext highlighter-rouge">FormsModule</code> to handle form value changes</h3>
+<h3 id="two-way-data-binding----use-formsmodule-to-handle-form-value-changes">Two-way data binding (<code>[()]</code>) - use <code>FormsModule</code> to handle form value changes</h3>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">FormsModule</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/forms</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
-  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">styleUrls</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">app.component.css</span><span class="dl">'</span><span class="p">],</span>
-  <span class="na">template</span><span class="p">:</span> <span class="s2">`
-  &lt;div&gt;
-    &lt;input type="text" [(ngModel)]="value" /&gt;
-    &lt;p&gt;&lt;/p&gt;
-  &lt;/div&gt;
-  `</span><span class="p">,</span>
-  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">FormsModule</span><span class="p">]</span>
-<span class="p">})</span>
-
-<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
-  <span class="nl">isEditable</span><span class="p">:</span><span class="nx">boolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-
-  <span class="nl">value</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">""</span><span class="p">;</span>
-
-  <span class="nx">onChange</span><span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">Event</span><span class="p">):</span> <span class="k">void</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">inputElem</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="k">as</span> <span class="nx">HTMLInputElement</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">inputElem</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div></div>
+<div class="language-typescript highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>import {Component} from '@angular/core';
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>import {FormsModule} from '@angular/forms';
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>@Component({
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>  selector: 'app-root',
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>  styleUrls: ['app.component.css'],
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>  template: `
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>  &lt;div&gt;
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    &lt;input type=&quot;text&quot; [(ngModel)]=&quot;value&quot; /&gt;
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    &lt;p&gt;&lt;/p&gt;
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>  &lt;/div&gt;
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>  `,
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>  standalone: true,
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>  imports: [FormsModule]
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>})
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>export class AppComponent {
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>  isEditable:boolean = true;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>  value: string = &quot;&quot;;
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>  onChange(event: Event): void {
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>    const inputElem = event.target as HTMLInputElement;
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>    this.value = inputElem.value;
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>  }
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>}
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
+</pre></div>
+</div>
+</div>
 
 <h2 id="component-communication">Component communication</h2>
 
-<h3 id="input"><code class="language-plaintext highlighter-rouge">@Input</code></h3>
+<h3 id="input"><code>@Input</code></h3>
 
 <p>For receiving values from other components.</p>
 
-<h3 id="output"><code class="language-plaintext highlighter-rouge">@Output</code></h3>
+<h3 id="output"><code>@Output</code></h3>
 
 <p>For notifying other components that a event has happened.</p>
 
 <p>child component - output an event emitter for emitting a string - emitter can be treated as a source of event, like (change), (click) and others.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">Output</span><span class="p">,</span> <span class="nx">EventEmitter</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
-  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-child</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">styles</span><span class="p">:</span> <span class="s2">`.btn { padding: 5px; }`</span><span class="p">,</span>
-  <span class="na">template</span><span class="p">:</span> <span class="s2">`
-    &lt;button class="btn" (click)="addItem()"&gt;Add Item&lt;/button&gt;
-  `</span><span class="p">,</span>
-  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="p">})</span>
-<span class="k">export</span> <span class="kd">class</span> <span class="nx">ChildComponent</span> <span class="p">{</span>
-  <span class="p">@</span><span class="nd">Output</span><span class="p">()</span> <span class="nx">addItemEvent</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventEmitter</span><span class="o">&lt;</span><span class="kr">string</span><span class="o">&gt;</span><span class="p">();</span>
-
-  <span class="nx">addItem</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">addItemEvent</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="dl">'</span><span class="s1">🐢</span><span class="dl">'</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div></div>
+<div class="language-typescript highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>import {Component, Output, EventEmitter} from '@angular/core';
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>@Component({
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>  selector: 'app-child',
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>  styles: `.btn { padding: 5px; }`,
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>  template: `
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    &lt;button class=&quot;btn&quot; (click)=&quot;addItem()&quot;&gt;Add Item&lt;/button&gt;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>  `,
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>  standalone: true,
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>})
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>export class ChildComponent {
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>  @Output() addItemEvent = new EventEmitter&lt;string&gt;();
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>  addItem() {
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>    this.addItemEvent.emit('🐢');
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>  }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>}
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>
+</pre></div>
+</div>
+</div>
 
 <p>parent component - use an emitter from child component as an event binding to handle events.</p>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@angular/core</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">ChildComponent</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./child.component</span><span class="dl">'</span><span class="p">;</span>
-
-<span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
-  <span class="na">selector</span><span class="p">:</span> <span class="dl">'</span><span class="s1">app-root</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">template</span><span class="p">:</span> <span class="s2">`
-    &lt;app-child (addItemEvent)="addItem($event)" /&gt;
-    &lt;p&gt;🐢 all the way down &lt;/p&gt;
-  `</span><span class="p">,</span>
-  <span class="na">standalone</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span><span class="nx">ChildComponent</span><span class="p">],</span>
-<span class="p">})</span>
-<span class="k">export</span> <span class="kd">class</span> <span class="nx">AppComponent</span> <span class="p">{</span>
-  <span class="nx">items</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
-
-  <span class="nx">addItem</span><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></div></div>
+<div class="language-typescript highlighter-coderay"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>import {Component} from '@angular/core';
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>import {ChildComponent} from './child.component';
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>@Component({
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>  selector: 'app-root',
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>  template: `
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    &lt;app-child (addItemEvent)=&quot;addItem($event)&quot; /&gt;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    &lt;p&gt;🐢 all the way down &lt;/p&gt;
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>  `,
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>  standalone: true,
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>  imports: [ChildComponent],
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>})
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>export class AppComponent {
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>  items = new Array();
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>  addItem(item: string) {
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>    this.items.push(item);
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>  }
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>}
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>
+</pre></div>
+</div>
+</div>
 
 
         </div>
@@ -354,7 +370,8 @@
       </div>
       <div class="row">
         <div class="col">
-          July 27, 2024
+          created at July 27, 2024,
+          last updated on August 10, 2024
         </div>
         <div class="col-auto">
           
@@ -370,7 +387,8 @@
       </div>
       <div class="row">
         <div class="col">
-          July 22, 2024
+          created at July 22, 2024,
+          last updated on August 10, 2024
         </div>
         <div class="col-auto">
           
@@ -386,7 +404,8 @@
       </div>
       <div class="row">
         <div class="col">
-          July 16, 2024
+          created at July 16, 2024,
+          last updated on August 10, 2024
         </div>
         <div class="col-auto">
           
@@ -402,7 +421,8 @@
       </div>
       <div class="row">
         <div class="col">
-          July 09, 2024
+          created at July 09, 2024,
+          last updated on August 10, 2024
         </div>
         <div class="col-auto">
           
@@ -418,93 +438,10 @@
       </div>
       <div class="row">
         <div class="col">
-          July 09, 2024
+          created at July 09, 2024,
+          last updated on August 10, 2024
         </div>
         <div class="col-auto">
-          
-        </div>
-      </div>
-    </a>
-    
-    <a class="list-group-item my-list-group-item" href="/2024/07/06/az104-exam.html">
-      <div class="row">
-        <div class="col">
-          <strong>Passed AZ-104 (Azure Administrator Associate) Today</strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          July 06, 2024
-        </div>
-        <div class="col-auto">
-          
-        </div>
-      </div>
-    </a>
-    
-    <a class="list-group-item my-list-group-item" href="/2024/06/02/azure-notes.html">
-      <div class="row">
-        <div class="col">
-          <strong>Azure Notes</strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          June 02, 2024
-        </div>
-        <div class="col-auto">
-          
-        </div>
-      </div>
-    </a>
-    
-    <a class="list-group-item my-list-group-item" href="/2024/05/30/azure-storage.html">
-      <div class="row">
-        <div class="col">
-          <strong>Azure Storage</strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          May 30, 2024
-        </div>
-        <div class="col-auto">
-          
-        </div>
-      </div>
-    </a>
-    
-    <a class="list-group-item my-list-group-item" href="/2024/05/27/Azure-SAS.html">
-      <div class="row">
-        <div class="col">
-          <strong>Azure Sas</strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          May 27, 2024
-        </div>
-        <div class="col-auto">
-          
-        </div>
-      </div>
-    </a>
-    
-    <a class="list-group-item my-list-group-item" href="/2024/05/22/css-flex-layout.html">
-      <div class="row">
-        <div class="col">
-          <strong>CSS: layout of the header</strong>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          May 22, 2024
-        </div>
-        <div class="col-auto">
-          
-          <div class="badge badge-info">web</div>
-          
-          <div class="badge badge-info">css</div>
           
         </div>
       </div>
@@ -513,6 +450,7 @@
   </ul>
 </div> 
         </div>
+
     </div>
 </main>
 
