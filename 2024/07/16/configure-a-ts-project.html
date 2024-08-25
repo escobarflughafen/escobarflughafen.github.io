@@ -30,11 +30,6 @@
             </div>
 
 
-            <a class="col-auto subway-blue link-no-effect" href="#toc">
-                <h1 class="head-text display-text">
-                   Toc
-                </h1>
-            </a>
 
             <div class="col-12 col-md px-0">
                 <ul class="nav nav-banner">
@@ -103,7 +98,7 @@
         <div class="col-12 col-md-8 mb-3 mb-md-0">
             <p class="subway-blue">
                 posted on July 16, 2024,
-                last updated on Saturday, August 10, 2024 at 06:15 AM
+                last updated on Saturday, August 24, 2024 at 11:59 PM
             </p>
             <blockquote>
   <p>[!NOTE]</p>
@@ -145,50 +140,41 @@
   <li>
     <p>Make the directory</p>
 
-    <div class="language-bash highlighter-coderay"><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>mkdir multi-stage-cd
-<span class="line-numbers"><a href="#n2" name="n2">2</a></span>cd multi-stage-cd
-</pre></div>
-</div>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nb">mkdir </span>multi-stage-cd
+<span class="nb">cd </span>multi-stage-cd
+</pre></td></tr></tbody></table></code></pre></div>    </div>
   </li>
   <li>
     <p>Initialize git repo</p>
 
-    <div class="language-bash highlighter-coderay"><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>git init
-</pre></div>
-</div>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>git init
+</pre></td></tr></tbody></table></code></pre></div>    </div>
   </li>
   <li>
     <p>Install typescript and node env for ts</p>
 
-    <div class="language-plaintext highlighter-coderay"><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>npm install typescript ts-node @types/node --save-dev
-</pre></div>
-</div>
-    </div>
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>npm install typescript ts-node @types/node --save-dev
+</pre></td></tr></tbody></table></code></pre></div>    </div>
 
-    <p>(<code>--save-dev</code> flag indicates that the packages are necessary for development purposes.)</p>
+    <p>(<code class="language-html highlighter-rouge">--save-dev</code> flag indicates that the packages are necessary for development purposes.)</p>
   </li>
   <li>
-    <p>Configure <code>.gitignore</code> to prevent packages being added to git repo</p>
+    <p>Configure <code class="language-html highlighter-rouge">.gitignore</code> to prevent packages being added to git repo</p>
 
-    <div class="language-bash highlighter-coderay"><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>echo &quot;node_modules/*&quot; &gt; .gitignore
-</pre></div>
-</div>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">echo</span> <span class="s2">"node_modules/*"</span> <span class="o">&gt;</span> .gitignore
+</pre></td></tr></tbody></table></code></pre></div>    </div>
   </li>
   <li>
     <p>Initalize ts project</p>
 
-    <div class="language-plaintext highlighter-coderay"><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>tsc --init
-</pre></div>
-</div>
-    </div>
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>tsc --init
+</pre></td></tr></tbody></table></code></pre></div>    </div>
   </li>
 </ol>
 
@@ -198,40 +184,45 @@
   <li>
     <p>Install jest</p>
 
-    <div class="language-bash highlighter-coderay"><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>npm install jest ts-jest @types/jest --save-dev
-</pre></div>
-</div>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>npm <span class="nb">install </span>jest ts-jest @types/jest <span class="nt">--save-dev</span>
+</pre></td></tr></tbody></table></code></pre></div>    </div>
   </li>
   <li>
     <p>Configure jest</p>
 
-    <div class="language-bash highlighter-coderay"><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>npx ts-jest config:init
-</pre></div>
-</div>
-    </div>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>npx ts-jest config:init
+</pre></td></tr></tbody></table></code></pre></div>    </div>
   </li>
   <li>
-    <p>Modify <code>tsconfig.json</code></p>
+    <p>Modify <code class="language-html highlighter-rouge">tsconfig.json</code></p>
 
-    <div class="language-json highlighter-coderay"><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>{
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>  <span class="key"><span class="delimiter">&quot;</span><span class="content">compilerOptions</span><span class="delimiter">&quot;</span></span>: {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="key"><span class="delimiter">&quot;</span><span class="content">target</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">ES6</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>    <span class="key"><span class="delimiter">&quot;</span><span class="content">module</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">commonjs</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>    <span class="key"><span class="delimiter">&quot;</span><span class="content">strict</span><span class="delimiter">&quot;</span></span>: <span class="value">true</span>,
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    <span class="key"><span class="delimiter">&quot;</span><span class="content">esModuleInterop</span><span class="delimiter">&quot;</span></span>: <span class="value">true</span>,
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    <span class="key"><span class="delimiter">&quot;</span><span class="content">outDir</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">./dist</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    <span class="key"><span class="delimiter">&quot;</span><span class="content">rootDir</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">./src</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>  },
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>  <span class="key"><span class="delimiter">&quot;</span><span class="content">include</span><span class="delimiter">&quot;</span></span>: [<span class="string"><span class="delimiter">&quot;</span><span class="content">src/**/*.ts</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">tests/**/*.ts</span><span class="delimiter">&quot;</span></span>],
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>  <span class="key"><span class="delimiter">&quot;</span><span class="content">exclude</span><span class="delimiter">&quot;</span></span>: [<span class="string"><span class="delimiter">&quot;</span><span class="content">node_modules</span><span class="delimiter">&quot;</span></span>]
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>}
-</pre></div>
-</div>
-    </div>
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="p">{</span><span class="w">
+  </span><span class="nl">"compilerOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ES6"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"commonjs"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"strict"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"esModuleInterop"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"outDir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./dist"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rootDir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./src"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"include"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"src/**/*.ts"</span><span class="p">,</span><span class="w"> </span><span class="s2">"tests/**/*.ts"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"exclude"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"node_modules"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div>    </div>
   </li>
 </ol>
 
@@ -261,7 +252,7 @@
       <div class="row">
         <div class="col">
           created at July 27, 2024,
-          last updated on August 10, 2024
+          last updated on August 24, 2024
         </div>
         <div class="col-auto">
           
@@ -278,7 +269,7 @@
       <div class="row">
         <div class="col">
           created at July 22, 2024,
-          last updated on August 10, 2024
+          last updated on August 24, 2024
         </div>
         <div class="col-auto">
           
@@ -295,7 +286,7 @@
       <div class="row">
         <div class="col">
           created at July 16, 2024,
-          last updated on August 10, 2024
+          last updated on August 24, 2024
         </div>
         <div class="col-auto">
           
@@ -312,7 +303,7 @@
       <div class="row">
         <div class="col">
           created at July 09, 2024,
-          last updated on August 10, 2024
+          last updated on August 24, 2024
         </div>
         <div class="col-auto">
           
@@ -329,7 +320,7 @@
       <div class="row">
         <div class="col">
           created at July 09, 2024,
-          last updated on August 10, 2024
+          last updated on August 24, 2024
         </div>
         <div class="col-auto">
           

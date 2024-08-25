@@ -30,11 +30,6 @@
             </div>
 
 
-            <a class="col-auto subway-blue link-no-effect" href="#toc">
-                <h1 class="head-text display-text">
-                   Toc
-                </h1>
-            </a>
 
             <div class="col-12 col-md px-0">
                 <ul class="nav nav-banner">
@@ -103,7 +98,7 @@
         <div class="col-12 col-md-8 mb-3 mb-md-0">
             <p class="subway-blue">
                 posted on June 02, 2024,
-                last updated on Saturday, August 10, 2024 at 06:15 AM
+                last updated on Saturday, August 24, 2024 at 11:59 PM
             </p>
             <h2 id="availability-set">Availability set</h2>
 
@@ -248,7 +243,7 @@
 
 <p>SAS tokens provide a secure and flexible way to grant limited access to various Azure storage services. By leveraging SAS tokens, you can control access to your storage resources precisely, ensuring that users and applications have the permissions they need without exposing sensitive account keys.</p>
 
-<h2 id="authorization-methods-for-azcopy">Authorization methods for <code>AzCopy</code></h2>
+<h2 id="authorization-methods-for-azcopy">Authorization methods for <code class="language-html highlighter-rouge">AzCopy</code></h2>
 
 <ul>
   <li>MS Entra ID (AzureAD)</li>
@@ -361,9 +356,9 @@
 
 <p>https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal</p>
 
-<h2 id="vm-scale-set-az-vmss">VM scale set <code>az vmss</code></h2>
+<h2 id="vm-scale-set-az-vmss">VM scale set <code class="language-html highlighter-rouge">az vmss</code></h2>
 
-<p><code>az vmss scale</code> - change the number of VMs within a VMSS.</p>
+<p><code class="language-html highlighter-rouge">az vmss scale</code> - change the number of VMs within a VMSS.</p>
 
 <h2 id="port-numbers-for-common-protocols">Port numbers for common protocols</h2>
 
@@ -640,7 +635,7 @@
           <li>security questions are prohibited</li>
         </ul>
       </li>
-      <li>cmdlet <code>Update-MgPolicyAuthorizationPolicy</code> can be used to enable/disable SSPR for admin users with parameter <code>-AllowedToUseSspr</code></li>
+      <li>cmdlet <code class="language-html highlighter-rouge">Update-MgPolicyAuthorizationPolicy</code> can be used to enable/disable SSPR for admin users with parameter <code class="language-html highlighter-rouge">-AllowedToUseSspr</code></li>
     </ul>
   </li>
 </ul>
@@ -656,7 +651,7 @@
 <ol>
   <li><strong>Local DNS Resolver</strong>:
     <ul>
-      <li>When a user enters a domain name (e.g., <code>example.com</code>) in their browser, the request first goes to the user’s local DNS resolver, which is usually managed by their ISP or configured on their network.</li>
+      <li>When a user enters a domain name (e.g., <code class="language-html highlighter-rouge">example.com</code>) in their browser, the request first goes to the user’s local DNS resolver, which is usually managed by their ISP or configured on their network.</li>
     </ul>
   </li>
   <li><strong>Check Local Cache</strong>:
@@ -666,24 +661,24 @@
   </li>
   <li><strong>Query the Root DNS Servers</strong>:
     <ul>
-      <li>If the local DNS resolver does not have the cached result, it queries one of the root DNS servers. The root DNS servers know the authoritative servers for all top-level domains (TLDs, like <code>.com</code>, <code>.net</code>, etc.).</li>
+      <li>If the local DNS resolver does not have the cached result, it queries one of the root DNS servers. The root DNS servers know the authoritative servers for all top-level domains (TLDs, like <code class="language-html highlighter-rouge">.com</code>, <code class="language-html highlighter-rouge">.net</code>, etc.).</li>
     </ul>
   </li>
   <li><strong>TLD DNS Servers</strong>:
     <ul>
-      <li>The root DNS server responds with the address of the TLD DNS server responsible for <code>.com</code> domains.</li>
-      <li>The local DNS resolver then queries the TLD DNS server for <code>example.com</code>.</li>
+      <li>The root DNS server responds with the address of the TLD DNS server responsible for <code class="language-html highlighter-rouge">.com</code> domains.</li>
+      <li>The local DNS resolver then queries the TLD DNS server for <code class="language-html highlighter-rouge">example.com</code>.</li>
     </ul>
   </li>
   <li><strong>Authoritative DNS Servers (Azure DNS)</strong>:
     <ul>
-      <li>The TLD DNS server responds with the address of the authoritative DNS servers for <code>example.com</code>, which are the Azure DNS servers you configured.</li>
-      <li>The local DNS resolver queries one of the Azure DNS servers for <code>example.com</code>.</li>
+      <li>The TLD DNS server responds with the address of the authoritative DNS servers for <code class="language-html highlighter-rouge">example.com</code>, which are the Azure DNS servers you configured.</li>
+      <li>The local DNS resolver queries one of the Azure DNS servers for <code class="language-html highlighter-rouge">example.com</code>.</li>
     </ul>
   </li>
   <li><strong>Retrieve DNS Records</strong>:
     <ul>
-      <li>The Azure DNS server responds with the DNS records for <code>example.com</code> (e.g., the IP address associated with the domain).</li>
+      <li>The Azure DNS server responds with the DNS records for <code class="language-html highlighter-rouge">example.com</code> (e.g., the IP address associated with the domain).</li>
     </ul>
   </li>
   <li><strong>Return Response to Client</strong>:
@@ -699,12 +694,12 @@
 <ol>
   <li><strong>User Input</strong>:
     <ul>
-      <li>User enters <code>www.example.com</code> in their browser.</li>
+      <li>User enters <code class="language-html highlighter-rouge">www.example.com</code> in their browser.</li>
     </ul>
   </li>
   <li><strong>Local DNS Cache</strong>:
     <ul>
-      <li>The local DNS resolver checks if <code>www.example.com</code> is in its cache.</li>
+      <li>The local DNS resolver checks if <code class="language-html highlighter-rouge">www.example.com</code> is in its cache.</li>
     </ul>
   </li>
   <li><strong>Root Server Query</strong>:
@@ -714,25 +709,25 @@
   </li>
   <li><strong>TLD Server Query</strong>:
     <ul>
-      <li>Root DNS server responds with the TLD DNS server for <code>.com</code>.</li>
+      <li>Root DNS server responds with the TLD DNS server for <code class="language-html highlighter-rouge">.com</code>.</li>
     </ul>
   </li>
   <li><strong>Authoritative DNS Server Query</strong>:
     <ul>
-      <li>The local DNS resolver queries the TLD DNS server for <code>example.com</code>.</li>
+      <li>The local DNS resolver queries the TLD DNS server for <code class="language-html highlighter-rouge">example.com</code>.</li>
       <li>TLD DNS server responds with the Azure DNS servers.</li>
     </ul>
   </li>
   <li><strong>Azure DNS Response</strong>:
     <ul>
-      <li>The local DNS resolver queries the Azure DNS server for <code>www.example.com</code>.</li>
-      <li>Azure DNS server responds with the IP address (e.g., <code>192.0.2.1</code>).</li>
+      <li>The local DNS resolver queries the Azure DNS server for <code class="language-html highlighter-rouge">www.example.com</code>.</li>
+      <li>Azure DNS server responds with the IP address (e.g., <code class="language-html highlighter-rouge">192.0.2.1</code>).</li>
     </ul>
   </li>
   <li><strong>Browser Connects</strong>:
     <ul>
       <li>The local DNS resolver caches the response and returns the IP address to the browser.</li>
-      <li>The browser connects to <code>192.0.2.1</code> and loads the website.</li>
+      <li>The browser connects to <code class="language-html highlighter-rouge">192.0.2.1</code> and loads the website.</li>
     </ul>
   </li>
 </ol>
@@ -786,18 +781,18 @@
 
 <ul>
   <li>Resource URI</li>
-  <li><code>sv</code> - storage version</li>
-  <li><code>ss</code> - storage service</li>
-  <li><code>st</code> - start time</li>
-  <li><code>se</code> - expiry time</li>
-  <li><code>sr</code> - resource</li>
-  <li><code>sp</code> - permissions</li>
-  <li><code>sip</code> - ip range</li>
-  <li><code>spr</code> - protocol</li>
-  <li><code>sig</code> - signature</li>
+  <li><code class="language-html highlighter-rouge">sv</code> - storage version</li>
+  <li><code class="language-html highlighter-rouge">ss</code> - storage service</li>
+  <li><code class="language-html highlighter-rouge">st</code> - start time</li>
+  <li><code class="language-html highlighter-rouge">se</code> - expiry time</li>
+  <li><code class="language-html highlighter-rouge">sr</code> - resource</li>
+  <li><code class="language-html highlighter-rouge">sp</code> - permissions</li>
+  <li><code class="language-html highlighter-rouge">sip</code> - ip range</li>
+  <li><code class="language-html highlighter-rouge">spr</code> - protocol</li>
+  <li><code class="language-html highlighter-rouge">sig</code> - signature</li>
 </ul>
 
-<h2 id="summary-of-supported-authentication-methods-in-azcopy">Summary of supported authentication methods in <code>azcopy</code></h2>
+<h2 id="summary-of-supported-authentication-methods-in-azcopy">Summary of supported authentication methods in <code class="language-html highlighter-rouge">azcopy</code></h2>
 
 <table>
   <thead>
@@ -966,7 +961,7 @@
 <dl>
   <dt>Does the solution meet the goal?</dt>
   <dd>
-    <p><code>Start-ADSyncSyncCycle -PolicyType Delta</code></p>
+    <p><code class="language-html highlighter-rouge">Start-ADSyncSyncCycle -PolicyType Delta</code></p>
   </dd>
 </dl>
 
@@ -982,7 +977,7 @@
   <li><a href="https://learn.microsoft.com/en-us/azure/app-service/manage-backup">Create a back up of the source app</a>.</li>
   <li><a href="https://learn.microsoft.com/en-us/azure/app-service/app-service-plan-manage#create-an-app-service-plan">Create an app in a new App Service plan, in the target region</a>.</li>
   <li><a href="https://learn.microsoft.com/en-us/azure/app-service/manage-backup">Restore the back up in the target app</a></li>
-  <li>If you use a custom domain, <a href="https://learn.microsoft.com/en-us/azure/app-service/manage-custom-dns-migrate-domain#2-create-the-dns-records">bind it preemptively to the target app</a> with <code>asuid.</code> and <a href="https://learn.microsoft.com/en-us/azure/app-service/manage-custom-dns-migrate-domain#3-enable-the-domain-for-your-app">enable the domain in the target app</a>.</li>
+  <li>If you use a custom domain, <a href="https://learn.microsoft.com/en-us/azure/app-service/manage-custom-dns-migrate-domain#2-create-the-dns-records">bind it preemptively to the target app</a> with <code class="language-html highlighter-rouge">asuid.</code> and <a href="https://learn.microsoft.com/en-us/azure/app-service/manage-custom-dns-migrate-domain#3-enable-the-domain-for-your-app">enable the domain in the target app</a>.</li>
   <li>Configure everything else in your target app to be the same as the source app and verify your configuration.</li>
   <li>When you’re ready for the custom domain to point to the target app, <a href="https://learn.microsoft.com/en-us/azure/app-service/manage-custom-dns-migrate-domain#4-remap-the-active-dns-name">remap the domain name</a>.</li>
 </ol>
@@ -1258,7 +1253,7 @@
       <div class="row">
         <div class="col">
           created at July 27, 2024,
-          last updated on August 10, 2024
+          last updated on August 24, 2024
         </div>
         <div class="col-auto">
           
@@ -1275,7 +1270,7 @@
       <div class="row">
         <div class="col">
           created at July 22, 2024,
-          last updated on August 10, 2024
+          last updated on August 24, 2024
         </div>
         <div class="col-auto">
           
@@ -1292,7 +1287,7 @@
       <div class="row">
         <div class="col">
           created at July 16, 2024,
-          last updated on August 10, 2024
+          last updated on August 24, 2024
         </div>
         <div class="col-auto">
           
@@ -1309,7 +1304,7 @@
       <div class="row">
         <div class="col">
           created at July 09, 2024,
-          last updated on August 10, 2024
+          last updated on August 24, 2024
         </div>
         <div class="col-auto">
           
@@ -1326,7 +1321,7 @@
       <div class="row">
         <div class="col">
           created at July 09, 2024,
-          last updated on August 10, 2024
+          last updated on August 24, 2024
         </div>
         <div class="col-auto">
           
