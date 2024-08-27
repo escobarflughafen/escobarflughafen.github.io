@@ -1,14 +1,54 @@
 /* code highlighter */
+:root {
+    /*
+    --dark-bg-color: white;
+    --dark-text-color: #0d0015;
 
+    --light-bg-color: #0d0015;
+    --light-text-color: white;
+    */
+
+    --dark-bg-color: #0d0015;
+    --dark-text-color: white;
+
+    --light-bg-color: white;
+    --light-text-color: #0d0015;
+}
 
 /* Example of Monokai theme for Rouge */
 pre.highlight {
-    background-color: #272822;
+    background-color: var(--dark-bg-color);
     color: #f8f8f2;
     overflow-x: auto;
     padding-left: 1rem;
     padding-right: 1rem;
+    margin-bottom: 0;
+    border: 0;
 }
+
+
+pre.lineno {
+    margin-right: 0.5rem;
+    /*
+    color: var(--light-text-color);
+    background-color: var(--light-bg-color);
+    */
+    background-color: #1CA3C6 !important;
+    color: white !important;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+td.rouge-gutter,
+td.rouge-code
+{
+    padding: 0;
+}
+
+td.rouge-code pre {
+    margin-bottom: 0;
+}
+
 
 .highlight .c {
     color: #75715e
