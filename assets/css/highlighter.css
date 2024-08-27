@@ -15,21 +15,25 @@
     --light-text-color: #0d0015;
 }
 
+div.highlight {
+    margin-bottom: 1rem;
+}
+
 /* Example of Monokai theme for Rouge */
 pre.highlight {
     background-color: var(--dark-bg-color);
     color: #f8f8f2;
     overflow-x: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
     margin-bottom: 0;
     border: 0;
 }
 
 
 pre.lineno {
-    margin-right: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     /*
+    margin-right: 0.5rem;
     color: var(--light-text-color);
     background-color: var(--light-bg-color);
     */
