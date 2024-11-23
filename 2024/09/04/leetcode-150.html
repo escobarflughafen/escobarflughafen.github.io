@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leetcode Top 150 - escobarflughafen</title>
+  <meta name="description" content="This is an example site description. You can use Markdown here.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/highlighter.css">
+  <link rel="icon" href="/assets/img/home.png" type="image/x-icon">
+</head>
+<body class="mb-3">
+
+
+<header class="header-banner line-overlay">
+    <div class="container">
+        <div class="row header-banner-row px-3">
+            <a href="/" class="col-auto subway-red link-no-effect pe-3">
+                <h1 class="head-text display-text">
+                    Exit
+                </h1>
+            </a>
+            <!--prev post-->
+
+
+            <div class="col flex-grow-1 pe-3">
+                <h1 class="head-text">
+                    Leetcode Top 150
+                </h1>
+            </div>
+
+
+
+            <div class="col-12 col-md px-0">
+                <ul class="nav nav-banner">
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/posts">
+            <h2 class="
+            mb-0">
+                posts
+            </h2>
+        </a>
+
+    </li>
+
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/projects">
+            <h2 class="
+            mb-0">
+                projects
+            </h2>
+        </a>
+    </li>
+    <li class="nav-item my-nav-item">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/photos">
+            <h2 class="
+            mb-0">
+                photos
+            </h2>
+        </a>
+    </li>
+    <li class="nav-item my-nav-items">
+        <a class="nav-link
+        my-nav-link
+        head-text
+        display-text
+        nav-link-banner" aria-current="page" href="/contacts">
+            <h2 class="
+            mb-0">
+                contacts
+            </h2>
+        </a>
+    </li>
+</ul>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</header>
+
+<main class="container my-3 px-3">
+    <div class="row">
+        <div class="col-12 col-md-8 mb-3 mb-md-0">
+            <p class="subway-blue">
+                posted on September 04, 2024,
+                last updated on Saturday, November 23, 2024 at 10:43 AM
+            </p>
+            <h2 id="238-product-of-array-except-self"><a href="https://leetcode.com/problems/product-of-array-except-self/">238. Product of Array Except Self</a></h2>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>nums = [a, b, c, d]
+prefix_prod = [a, 			a*b, 		a*b*c, 	a*b*c*d]
+suffix_prod = [a*b*c*d, b*c*d, 	c*d, 		d				]
+
+prod = [b*c*d, a*c*d, a*b*d, a*b*c]
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="49-group-anagrams">49. Group Anagrams</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">groupAnagrams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+        <span class="c1"># use bit to encode letters
+</span>        <span class="c1"># 2^0 - a 2^1 -b ... 2^25 - z
+</span>
+        <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)):</span>
+                <span class="n">value</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s">'a'</span><span class="p">)))</span>
+            
+            <span class="k">return</span> <span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">),</span> <span class="n">word</span><span class="p">)</span>
+
+        <span class="n">encodings</span> <span class="o">=</span> <span class="p">[</span><span class="n">encode</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">strs</span><span class="p">]</span>
+        <span class="n">encodings</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[[</span><span class="n">encodings</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]]]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">encodings</span><span class="p">)):</span>
+            
+            <span class="n">value</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">word</span> <span class="o">=</span> <span class="n">encodings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">prev_value</span><span class="p">,</span> <span class="n">prev_length</span><span class="p">,</span> <span class="n">prev_word</span> <span class="o">=</span> <span class="n">encodings</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+            
+            <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="n">prev_value</span> <span class="ow">and</span> <span class="n">length</span><span class="o">==</span><span class="n">prev_length</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">word</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+        
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">groupAnagrams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+        
+        <span class="n">sorted_strs</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">strs</span><span class="p">]</span>
+
+        <span class="n">sorted_strs</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[[</span><span class="n">sorted_strs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]]]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sorted_strs</span><span class="p">)):</span>
+            <span class="n">sorted_key</span><span class="p">,</span> <span class="n">word</span> <span class="o">=</span> <span class="n">sorted_strs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">prev_sorted_key</span><span class="p">,</span> <span class="n">prev_word</span> <span class="o">=</span> <span class="n">sorted_strs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">sorted_key</span> <span class="o">==</span> <span class="n">prev_sorted_key</span><span class="p">:</span>
+                <span class="n">result</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">([</span><span class="n">word</span><span class="p">])</span>
+        
+        <span class="k">return</span> <span class="n">result</span>
+
+        
+        
+
+        
+
+        
+        
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="202-happy-number">202. Happy number</h2>
+
+<ul>
+  <li>key solution is to detect if there is a cycle in the number after the transformation
+    <ul>
+      <li>the cycle is deterministic. either stay in 1 or create a cycle</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isHappy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        
+        <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="k">while</span> <span class="n">num</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">+=</span> <span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+                <span class="n">num</span> <span class="o">=</span> <span class="n">num</span> <span class="o">//</span> <span class="mi">10</span>
+
+            <span class="k">return</span> <span class="n">value</span>
+        
+        
+        <span class="k">while</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="n">seen</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+
+        </div>
+        
+        <div class="col-12 col-md-4">
+            
+            <h2>Table of Content</h2>
+            
+            <ul id="toc" class="toc-list">
+<li class="toc-item toc-h2"><a href="#238-product-of-array-except-self">238. Product of Array Except Self</a></li>
+<li class="toc-item toc-h2"><a href="#49-group-anagrams">49. Group Anagrams</a></li>
+<li class="toc-item toc-h2"><a href="#202-happy-number">202. Happy number</a></li>
+</ul>
+            <div class="card my-card">
+  <div class="card-header my-card-header">
+    <h4 class="mb-0 display-text">Recent posts</h2>
+  </div>
+  <ul class="list-group list-group-flush">
+    
+    <a class="list-group-item my-list-group-item" href="/2024/09/04/leetcode-150.html">
+      <div class="row">
+        <div class="col">
+          <strong>Leetcode Top 150</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          created at September 04, 2024,
+          last updated on November 23, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/27/canada-pr-application.html">
+      <div class="row">
+        <div class="col">
+          <strong>Canada PR application (after provincial nomination)</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          created at July 27, 2024,
+          last updated on November 23, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/22/angular-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>Angular Notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          created at July 22, 2024,
+          last updated on November 23, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/16/configure-a-ts-project.html">
+      <div class="row">
+        <div class="col">
+          <strong>Configure a TypeScript project with CI/CD</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          created at July 16, 2024,
+          last updated on November 23, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+    <a class="list-group-item my-list-group-item" href="/2024/07/09/leetcode-notes.html">
+      <div class="row">
+        <div class="col">
+          <strong>Leetcode Notes</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          created at July 09, 2024,
+          last updated on November 23, 2024
+        </div>
+        <div class="col-auto">
+          
+        </div>
+      </div>
+    </a>
+    
+  </ul>
+</div> 
+        </div>
+
+    </div>
+</main>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+</script>
+
+</html>
